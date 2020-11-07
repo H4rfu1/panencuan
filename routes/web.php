@@ -10,6 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/profil/{id}', 'AkunController@index');
+
+Route::patch('/profil/{id}', 'AkunController@update');
+
+Route::get('/profil/{id}/edit', 'AkunController@edit');
+
+Route::post('/daftarakun', 'AkunController@store');
+
+Route::get('/buatakun/{role}', 'AkunController@buatakun');
+
+Route::get('/akun/{role}', 'AkunController@akun');
+
 
 Route::get('/', 'PagesController@index');
 Route::get('/hom', 'PagesController@home')->middleware(['auth', 'verified']);
