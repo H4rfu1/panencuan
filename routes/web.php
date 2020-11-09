@@ -24,7 +24,7 @@ Route::get('/akun/{role}', 'AkunController@akun');
 
 
 Route::get('/', 'PagesController@index');
-Route::get('/hom', 'PagesController@home')->middleware(['auth', 'verified']);
+Route::get('/home', 'PagesController@home')->middleware(['auth', 'verified']);
 Route::get('/login', function () {
     return view('login');
 });
@@ -41,4 +41,4 @@ Route::get('/register', function () {
 // });
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
