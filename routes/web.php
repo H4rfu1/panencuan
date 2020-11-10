@@ -10,27 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/profil/{id}', 'AkunController@index');
-
-Route::patch('/profil/{id}', 'AkunController@update');
-
-Route::get('/profil/{id}/edit', 'AkunController@edit');
-
-Route::post('/daftarakun', 'AkunController@store');
-
-Route::get('/buatakun/{role}', 'AkunController@buatakun');
-
-Route::get('/akun/{role}', 'AkunController@akun');
+Route::get('/', 'PagesController@home');
+Route::get('/profil', 'PagesController@profil');
+Auth::routes();
 
 
-Route::get('/', 'PagesController@index');
-Route::get('/home', 'PagesController@home')->middleware(['auth', 'verified']);
-Route::get('/login', function () {
-    return view('login');
-});
-Route::get('/register', function () {
-    return view('register');
-});
+// Route::get('/login', 'LoginController@login')->name('login');
+// Route::get('/register', 'RegisterController@index')->name('register');
+// Route::post('/login', 'LoginController@postlogin');
+// Route::post('/register', 'RegisterController@store');
+// Route::get('/logout', 'LoginController@logout')->name('logout');
+// Route::get('/', 'PagesController@index');
 
 
 // Route::get('/', function () {
@@ -39,6 +29,17 @@ Route::get('/register', function () {
 // Route::get('/home', function () {
 //     return view('index2');
 // });
-Auth::routes(['verify' => true]);
 
 // Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::get('/profil/{id}', 'AkunController@index');
+
+// Route::patch('/profil/{id}', 'AkunController@update');
+
+// Route::get('/profil/{id}/edit', 'AkunController@edit');
+
+// Route::post('/daftarakun', 'AkunController@store');
+
+// Route::get('/buatakun/{role}', 'AkunController@buatakun');
+
+// Route::get('/akun/{role}', 'AkunController@akun');

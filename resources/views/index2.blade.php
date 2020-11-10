@@ -77,7 +77,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark navbar-floating">
   <div class="container">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{{url('/')}}">
       <img src="assets/favicon-light.png" alt="" width="40">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,20 +106,31 @@
           <a class="nav-link" href="contact.html">Contact</a>
         </li>
       </ul>
+      @if(Auth::check())
       <div class="ml-auto my-2 my-lg-0">
         <!-- <a href="login.html" class="btn btn-dark rounded-pill" role="button">Login</a>
         <a href="daftar.html" class="btn btn-dark rounded-pill" role="button">Register</a> -->
         <div class="dropdown">
-				<a href="#" data-toggle="dropdown" class="dropdown-toggle user-action text-white text-decoration-none"><img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="rounded-circle" alt="Avatar"> Paula Wilson <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a href="#" class="text-decoration-none"><i class="fa fa-user-o"></i> Profile</a></li>
-					<li><a href="#" class="text-decoration-none"><i class="fa fa-calendar-o"></i> Calendar</a></li>
-					<li><a href="#" class="text-decoration-none"><i class="fa fa-sliders"></i> Settings</a></li>
-					<li class="dropdown-divider"></li>
-					<li><a href="index.html" class="text-decoration-none"><i class="fa fa-sign-out"></i> Logout</a></li>
-				</ul>
-			</div>
+          <a href="#" data-toggle="dropdown" class="dropdown-toggle user-action text-white text-decoration-none"><img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="rounded-circle" alt="Avatar">{{Auth::user()->name}}<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="text-decoration-none"><i class="fa fa-user-o"></i> Profile</a></li>
+            <li><a href="#" class="text-decoration-none"><i class="fa fa-calendar-o"></i> Calendar</a></li>
+            <li><a href="#" class="text-decoration-none"><i class="fa fa-sliders"></i> Settings</a></li>
+            <li class="dropdown-divider"></li>
+            <li><a href="{{ route('logout') }}"
+                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-decoration-none"><i class="fa fa-sign-out"></i> Logout</a></li>
+          </ul>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+			  </div>
       </div>
+      @else
+      <div class="ml-auto my-2 my-lg-0">
+        <a href="{{url('/login')}}" class="btn btn-dark rounded-pill" role="button">Login</a>
+        <a href="{{url('/register')}}" class="btn btn-dark rounded-pill" role="button">Daftar</a>
+      </div>
+      @endif
     </div>
   </div>
 </nav>

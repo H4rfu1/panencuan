@@ -14,4 +14,8 @@ class PagesController extends Controller
     {
         return view('index2');
     }
+    public function profil()
+    {
+        return view('profil');
+    }
 }
