@@ -10,7 +10,7 @@
 
   <meta name="copyright" content="MACode ID, https://www.macodeid.com/">
 
-  <title>Mobster - One page app template</title>
+  <title>Home</title>
 
   <link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
@@ -25,53 +25,8 @@
   <link rel="stylesheet" href="assets/css/bootstrap.css">
 
   <link rel="stylesheet" href="assets/css/mobster.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
 
-  <style>
-      .form-inline {
-          display: inline-block;
-      }
-  	nav img {
-  		border-radius: 50%;
-  		width: 36px;
-  		height: 36px;
-  		margin: -8px 0;
-  		float: left;
-  		margin-right: 10px;
-  	}
-  	nav li i {
-  		font-size: 18px;
-  	}
-  	nav .dropdown-menu i {
-  		font-size: 16px;
-  		min-width: 22px;
-  	}
-  	nav .dropdown.open > a {
-  		background: none !important;
-  	}
-  	nav .dropdown-menu {
-  		border-radius: 1px;
-  		border-color: #e5e5e5;
-  		box-shadow: 0 2px 8px rgba(0,0,0,.05);
-  	}
-  	nav .dropdown-menu li a {
-  		color: #777;
-  		padding: 8px 20px;
-  		line-height: normal;
-  	}
-  	nav .dropdown-menu li a:hover, nav .dropdown-menu li a:active {
-  		color: #333;
-  	}
-  	nav .dropdown-menu .material-icons {
-  		font-size: 21px;
-  		line-height: 16px;
-  		vertical-align: middle;
-  		margin-top: -2px;
-  	}
-
-  	nav .active a, nav .active a:hover, nav .active a:focus {
-  		background: transparent !important;
-  	}
-</style>
 </head>
 <body>
 
@@ -113,7 +68,7 @@
         <div class="dropdown">
           <a href="#" data-toggle="dropdown" class="dropdown-toggle user-action text-white text-decoration-none"><img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="rounded-circle" alt="Avatar">{{Auth::user()->name}}<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#" class="text-decoration-none"><i class="fa fa-user-o"></i> Profile</a></li>
+            <li><a href="{{url('/profil')}}" class="text-decoration-none"><i class="fa fa-user-o"></i> Profile</a></li>
             <li><a href="#" class="text-decoration-none"><i class="fa fa-calendar-o"></i> Calendar</a></li>
             <li><a href="#" class="text-decoration-none"><i class="fa fa-sliders"></i> Settings</a></li>
             <li class="dropdown-divider"></li>

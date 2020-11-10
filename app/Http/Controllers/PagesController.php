@@ -18,4 +18,20 @@ class PagesController extends Controller
     {
         return view('profil');
     }
+    public function profiledit()
+    {
+        return view('profiledit');
+    }
+    public function admin()
+    {
+        return view('admin.dashboard');
+    }
+    public function user()
+    {
+        return view('admin.user');
+    }
+    public function pemateri()
+    {
+        return view('admin.pemateri');
+    }
 }
