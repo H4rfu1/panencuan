@@ -15,6 +15,7 @@ Route::get('/profil', 'PagesController@profil');
 Route::get('/profil/edit', 'PagesController@profiledit');
 Route::get('/admin', 'PagesController@admin');
 Route::get('/admin/user', 'PagesController@user');
+Route::get('/admin/userverif', 'PagesController@userverif');
 Route::get('/admin/pemateri', 'PagesController@pemateri');
 Auth::routes();
 

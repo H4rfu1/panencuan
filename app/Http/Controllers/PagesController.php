@@ -30,6 +30,10 @@ class PagesController extends Controller
     {
         return view('admin.user');
     }
+    public function userverif()
+    {
+        return view('admin.userverif');
+    }
     public function pemateri()
     {
         return view('admin.pemateri');
