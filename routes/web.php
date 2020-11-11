@@ -24,6 +24,8 @@ Route::post('/purchase', 'PagesController@storepurchase');
 Route::get('/admin', 'PagesController@admin');
 Route::get('/admin/user', 'PagesController@user');
 Route::get('/admin/userverif', 'PagesController@userverif');
+Route::get('/admin/{id}', 'PagesController@detailverif');
+Route::post('/admin/verif', 'PagesController@memberverif');
 Route::get('/admin/pemateri', 'PagesController@pemateri');
 
 Auth::routes();

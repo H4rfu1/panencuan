@@ -139,6 +139,36 @@ class PagesController extends Controller
         }
         
     }
+    public function detailverif($id)
+    {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }else{
+            $data = DB::table('verifikasi_member')
+            ->join('users', 'verifikasi_member.id_user', '=', 'users.id')
+            ->select('verifikasi_member.*', 'users.*')
+            ->where('verifikasi_member.id_pembayaran', $id)
+            ->first();
+            // dd($data);
+            return view('admin.detailverif', compact('data'));
+        }
+        
+    }
+    public function memberverif(Request $request)
+    {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }else{
+            DB::table('verifikasi_member')
+            ->where('id_pembayaran', $request->id)
+            ->update(['status_verif' => 'terverifikasi']);
+            // dd($data);
+            return redirect('admin/userverif');
+        }
+        
+    }
+
+
     public function pemateri()
     {
         return view('admin.pemateri');
