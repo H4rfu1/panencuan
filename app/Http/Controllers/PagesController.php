@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Auth;
 
 class PagesController extends Controller
 {
@@ -16,11 +18,58 @@ class PagesController extends Controller
     }
     public function profil()
     {
-        return view('profil');
+        if (!Auth::check()) {
+            return redirect('/login');
+        }else{
+            return view('profil');
+        }
+    }
+    public function membership()
+    {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }else{
+            return view('membership');
+        }
+    }
+    public function purchace($id)
+    {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }else{
+            return view('membership');
+        }
     }
     public function profiledit()
     {
-        return view('profiledit');
+        if (!Auth::check()) {
+            return redirect('/login');
+        }else{
+            return view('profiledit');
+        }
+        
+    }
+    public function profilupdate(Request $request, $id)
+    {
+        User::where('id', $id)
+            ->update([
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'kota' => $request->kota,
+                'no_hp' => $request->no_hp,
+                'nim' => $request->nim,
+                'jurusan' => $request->jurusan
+            ]);
+            return redirect('profil');
+            // if((int)$request->role == 1){
+            //     return redirect('akun/admin')->with('status', 'Data Admin Berhasil diubah');
+            // }elseif((int)$request->role == 2){
+            //     return redirect('akun/pengawas')->with('status', 'Berhasil mengubah data akun pengawas');
+            // }elseif((int)$request->role == 3){
+            //     return redirect('akun/pemimpin')->with('status', 'Berhasil mengubah data akun pemimpin');
+            // }
     }
     public function admin()
     {

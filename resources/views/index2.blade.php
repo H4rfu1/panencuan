@@ -41,25 +41,20 @@
 
     <div class="collapse navbar-collapse" id="navbarToggler">
       <ul class="navbar-nav ml-auto mt-3 mt-lg-0">
-        <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{url('/')}}">Homepage 1</a>
-            <a class="dropdown-item active" href="{{url('/home')}}">Homepage 2</a>
-          </div>
+      <ul class="navbar-nav ml-auto mt-3 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{{url('')}}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="about.html">About</a>
+          <a class="nav-link" href="{{url('membership')}}">Upgrade Member</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="blog.html">Blog</a>
+          <a class="nav-link" href="#">Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="updates.html">What's New</a>
+          <a class="nav-link" href="#">Webinar</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
-        </li>
+      </ul>
       </ul>
       @if(Auth::check())
       <div class="ml-auto my-2 my-lg-0">
@@ -69,8 +64,8 @@
           <a href="#" data-toggle="dropdown" class="dropdown-toggle user-action text-white text-decoration-none"><img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="rounded-circle" alt="Avatar">{{Auth::user()->name}}<b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="{{url('/profil')}}" class="text-decoration-none"><i class="fa fa-user-o"></i> Profile</a></li>
-            <li><a href="#" class="text-decoration-none"><i class="fa fa-calendar-o"></i> Calendar</a></li>
-            <li><a href="#" class="text-decoration-none"><i class="fa fa-sliders"></i> Settings</a></li>
+            <!-- <li><a href="#" class="text-decoration-none"><i class="fa fa-calendar-o"></i> Calendar</a></li>
+            <li><a href="#" class="text-decoration-none"><i class="fa fa-sliders"></i> Settings</a></li> -->
             <li class="dropdown-divider"></li>
             <li><a href="{{ route('logout') }}"
                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-decoration-none"><i class="fa fa-sign-out"></i> Logout</a></li>

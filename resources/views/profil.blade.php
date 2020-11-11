@@ -3,9 +3,9 @@
 @section('judul', 'Profil')
 
 @section('content')
-<div class="page-content page-container" id="page-content">
-    <div class="padding">
-        <div class="row container d-flex justify-content-center">
+<div class="page-section mt-0">
+    <div class="container">
+        <div class="row justify-content-center">
             <div class="col-md-12 ">
                 <div class="card user-card-full">
                     <div class="row m-l-0 m-r-0">

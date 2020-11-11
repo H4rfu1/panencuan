@@ -3,71 +3,74 @@
 @section('judul', 'Edit Profil')
 
 @section('content')
-<div class="page-content page-container" id="page-content">
-    <div class="padding">
-        <div class="row container d-flex justify-content-center">
-            <div class="col-md-12 ">
-                <div class="card user-card-full">
-                    <div class="row m-l-0 m-r-0">
-                        <div class="col-sm-4 bg-c-lite-green user-profile">
-                            <div class="card-block text-center text-white">
-                                <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"> </div>
-                                <h6 class="f-w-600">{{Auth::user()->username}}</h6>
-                                <p>{{Auth::user()->name}}</p> <a href="{{url('profil/edit')}}}}"><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="card-block">
-                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Profil</h6>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Kota</p>
-                                        <h6 class="text-muted f-w-400">{{Auth::user()->kota}}</h6>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Tanggal Lahir</p>
-                                        <h6 class="text-muted f-w-400">{{Auth::user()->tanggal}}</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Jenis Kelamin</p>
-                                        <h6 class="text-muted f-w-400">{{Auth::user()->jenis_kelamin}}</h6>
-                                    </div>
-                                </div>
-                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">membership</h6>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Role</p>
-                                        <h6 class="text-muted f-w-400">{{Auth::user()->role_id}}</h6>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Status Member</p>
-                                        <h6 class="text-muted f-w-400">{{Auth::user()->status_id}}</h6>
-                                    </div>
-                                </div>
-                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Data member</h6>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">nim</p>
-                                        <h6 class="text-muted f-w-400">{{Auth::user()->nim}}</h6>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Jurusan</p>
-                                        <h6 class="text-muted f-w-400">{{Auth::user()->jurusan}}</h6>
-                                    </div>
-                                </div>
-                                <!-- <ul class="social-link list-unstyled m-t-40 m-b-10">
-                                    <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i class="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="twitter" data-abc="true"><i class="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i class="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
-                                </ul> -->
-                            </div>
-                        </div>
-                    </div>
+<div class="page-section mt-0">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 my-3 wow fadeInUp">
+        <div class="comment-form-wrap pt-5">
+              <h3 class="mb-5">Edi Profil</h3>
+              <form action="{{url('profil/'.Auth::user()->id)}}" method="post">
+              @csrf 
+                <!-- <div class="form-row form-group">
+                  <div class="col-md-6">
+                    <label for="name">Name *</label>
+                    <input type="text" class="form-control" id="name">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="email">Email *</label>
+                    <input type="email" class="form-control" id="email">
+                  </div>
+                </div> -->
+                <div class="form-group">
+                  <label for="name">Nama</label>
+                  <input type="text" class="form-control" id="name" name="name" value="{{Auth::user()->name}}">
                 </div>
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" id="username" name="username" value="{{Auth::user()->username}}">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" class="form-control" id="email" name="email" value="{{Auth::user()->email}}">
+                </div>
+                <div class="form-group">
+                  <label for="jenis_kelamin">Jenis Kelamin</label>
+                  <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" value="{{Auth::user()->jenis_kelamin}}">
+                </div>
+                <div class="form-group">
+                  <label for="tanggal">Tanggal lahir</label>
+                  @php
+                    $tanggal = Auth::user()->tanggal;
+                    $tanggal = strtotime($tanggal);
+                    $tanggal = date('Y-m-d',$tanggal);
+                  @endphp
+                  <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{$tanggal}}">
+                </div>
+                <div class="form-group">
+                  <label for="kota">Kota</label>
+                  <input type="text" class="form-control" id="kota" name="kota" value="{{Auth::user()->kota}}">
+                </div>
+                <div class="form-group">
+                  <label for="no_hp">No. HP</label>
+                  <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{Auth::user()->no_hp}}">
+                </div>
+                <div class="form-group">
+                  <label for="nim">Nim</label>
+                  <input type="text" class="form-control" id="nim" name="nim" value="{{Auth::user()->nim}}">
+                </div>
+                <div class="form-group">
+                  <label for="jurusan">Jurusan</label>
+                  <input type="text" class="form-control" id="jurusan" name="jurusan" value="{{Auth::user()->jurusan}}">
+                </div>
+                <div class="form-group float-right">
+                    <a href="{{url('profil')}}" class="btn btn-danger">Batal</a>
+                    <button type="submit" class="btn btn-success">Edit</button>
+                </div>
+              </form>
             </div>
         </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 @endsection

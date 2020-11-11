@@ -11,8 +11,14 @@
 |
 */
 Route::get('/', 'PagesController@home');
+
 Route::get('/profil', 'PagesController@profil');
 Route::get('/profil/edit', 'PagesController@profiledit');
+Route::post('/profil/{id}', 'PagesController@profilupdate');
+
+Route::get('/membership', 'PagesController@membership');
+Route::get('/membership/{id}', 'PagesController@purchace');
+
 Route::get('/admin', 'PagesController@admin');
 Route::get('/admin/user', 'PagesController@user');
 Route::get('/admin/userverif', 'PagesController@userverif');
