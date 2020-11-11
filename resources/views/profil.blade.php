@@ -1,6 +1,7 @@
 @extends('layouts.temp')
 
 @section('judul', 'Profil')
+@section('judul1', 'Profil Pengguna')
 
 @section('content')
 <div class="page-section mt-0">

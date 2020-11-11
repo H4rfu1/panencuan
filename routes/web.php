@@ -17,7 +17,7 @@ Route::get('/profil/edit', 'PagesController@profiledit');
 Route::post('/profil/{id}', 'PagesController@profilupdate');
 
 Route::get('/membership', 'PagesController@membership');
-Route::get('/membership/{id}', 'PagesController@purchace');
+Route::get('/membership/{id}', 'PagesController@purchase')->name('purchase');
 
 Route::get('/admin', 'PagesController@admin');
 Route::get('/admin/user', 'PagesController@user');

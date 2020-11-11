@@ -32,12 +32,19 @@ class PagesController extends Controller
             return view('membership');
         }
     }
-    public function purchace($id)
+    public function purchase($id)
     {
         if (!Auth::check()) {
             return redirect('/login');
         }else{
-            return view('membership');
+            if($id == 1){
+                $harga = 'Rp. 250.000';
+            }elseif($id == 2){
+                $harga = 'Rp. 100.000';
+            }else{
+                $harga = 'salah plan';
+            }
+            return view('purchase', compact('harga'));
         }
     }
     public function profiledit()
