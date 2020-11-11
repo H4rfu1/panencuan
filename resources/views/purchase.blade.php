@@ -20,7 +20,11 @@
 				</div>
 				<div class="col-lg-6">
 				
-				<form>
+				<form action="{{url('purchase')}}" method="post" enctype="multipart/form-data">
+					@csrf
+					<input type="hidden" name="id" value="{{Auth::user()->id}}">
+					<input type="hidden" name="harga" value="{{$harga}}">
+					<input type="hidden" name="plan_id" value="{{$id}}">
 				  <div class="card-details">
 					<h3 class="title">Upload Bukti Pembayaran</h3>
 					<p>Pembayaran ke rek BNI senilai {{$harga}}</p>
@@ -28,10 +32,10 @@
 					<div class="row">
 					  <div class="form-group col-sm-12">
 						<label for="gambar">Gambar struk pembayaran</label>
-						<input id="gambar" type="file" class="form-control" placeholder="gambar" aria-label="Card Holder" aria-describedby="basic-addon1">
+						<input id="gambar" type="file" class="form-control" name="gambar" placeholder="gambar" required aria-label="Card Holder" aria-describedby="basic-addon1">
 					  </div>
 					  <div class="form-group col-sm-12">
-						<button type="button" class="btn btn-primary btn-block">Kirim</button>
+						<button type="submit" class="btn btn-primary btn-block">Kirim</button>
 					  </div>
 					</div>
 				  </div>

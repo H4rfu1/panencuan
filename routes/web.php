@@ -11,6 +11,7 @@
 |
 */
 Route::get('/', 'PagesController@home');
+Route::get('/home', 'PagesController@home');
 
 Route::get('/profil', 'PagesController@profil');
 Route::get('/profil/edit', 'PagesController@profiledit');
@@ -18,11 +19,13 @@ Route::post('/profil/{id}', 'PagesController@profilupdate');
 
 Route::get('/membership', 'PagesController@membership');
 Route::get('/membership/{id}', 'PagesController@purchase')->name('purchase');
+Route::post('/purchase', 'PagesController@storepurchase');
 
 Route::get('/admin', 'PagesController@admin');
 Route::get('/admin/user', 'PagesController@user');
 Route::get('/admin/userverif', 'PagesController@userverif');
 Route::get('/admin/pemateri', 'PagesController@pemateri');
+
 Auth::routes();
 
 

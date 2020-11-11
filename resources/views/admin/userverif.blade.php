@@ -29,15 +29,17 @@
                             </th>
                           </tr>
                         </thead>
-
+                        
                         <tbody>
+                        @foreach($data as $d)
                         <tr class="even pointer" onclick="window.location='{{url('profil/')}}';" style="cursor: pointer;">
-                            <td>1</td>
+                            <td>{{$loop->count}}</td>
                             <td class=" ">nama</td>
                             <td class=" ">mail</td>
                             <td class=" last"><a href="{{url('prof/')}}"><span class="badge badge-info">Verifikasi</span></a>
                             </td>
                           </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>

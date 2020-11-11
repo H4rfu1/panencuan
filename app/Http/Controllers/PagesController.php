@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use Auth;
 
@@ -32,6 +33,8 @@ class PagesController extends Controller
             return view('membership');
         }
     }
+
+
     public function purchase($id)
     {
         if (!Auth::check()) {
@@ -44,9 +47,40 @@ class PagesController extends Controller
             }else{
                 $harga = 'salah plan';
             }
-            return view('purchase', compact('harga'));
+            return view('purchase', ['harga' => $harga, 'id' => $id]);
         }
     }
+    public function storepurchase(Request $request)
+    {
+        if (Auth::check()) {
+            $fileName = '';
+            if($request->hasFile('gambar')){
+            $file = $request->file('gambar');
+            $fileName = uniqid(). '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/image', $fileName);
+            }
+            if($fileName != ''){
+                DB::table('verifikasi_member')->insert(
+                    [
+                        'id_user' => $request->id, 
+                        'foto' => $fileName, 
+                        'status_verif' => 'belum terverifikasi',
+                        'id_plan' => $request->plan_id,
+                        'harga' => $request->harga
+                    ]
+                );
+                return redirect('/');
+            }else{
+                return "gagal upload";
+            }
+            
+            
+        }else{
+            return redirect('login');
+        }
+    }
+
+
     public function profiledit()
     {
         if (!Auth::check()) {
@@ -80,7 +114,12 @@ class PagesController extends Controller
     }
     public function admin()
     {
-        return view('admin.dashboard');
+        if (!Auth::check()) {
+            return redirect('/login');
+        }else{
+            return view('admin.dashboard');
+        }
+        
     }
     public function user()
     {
@@ -88,7 +127,17 @@ class PagesController extends Controller
     }
     public function userverif()
     {
-        return view('admin.userverif');
+        if (!Auth::check()) {
+            return redirect('/login');
+        }else{
+            $data = DB::table('verifikasi_member')
+            ->join('users', 'verifikasi_member.id_user', '=', 'users.id')
+            ->select('verifikasi_member.*', 'users.*')
+            ->get();
+            // dd($data);
+            return view('admin.userverif', compact('data'));
+        }
+        
     }
     public function pemateri()
     {
