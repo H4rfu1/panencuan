@@ -21,25 +21,20 @@
 						<span class="symbol-input100">
 							<i class="fa fa-user"></i>
 						</span>
-                        @error('username')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>S
-                            </span>
-                        @enderror
 					</div>
-
+					@error('username')
+							<p class=" text-center text-white">{{ $message }}</p>
+					@enderror
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
 						<input class="input100 @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password" required autocomplete="current-password" class="form-control" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock"></i>
 						</span>
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
 					</div>
+					@error('password')
+							<p class=" text-center text-white">{{ $message }}</p>
+					@enderror
 
 					<!-- <div class="text-center checkbox w-full p-t-10 text-white">
 						<label style="font-size: 1em">

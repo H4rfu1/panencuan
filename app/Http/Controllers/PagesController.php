@@ -15,7 +15,16 @@ class PagesController extends Controller
     }
     public function home()
     {
-        return view('index2');
+        if (Auth::check()) {
+            if (Auth::user()->role_id == 2) {
+                return redirect('/admin');
+            }else{
+                return view('index2');
+            }
+        }else{
+            return view('index2');
+        }
+        
     }
     public function profil()
     {
@@ -69,7 +78,7 @@ class PagesController extends Controller
                         'harga' => $request->harga
                     ]
                 );
-                return redirect('/');
+                return redirect('profil')->with('status', 'Mohon untuk menunggu verifikasi dari admin');
             }else{
                 return "gagal upload";
             }
@@ -103,7 +112,7 @@ class PagesController extends Controller
                 'nim' => $request->nim,
                 'jurusan' => $request->jurusan
             ]);
-            return redirect('profil');
+            return redirect('profil')->with('status', 'Berhasil diubah');
             // if((int)$request->role == 1){
             //     return redirect('akun/admin')->with('status', 'Data Admin Berhasil diubah');
             // }elseif((int)$request->role == 2){
@@ -163,7 +172,7 @@ class PagesController extends Controller
             ->where('id_pembayaran', $request->id)
             ->update(['status_verif' => 'terverifikasi']);
             // dd($data);
-            return redirect('admin/userverif');
+            return redirect('admin/userverif')->with('status', 'Member telah disetujui');
         }
         
     }
@@ -172,5 +181,9 @@ class PagesController extends Controller
     public function pemateri()
     {
         return view('admin.pemateri');
+    }
+    public function batalverif()
+    {
+        return view('admin.userverif')->with('batal', 'Member tidak disetujui');
     }
 }

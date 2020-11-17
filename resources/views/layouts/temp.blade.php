@@ -337,12 +337,8 @@ border: none !important;
             <!-- <li><a href="#" class="text-decoration-none"><i class="fa fa-calendar-o"></i> Calendar</a></li>
             <li><a href="#" class="text-decoration-none"><i class="fa fa-sliders"></i> Settings</a></li> -->
             <li class="dropdown-divider"></li>
-            <li><a href="{{ route('logout') }}"
-                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-decoration-none"><i class="fa fa-sign-out"></i> Logout</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#exampleModal" class="text-decoration-none"><i class="fa fa-sign-out"></i> Logout</a></li>
           </ul>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-              @csrf
-          </form>
 			  </div>
       </div>
       @else
@@ -384,6 +380,30 @@ border: none !important;
 <div class="page-footer-section bg-dark fg-white p-2">
   <div class="d-flex justify-content-center">
         <p class="d-inline-block center">Copyright &copy; <a href="https://www.macodeid.com/" class="fg-white fw-medium">MACode ID</a>. All rights reserved</p>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+              @csrf
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Apakah anda yakin ingin keluar?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Logout</button>
+      </div>
+      </form>
+    </div>
   </div>
 </div>
 

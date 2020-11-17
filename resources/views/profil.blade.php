@@ -8,6 +8,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 ">
+            @if (session('status'))
+                <div class="alert alert-success alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                {{ session('status') }}
+                </div>
+            @endif
                 <div class="card user-card-full">
                     <div class="row m-l-0 m-r-0">
                         <div class="col-sm-4 bg-c-lite-green user-profile">
@@ -39,12 +46,14 @@
                                 <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">membership</h6>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Role</p>
-                                        <h6 class="text-muted f-w-400">{{Auth::user()->role_id}}</h6>
-                                    </div>
-                                    <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">Status Member</p>
-                                        <h6 class="text-muted f-w-400">{{Auth::user()->status_id}}</h6>
+                                        <h6 class="text-muted f-w-400">
+                                        @if(Auth::user()->status_id == 1)
+                                            {{"Non Member"}}
+                                        @else
+                                            {{"Member"}}
+                                        @endif
+                                        </h6>
                                     </div>
                                 </div>
                                 <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Data member</h6>

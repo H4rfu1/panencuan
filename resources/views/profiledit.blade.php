@@ -24,19 +24,19 @@
                 </div> -->
                 <div class="form-group">
                   <label for="name">Nama</label>
-                  <input type="text" class="form-control" id="name" name="name" value="{{Auth::user()->name}}">
+                  <input type="text" class="form-control" id="name" name="name" value="{{Auth::user()->name}}" class="form-control" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
                 </div>
                 <div class="form-group">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username" name="username" value="{{Auth::user()->username}}">
+                  <input type="text" class="form-control" id="username" name="username" value="{{Auth::user()->username}}" class="form-control" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="text" class="form-control" id="email" name="email" value="{{Auth::user()->email}}">
+                  <input type="text" class="form-control" id="email" name="email" value="{{Auth::user()->email}}" class="form-control" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
                 </div>
                 <div class="form-group">
                   <label for="jenis_kelamin">Jenis Kelamin</label>
-                  <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" value="{{Auth::user()->jenis_kelamin}}">
+                  <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" value="{{Auth::user()->jenis_kelamin}}" class="form-control" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
                 </div>
                 <div class="form-group">
                   <label for="tanggal">Tanggal lahir</label>
@@ -45,23 +45,23 @@
                     $tanggal = strtotime($tanggal);
                     $tanggal = date('Y-m-d',$tanggal);
                   @endphp
-                  <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{$tanggal}}">
+                  <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{$tanggal}}" class="form-control" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
                 </div>
                 <div class="form-group">
                   <label for="kota">Kota</label>
-                  <input type="text" class="form-control" id="kota" name="kota" value="{{Auth::user()->kota}}">
+                  <input type="text" class="form-control" id="kota" name="kota" value="{{Auth::user()->kota}}" class="form-control" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
                 </div>
                 <div class="form-group">
                   <label for="no_hp">No. HP</label>
-                  <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{Auth::user()->no_hp}}">
+                  <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{Auth::user()->no_hp}}" class="form-control" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
                 </div>
                 <div class="form-group">
                   <label for="nim">Nim</label>
-                  <input type="text" class="form-control" id="nim" name="nim" value="{{Auth::user()->nim}}">
+                  <input type="text" class="form-control" id="nim" name="nim" value="{{Auth::user()->nim}}" class="form-control" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
                 </div>
                 <div class="form-group">
                   <label for="jurusan">Jurusan</label>
-                  <input type="text" class="form-control" id="jurusan" name="jurusan" value="{{Auth::user()->jurusan}}">
+                  <input type="text" class="form-control" id="jurusan" name="jurusan" value="{{Auth::user()->jurusan}}" class="form-control" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')">
                 </div>
                 <div class="form-group float-right">
                     <a href="{{url('profil')}}" class="btn btn-danger">Batal</a>

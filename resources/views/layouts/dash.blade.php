@@ -91,13 +91,9 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a> -->
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-decoration-none">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-              </form>
             </div>
             <!-- /menu footer buttons -->
           </div>
@@ -117,8 +113,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="#"> Profile</a>
-                      <a class="dropdown-item"  href="{{ route('logout') }}"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal" class="text-decoration-none"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
   
@@ -138,6 +133,31 @@
         <!-- /footer content -->
       </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+                  @csrf
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Apakah anda yakin ingin keluar?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Logout</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
 
     <!-- jQuery -->
     <script src="{{url('vendors/jquery/dist/jquery.min.js')}}"></script>

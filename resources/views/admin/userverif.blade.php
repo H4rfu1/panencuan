@@ -8,6 +8,13 @@
       <div class="">
         <h3>Verifikasi User</h3>
         <div class="col-md-12 col-sm-12  ">
+        @if (session('batal'))
+            <div class="alert alert-success alert-dismissible " role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+            </button>
+            {{ session('batal') }}
+            </div>
+        @endif
                 <div class="x_panel">
                   <div class="x_content">
                   <!-- <a class="btn btn-primary" href="{{url('buatakun/3')}}">Tambah akun pimpinan</a> -->

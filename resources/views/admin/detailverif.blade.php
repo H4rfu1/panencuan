@@ -217,8 +217,8 @@
                                         <div class="ln_solid">
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
-                                                    <a class="btn btn-danger" href = "{{url('admin/userverif')}}
-                                                    ">Kembali</a>
+                                                    <a class="btn btn-danger" href = "{{url('batalverif')}}
+                                                    ">tidak setuju</a>
                                                     <form action="{{url('/admin/verif')}}" method="post" class="d-inline">
                                                   @csrf
                                                   <input type="hidden" name="id" value="{{$data->id_pembayaran}}">
