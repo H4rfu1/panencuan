@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class m_GroupKomunitas extends Model
 {
 
     /**
@@ -12,11 +12,11 @@ class User extends Model
      *
      * @var array
      */
-    protected $table = 'data_video';
-    protected $primaryKey = 'id_video';
+    protected $table = 'grup Komunitas';
+    protected $primaryKey = 'id Komunitas';
     public $timestamps = false;
     protected $fillable = [
-        'url_video', 'keterangan_video'
+        'id member', 'id pemateri'
     ];
 
     /**
