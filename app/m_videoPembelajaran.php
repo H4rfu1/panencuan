@@ -16,7 +16,7 @@ class m_videoPembelajaran extends Model
     protected $primaryKey = 'id_video';
     public $timestamps = false;
     protected $fillable = [
-        'url_video', 'keterangan_video',  'judul'
+        'url_video', 'deskripsi_video',  'judul', '	id_pemateri'
     ];
 
     /**
