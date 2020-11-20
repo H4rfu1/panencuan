@@ -51,6 +51,7 @@
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              @if(Auth::user()->role_id == 2)
               <div class="menu_section">
                 <h3>Akun</h3>
                 <ul class="nav side-menu">
@@ -64,19 +65,15 @@
                   </li>                  
                 </ul>
               </div>
+              @endif
+              @if(Auth::user()->role_id == 3)
               <div class="menu_section">
                 <h3>Materi</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bar-chart-o"></i> video <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="#level1_1">Laporan Harian</a>
-                        <li><a href="#level1_2">Laporan Bulanan</a>
-                        </li>
-                    </ul>
-                  </li>                  
+                  <li><a href="{{url('video')}}"><i class="fa fa-laptop"></i> Kelola video</a></li>              
                 </ul>
               </div>
-
+              @endif
             </div>
             <!-- /sidebar menu -->
 

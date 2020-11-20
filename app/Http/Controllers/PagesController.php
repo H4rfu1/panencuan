@@ -18,13 +18,14 @@ class PagesController extends Controller
         if (Auth::check()) {
             if (Auth::user()->role_id == 2) {
                 return redirect('/admin');
+            }elseif(Auth::user()->role_id == 3){
+                return redirect('/pemateri');
             }else{
                 return view('index2');
             }
         }else{
             return view('index2');
         }
-        
     }
     public function profil()
     {
@@ -130,6 +131,17 @@ class PagesController extends Controller
         }
         
     }
+    
+    public function dashboard()
+    {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }else{
+            return view('pemateri.dashboard');
+        }
+        
+    }
+
     public function user()
     {
         return view('admin.user');

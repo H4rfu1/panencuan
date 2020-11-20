@@ -29,6 +29,15 @@ Route::get('/admin/userverif', 'PagesController@userverif');
 Route::get('/admin/{id}', 'PagesController@detailverif');
 Route::get('/batalverif', 'PagesController@batalverif');
 
+//pemateri
+Route::get('/pemateri', 'PagesController@dashboard');
+Route::get('/video', 'C_VideoPembelajaran@listVideoPembelajaran');
+Route::get('/tambahvideo', 'C_VideoPembelajaran@addVideoPembelajaran');
+Route::get('/simpanvideo', 'C_VideoPembelajaran@storeVideoPembelajaran');
+Route::get('/editvideo', 'C_VideoPembelajaran@editVideoPembelajaran');
+Route::get('/updatevideo', 'C_VideoPembelajaran@editVideoPembelajaran');
+
+
 Auth::routes();
 
 

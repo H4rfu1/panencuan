@@ -26,22 +26,16 @@ class C_VideoPembelajaran extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function listVideoPembelajaran()
     {
-        $datapencatatan = M_DataPencatatan::join('jenis_melon', 'data_perawatan.id_jenismelon', '=', 'jenis_melon.id_jenismelon')
-                                        ->join('no_greenhouse', 'data_perawatan.id_greenhouse', '=', 'no_greenhouse.id_greenhouse')
-                                        ->join('users', 'data_perawatan.id_akun', '=', 'users.id')
-                                        ->get();
+        $data = m_videoPembelajaran::all();
         // dd($datapencatatan);
-        
-        return view('pencatatan.V_DataPencatatan', ['datapencatatan' => $datapencatatan]);
+        return view('pemateri.listVideo', ['data' => $data]);
     }
 
-    public function buatPencatatan()
+    public function addVideoPembelajaran()
     {
-        $jenismelon = DB::table('jenis_melon')->orderBy('jenismelon')->get();
-        $nogrenhouse = DB::table('no_greenhouse')->orderBy('no_greenhouse')->get();
-        return view('pencatatan.V_InputPencatatan', ['jenismelon' => $jenismelon, 'nogrenhouse' => $nogrenhouse]);
+        return view('pemateri.uploadvideo');
     }
 
 
@@ -51,27 +45,15 @@ class C_VideoPembelajaran extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeVideoPembelajaran(Request $request)
     {
-        //metode sistem pakar
-        $data = DB::table('jenis_melon')
-            ->where('id_jenismelon', '=', $request->jenis_melon)
-            ->first();
-        $tanampanen = strtotime($request->tanggal_tanam . " +". $data->masa_panen ." days");
-        $tanampanen = date('Y-m-d',$tanampanen);
-        $tanampupuk = strtotime($request->tanggal_tanam . " +". $data->masa_pupuk ." days");
-        $tanampupuk = date('Y-m-d',$tanampupuk);
-
-        M_DataPencatatan::create([
-            'id_jenismelon' => $request->jenis_melon,
-            'id_greenhouse' => $request->no_greenhouse,
-            'tanggal_tanam' => $request->tanggal_tanam,
-            'id_akun' => $request->pencatat,
-            'tanggal_pemberianpupuk' => $tanampupuk,
-            'prediksi_tanggalpanen' => $tanampanen
+        
+        m_videoPembelajaran::create([
+            'judul' => $request->judul,
+            'url_video' => $tanampupuk,
+            'keterangan_video' => $request->keterangan
         ]);
-
-            return redirect('pencatatan')->with('status', 'Berhasil Menambahkan Data Pencatatan Perkembangan Melon');
+            return redirect('video')->with('status', 'Berhasil Menambahkan Data Video');
         
     }
 
