@@ -33,9 +33,10 @@ Route::get('/batalverif', 'PagesController@batalverif');
 Route::get('/pemateri', 'PagesController@dashboard');
 Route::get('/video', 'C_VideoPembelajaran@listVideoPembelajaran');
 Route::get('/tambahvideo', 'C_VideoPembelajaran@addVideoPembelajaran');
-Route::get('/simpanvideo', 'C_VideoPembelajaran@storeVideoPembelajaran');
-Route::get('/editvideo', 'C_VideoPembelajaran@editVideoPembelajaran');
-Route::get('/updatevideo', 'C_VideoPembelajaran@editVideoPembelajaran');
+Route::post('/simpanvideo', 'C_VideoPembelajaran@storeVideoPembelajaran');
+Route::get('/video/{id}', 'C_VideoPembelajaran@showVideoPembelajaran');
+Route::get('/video/{id}/edit', 'C_VideoPembelajaran@editVideoPembelajaran');
+Route::post('/video/{id}', 'C_VideoPembelajaran@updateVideoPembelajaran');
 
 
 Auth::routes();

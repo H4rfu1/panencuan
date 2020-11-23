@@ -26,6 +26,7 @@
                       <thead>
                           <tr class="headings">
                             <th class="column-title">No. </th>
+                            <th class="column-title">Pemateri </th>
                             <th class="column-title">Judul</th>
                             <th class="column-title no-link last"><span class="nobr">Action</span>
                             </th>
@@ -35,17 +36,23 @@
                         <tbody>
                           @foreach($data as $p)
                           @if($loop->iteration % 2 == 1)
-                          <tr class="even pointer" onclick="window.location='{{url('profil/'.$p->id)}}';" style="cursor: pointer;">
+                          <tr class="even pointer">
                             <td>{{ $loop->iteration }}</td>
+                            <td class=" ">{{ $p->name }}</td>
                             <td class=" ">{{ $p->judul }}</td>
-                            <td class=" last"><a href="{{url('profil/'.$p->id)}}"><span class="badge badge-info">Detail</span></a>
+                            <td class=" last">
+                              <a href="{{url('video/'.$p->id_video)}}"><span class="badge badge-info" style="font-size: 1em;">Detail</span></a>
+                              <a href="{{url('video/'.$p->id_video)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a>
                             </td>
                           </tr>
                           @else
-                          <tr class="odd pointer" onclick="window.location='{{url('profil/'.$p->id)}}';" style="cursor: pointer;">
+                          <tr class="odd pointer">
                             <td>{{ $loop->iteration }}</td>
+                            <td class=" ">{{ $p->name }}</td>
                             <td class=" ">{{ $p->judul }}</td>
-                            <td class=" last"><a href="{{url('profil/'.$p->id)}}"><span class="badge badge-info">Detail</span></a>
+                            <td class=" last">
+                              <a href="{{url('video/'.$p->id_video)}}"><span class="badge badge-info" style="font-size: 1em;">Detail</span></a>
+                              <a href="{{url('video/'.$p->id_video)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a>
                             </td>                            
                           </tr>
                           @endif

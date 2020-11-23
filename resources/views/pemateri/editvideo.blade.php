@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Ubah akun | </title>
+    <title>Ubah video | </title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{url('favicon.ico')}}" type="image/x-icon">
@@ -31,7 +31,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                    <a href="{{url('home')}}" class="site_title"><img src="{{asset('images/logo.png')}}" height="55" > <span>SiBunglon</span></a>
+                    <a href="{{url('home')}}" class="site_title"><img src="{{asset('assets/favicon-light.png')}}" height="55" > <span>PanenCuan</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -50,66 +50,31 @@
 
                     <br />
 
-                    <!-- sidebar menu -->
+                   <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              @if(Auth::user()->id_role == 1)
+              @if(Auth::user()->role_id == 2)
               <div class="menu_section">
                 <h3>Akun</h3>
                 <ul class="nav side-menu">
+                <li><a href="{{url('admin/userverif')}}"><i class="fa fa-laptop"></i> Verifikasi Member</a></li>
                   <li><a><i class="fa fa-sitemap"></i> Kelola Akun <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{url('akun/pengawas')}}">Akun Pengawas</a>
-                        <li><a href="{{url('akun/pemimpin')}}">Akun Pemimpin</a>
+                        <li><a href="{{url('admin/user')}}">Akun Member</a>
+                        <li><a href="{{url('admin/pemateri')}}">Akun Pemateri</a>
                         </li>
                     </ul>
                   </li>                  
                 </ul>
               </div>
               @endif
-              @if( Auth::user()->id_role == 2)
+              @if(Auth::user()->role_id == 3)
               <div class="menu_section">
-                <h3>Pencatatan</h3>
+                <h3>Materi</h3>
                 <ul class="nav side-menu">
-                <li><a><i class="fa fa-edit"></i> Catat Harian <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="form.html">General Form</a></li>
-                      <li><a href="form_advanced.html">Advanced Components</a></li>
-                      <li><a href="form_validation.html">Form Validation</a></li>
-                      <li><a href="form_wizards.html">Form Wizard</a></li>
-                      <li><a href="form_upload.html">Form Upload</a></li>
-                      <li><a href="form_buttons.html">Form Buttons</a></li>
-                    </ul>
-                  </li>               
+                  <li><a href="{{url('video')}}"><i class="fa fa-laptop"></i> Kelola video</a></li>              
                 </ul>
               </div>
               @endif
-              @if( Auth::user()->id_role == 3)
-              <div class="menu_section">
-                <h3>Akun</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-sitemap"></i> Kelola Akun <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="{{url('akun/admin')}}">Akun Administrator</a>
-                        <li><a href="{{url('akun/pengawas')}}">Akun Pengawas</a>
-                        </li>
-                    </ul>
-                  </li>                  
-                </ul>
-              </div>
-              <div class="menu_section">
-                <h3>Laporan</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bar-chart-o"></i> Laporan <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="#level1_1">Akun Administrator</a>
-                        <li><a href="#level1_2">Akun Pemimpin</a>
-                        </li>
-                    </ul>
-                  </li>                  
-                </ul>
-              </div>
-              @endif
-
             </div>
             <!-- /sidebar menu -->
 
@@ -162,109 +127,43 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Ubah Akun</h3>
+                            <h3>Ubah video</h3>
                         </div>
-
                     </div>
                     <div class="clearfix"></div>
-
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Akun 
-                                      @if($data->id_role == 3)
-                                        {{'Pemimpin'}}
-                                      @elseif($data->id_role == 2)
-                                        {{'Pengawas'}}
-                                      @else
-                                        {{'error'}}
-                                      @endif
+                                    <h2>edt video pembelajaran
                                     </h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <form class="" action="{{url('profil/'.$data->id)}}" method="post" novalidate>
-                                        @csrf
-                                        @method('patch')
-                                        <input type="hidden" name="role" value="{{$data->id_role}}">
+                                <form class="" action="{{url('video/'.$data->id_video)}}" method="post" novalidate enctype="multipart/form-data">
+                                      @csrf
+                                      <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Nama<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Judul<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="Nama Lengkap" required="required" value="{{$data->name}}"/>
+                                                <input class="form-control" type="text"  name="judul" placeholder="Judul Video" required="required" value="{{$data->judul}}"/>
                                             </div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">file video</label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" name="email" class='email' required="required" type="email" value="{{$data->email}}"/></div>
-                                        </div>
-                                        <!-- <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Confirm email address<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="email" class='email' name="confirm_email" data-validate-linked='email' required='required' /></div>
-                                        </div> -->
-                                        <!-- <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">No. HP <span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="number" class='number' name="number" data-validate-minmax="10,100" required='required'></div>
-                                        </div> -->
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Jenis Kelamin<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" data-validate-length-range="6" name="jenis_kelamin" placeholder="laki-laki/perempuan" required="required" value="{{$data->jenis_kelamin}}"/>
-                                            </div>
+                                                <input class="form-control" type="file" class='file' name="video"/></div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Tempat Lahir<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Deskripsi video<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" data-validate-length-range="6" name="tempat_lahir" placeholder="Kota/kabupaten" required="required" value="{{$data->tempat_lahir}}"/>
-                                            </div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Tanggal Lahir<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" class='date' type="date" name="tanggal_lahir" required='required' value="{{$data->tanggal_lahir}}"></div>
-                                        </div>
-                                        <!-- <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Time<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" class='time' type="time" name="time" required='required'></div>
-                                        </div> -->
-                                        
-                                        <div class="field item form-group">
-											<label class="col-form-label col-md-3 col-sm-3  label-align">Password<span class="required">*</span></label>
-											<div class="col-md-6 col-sm-6">
-												<input class="form-control" type="password" id="password1" name="password" pattern="(?=.*[a-z,A-Z]).{3,}" title="Minimum 8 Characters Including An Upper And Lower Case Letter, A Number And A Unique Character" required value=""/>
-												
-												<span style="position: absolute;right:15px;top:7px;" onclick="hideshow()" >
-													<i id="slash" class="fa fa-eye-slash"></i>
-													<i id="eye" class="fa fa-eye"></i>
-												</span>
-											</div>
-										</div>
-                                        
-                                        <!-- <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Ulangi password<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="password" name="password2" data-validate-linked='password' required='required' /></div>
-                                        </div> -->
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">No. HP<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="tel" class='tel' name="no_hp" required='required' data-validate-length-range="10,13" value="{{$data->no_hp}}"/></div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">alamat<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <textarea required="required" name='alamat'>{{$data->alamat}}</textarea></div>
+                                                <textarea required="required" name='deskripsi'>{{$data->deskripsi_video}}</textarea></div>
                                         </div>
                                         <div class="ln_solid">
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
-                                                    <a class="btn btn-danger" href = "{{url('profil/'.$data->id)}}"
-                                                    >Batal</a>
-                                                    <button type='submit' class="btn btn-success">Simpan</button>
+                                                    <a class="btn btn-danger" href = "{{url('video')}}">Batal</a>
+                                                    <button type='submit' class="btn btn-success">Edit</button>
                                                 </div>
                                             </div>
                                         </div>

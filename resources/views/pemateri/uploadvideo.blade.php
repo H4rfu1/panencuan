@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Buat akun | </title>
+    <title>Upload video | </title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{url('favicon.ico')}}" type="image/x-icon">
@@ -31,7 +31,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                    <a href="{{url('home')}}" class="site_title"><img src="{{asset('images/logo.png')}}" height="55" > <span>SiBunglon</span></a>
+                    <a href="{{url('home')}}" class="site_title"><img src="{{asset('assets/favicon-light.png')}}" height="55" > <span>PanenCuan</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -50,66 +50,31 @@
 
                     <br />
 
-                    <!-- sidebar menu -->
+                   <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              @if(Auth::user()->role_id == 1)
+              @if(Auth::user()->role_id == 2)
               <div class="menu_section">
                 <h3>Akun</h3>
                 <ul class="nav side-menu">
+                <li><a href="{{url('admin/userverif')}}"><i class="fa fa-laptop"></i> Verifikasi Member</a></li>
                   <li><a><i class="fa fa-sitemap"></i> Kelola Akun <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{url('akun/pengawas')}}">Akun Pengawas</a>
-                        <li><a href="{{url('akun/pemimpin')}}">Akun Pemimpin</a>
+                        <li><a href="{{url('admin/user')}}">Akun Member</a>
+                        <li><a href="{{url('admin/pemateri')}}">Akun Pemateri</a>
                         </li>
                     </ul>
                   </li>                  
                 </ul>
               </div>
               @endif
-              @if( Auth::user()->role_id == 2)
+              @if(Auth::user()->role_id == 3)
               <div class="menu_section">
-                <h3>Pencatatan</h3>
+                <h3>Materi</h3>
                 <ul class="nav side-menu">
-                <li><a><i class="fa fa-edit"></i> Catat Harian <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="form.html">General Form</a></li>
-                      <li><a href="form_advanced.html">Advanced Components</a></li>
-                      <li><a href="form_validation.html">Form Validation</a></li>
-                      <li><a href="form_wizards.html">Form Wizard</a></li>
-                      <li><a href="form_upload.html">Form Upload</a></li>
-                      <li><a href="form_buttons.html">Form Buttons</a></li>
-                    </ul>
-                  </li>               
+                  <li><a href="{{url('video')}}"><i class="fa fa-laptop"></i> Kelola video</a></li>              
                 </ul>
               </div>
               @endif
-              @if( Auth::user()->role_id == 3)
-              <div class="menu_section">
-                <h3>Akun</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-sitemap"></i> Kelola Akun <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="{{url('akun/admin')}}">Akun Administrator</a>
-                        <li><a href="{{url('akun/pengawas')}}">Akun Pengawas</a>
-                        </li>
-                    </ul>
-                  </li>                  
-                </ul>
-              </div>
-              <div class="menu_section">
-                <h3>Laporan</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bar-chart-o"></i> Laporan <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="#level1_1">Akun Administrator</a>
-                        <li><a href="#level1_2">Akun Pemimpin</a>
-                        </li>
-                    </ul>
-                  </li>                  
-                </ul>
-              </div>
-              @endif
-
             </div>
             <!-- /sidebar menu -->
 
@@ -162,22 +127,31 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Daftar Akun</h3>
+                            <h3>Tambah Video</h3>
                         </div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="x_panel">
+
                                 <div class="x_title">
-                                    <h2>Akun 
+                                    <h2>Tambah video pembelajaran 
                                     
                                     </h2>
                                     <div class="clearfix"></div>
                                 </div>
+                                @if (session('status'))
+                                <div class="alert alert-success alert-dismissible " role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                    </button>
+                                    {{ session('status') }}
+                                </div>
+                                @endif
                                 <div class="x_content">
-                                    <form class="" action="{{url('daftarakun')}}" method="post" novalidate>
+                                    <form class="" action="{{url('simpanvideo')}}" method="post" novalidate enctype="multipart/form-data">
                                       @csrf
+                                      <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Judul<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
@@ -187,17 +161,17 @@
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">file video<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="file" class='tel' name="video" required='required'/></div>
+                                                <input class="form-control" type="file" class='file' name="video" required='required'/></div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">keterangan<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Deskripsi video<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <textarea required="required" name='keterangan'></textarea></div>
+                                                <textarea required="required" name='deskripsi'></textarea></div>
                                         </div>
                                         <div class="ln_solid">
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
-                                                    <a class="btn btn-danger" href = " ">Batal</a>
+                                                    <a class="btn btn-danger" href = "{{url('video')}}">Batal</a>
                                                     <button type='submit' class="btn btn-success">simpan</button>
                                                 </div>
                                             </div>

@@ -28,7 +28,8 @@ class C_VideoPembelajaran extends Controller
 
     public function listVideoPembelajaran()
     {
-        $data = m_videoPembelajaran::all();
+        $data = m_videoPembelajaran::join('users', 'data_video.id_pemateri', '=', 'users.id')
+        ->get();
         // dd($datapencatatan);
         return view('pemateri.listVideo', ['data' => $data]);
     }
@@ -47,13 +48,24 @@ class C_VideoPembelajaran extends Controller
      */
     public function storeVideoPembelajaran(Request $request)
     {
-        
-        m_videoPembelajaran::create([
-            'judul' => $request->judul,
-            'url_video' => $tanampupuk,
-            'keterangan_video' => $request->keterangan
-        ]);
-            return redirect('video')->with('status', 'Berhasil Menambahkan Data Video');
+        $fileName = '';
+            if($request->hasFile('video')){
+            $file = $request->file('video');
+            $fileName = uniqid(). '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/video', $fileName);
+            }
+            if($fileName != ''){
+                m_videoPembelajaran::create([
+                    'id_pemateri' => $request->id,
+                    'judul' => $request->judul,
+                    'url_video' => $fileName,
+                    'deskripsi_video' => $request->deskripsi
+                ]);
+                return redirect('video')->with('status', 'Berhasil Menambahkan Data Video');
+            }else{
+                return redirect('uploadvideo')->with('status', 'Gagal Menambahkan Data Video');
+            }
+            
         
     }
 
@@ -63,21 +75,13 @@ class C_VideoPembelajaran extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showVideoPembelajaran($id)
     {
-        
 
-        $data = M_DataPencatatan::join('jenis_melon', 'data_perawatan.id_jenismelon', '=', 'jenis_melon.id_jenismelon')
-        ->join('no_greenhouse', 'data_perawatan.id_greenhouse', '=', 'no_greenhouse.id_greenhouse')
-        ->join('users', 'data_perawatan.id_akun', '=', 'users.id')
-        ->where('id_dataperawatan', $id)->first();
-
-        //sistem pakar rekoendasi
-        $keterangan = DB::table('jenis_melon')
-            ->where('id_jenismelon', '=', $data->id_jenismelon)
-            ->first();
-        
-        return view('pencatatan.V_DetailPencatatan', ['data' => $data, 'keterangan' => $keterangan]);
+        $data = m_videoPembelajaran::join('users', 'data_video.id_pemateri', '=', 'users.id')
+        ->where('id_video', $id)->first();
+        // dd($data);
+        return view('pemateri.detailvideo', ['data' => $data]);
     }
 
     /**
@@ -86,24 +90,13 @@ class C_VideoPembelajaran extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editVideoPembelajaran($id)
     {
-        $jenismelon = DB::table('jenis_melon')->orderBy('jenismelon')->get();
-        $nogrenhouse = DB::table('no_greenhouse')->orderBy('no_greenhouse')->get();
 
-        $data = M_DataPencatatan::where('id_dataperawatan', $id)->first();
-
-        $data->tanggal_tanam = strtotime($data->tanggal_tanam);
-        $data->tanggal_tanam = date('Y-m-d',$data->tanggal_tanam);
-
-        $data->tanggal_pemberianpupuk = strtotime($data->tanggal_pemberianpupuk);
-        $data->tanggal_pemberianpupuk = date('Y-m-d',$data->tanggal_pemberianpupuk);
-
-        $data->prediksi_tanggalpanen = strtotime($data->prediksi_tanggalpanen);
-        $data->prediksi_tanggalpanen = date('Y-m-d',$data->prediksi_tanggalpanen);
+        $data = m_videoPembelajaran::where('id_video', $id)->first();
 
         // dd($data);
-        return view('pencatatan.V_EditPencatatan', ['data' => $data, 'jenismelon' => $jenismelon, 'nogrenhouse' => $nogrenhouse]);
+        return view('pemateri.editvideo', ['data' => $data]);
     }
 
     /**
@@ -113,27 +106,33 @@ class C_VideoPembelajaran extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateVideoPembelajaran(Request $request, $id)
     {
-        //metode sistem pakar
-        $data = DB::table('jenis_melon')
-            ->where('id_jenismelon', '=', $request->jenis_melon)
-            ->first();
-        $tanampanen = strtotime($request->tanggal_tanam . " +". $data->masa_panen ." days");
-        $tanampanen = date('Y-m-d',$tanampanen);
-        $tanampupuk = strtotime($request->tanggal_tanam . " +". $data->masa_pupuk ." days");
-        $tanampupuk = date('Y-m-d',$tanampupuk);
+        $fileName = '';
+        if($request->hasFile('video')){
+            $file = $request->file('video');
+            $fileName = uniqid(). '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/video', $fileName);
+            }
+            if($fileName != ''){
+                m_videoPembelajaran::where('id_video', $id)
+                ->update([
+                    'id_pemateri' => $request->id,
+                    'judul' => $request->judul,
+                    'url_video' => $fileName,
+                    'deskripsi_video' => $request->deskripsi
+                ]);
+                return redirect('video')->with('status', 'Berhasil Mengupdate Data Video');
+            }else{
+                m_videoPembelajaran::where('id_video', $id)
+                ->update([
+                    'id_pemateri' => $request->id,
+                    'judul' => $request->judul,
+                    'deskripsi_video' => $request->deskripsi
+                ]); 
+            return redirect('video')->with('status', 'Berhasil Mengupdate Data Video');
+        }
         
-        M_DataPencatatan::where('id_dataperawatan', $id)
-            ->update([
-                'id_jenismelon' => $request->jenis_melon,
-                'id_greenhouse' => $request->no_greenhouse,
-                'tanggal_tanam' => $request->tanggal_tanam,
-                'id_akun' => $request->pencatat,
-                'tanggal_pemberianpupuk' => $tanampupuk,
-                'prediksi_tanggalpanen' => $tanampanen
-            ]);
-            return redirect('pencatatan')->with('status', 'Data Pencatatan Perkembangan Melon Berhasil Disimpan');
     }
 
     /**
