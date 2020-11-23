@@ -13,10 +13,9 @@ class m_GroupKomunitas extends Model
      * @var array
      */
     protected $table = 'grup Komunitas';
-    protected $primaryKey = 'id Komunitas';
     public $timestamps = false;
     protected $fillable = [
-        'id member', 'id pemateri'
+        'id_user', 'komentar', 'tanggal'
     ];
 
 }

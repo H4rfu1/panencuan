@@ -40,6 +40,7 @@ Route::post('/video/{id}', 'C_VideoPembelajaran@updateVideoPembelajaran');
 
 //komunitas
 Route::get('/komunitas', 'c_GroupKomunitas@listGroupKomunitas')->name('komunitas');
+Route::post('/kirimpesan', 'c_GroupKomunitas@setGroupKomunitas');
 
 //analisa emiten
 Route::get('/emiten', 'c_AnalisaEmiten@AnalisaEmiten')->name('emiten');
