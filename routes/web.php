@@ -31,7 +31,7 @@ Route::get('/batalverif', 'PagesController@batalverif');
 
 //pemateri
 Route::get('/pemateri', 'PagesController@dashboard');
-Route::get('/video', 'C_VideoPembelajaran@listVideoPembelajaran');
+Route::get('/video', 'C_VideoPembelajaran@listVideoPembelajaran')->name('video');
 Route::get('/tambahvideo', 'C_VideoPembelajaran@addVideoPembelajaran');
 Route::post('/simpanvideo', 'C_VideoPembelajaran@storeVideoPembelajaran');
 Route::get('/video/{id}', 'C_VideoPembelajaran@showVideoPembelajaran');
@@ -42,9 +42,9 @@ Route::post('/video/{id}', 'C_VideoPembelajaran@updateVideoPembelajaran');
 Route::get('/komunitas', 'c_GroupKomunitas@listGroupKomunitas')->name('komunitas');
 
 //analisa emiten
-Route::get('/emiten', 'c_AnalisaEmiten@AnalisaEmiten');
+Route::get('/emiten', 'c_AnalisaEmiten@AnalisaEmiten')->name('emiten');
 Route::get('/tambahemiten', 'c_AnalisaEmiten@setFormAnalisaEmiten');
-Route::post('/simpanemiten', 'c_AnalisaEmiten@storeVideoPembelajaran');
+Route::post('/simpanemiten', 'c_AnalisaEmiten@simpanAnalisaEmiten');
 
 //auth
 Auth::routes();

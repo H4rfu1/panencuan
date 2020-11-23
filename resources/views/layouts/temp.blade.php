@@ -30,6 +30,7 @@
         body {
         background-color: #f9f9fa
     }
+	
 
     .padding {
         padding: 3rem !important
@@ -297,14 +298,18 @@ border: none !important;
   </style>
  @endif 
 
- @if(Route::current()->getName() == 'komunitas')
-  <style>
-    	 .bg-light{
+ @if(Route::current()->getName() == 'komunitas' | Route::current()->getName() == 'video' | Route::current()->getName() == 'emiten')
+ <style>
+	 .bg-light{
 			background: #7F7FD5;
 	       background: -webkit-linear-gradient(135deg, #2575fc 0%, #6a11cb 60%);
 	        background: linear-gradient(135deg, #2575fc 0%, #6a11cb 60%);
 		}
+ </style>
+ @endif 
 
+ @if(Route::current()->getName() == 'komunitas')
+  <style>
 		.chat{
 			margin-top: auto;
 			margin-bottom: auto;
@@ -384,8 +389,6 @@ border: none !important;
 			padding: 5px 10px;
 			margin-bottom: 15px !important;
 		}
-	.active{
-			background-color: rgba(0,0,0,0.3);
 	}
 		.user_img{
 			height: 70px;

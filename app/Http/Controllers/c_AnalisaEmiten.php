@@ -50,7 +50,7 @@ class c_AnalisaEmiten extends Controller
         return view('pemateri.V_BuatAnalisaEmiten');
     }
 
-    public function storeVideoPembelajaran(Request $request)
+    public function simpanAnalisaEmiten(Request $request)
     {
 
         m_AnalisaEmiten::create([

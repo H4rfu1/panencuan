@@ -8,8 +8,9 @@
   <div class="page-section">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12 py-3 container bg-white">
+        <div class="col-lg-12 py-3 container">
         @foreach($data as $p)
+        <div class="shadow-lg p-3 mb-5 bg-white rounded">
         <article class="blog-entry">
           <div class="post-title"><a href="blog-details.html">{{$p->judul}}</a></div>
             <div class="entry-header">
@@ -30,6 +31,7 @@
             </div>
             <!-- <a href="#" class="btn btn-primary">Continue Reading</a> -->
           </article>
+          </div>
           @endforeach
         </div>
       </div>
