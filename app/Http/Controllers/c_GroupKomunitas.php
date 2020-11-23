@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\m_GroupKomunitas;
-
+use Auth;
 class c_GroupKomunitas extends Controller
 {
 
@@ -30,7 +30,19 @@ class c_GroupKomunitas extends Controller
     {
         $data = m_GroupKomunitas::join('users', 'grup komunitas.id_user', '=', 'users.id')
         ->get();
-        
+
+        if (Auth::check()) {
+            if (Auth::user()->role_id == 1) {
+                return view('komunitas.v_groupkomunitas', compact('data'));
+            }elseif(Auth::user()->role_id == 3){
+                return view('komunitas.v_groupkomunitas', compact('data'));
+            }else{
+                return view('home');
+            }
+        }else{
+            return view('auth.login');
+        }
+
         return view('komunitas.v_groupkomunitas', compact('data'));
     }
 
@@ -46,10 +58,10 @@ class c_GroupKomunitas extends Controller
         m_GroupKomunitas::create([
             'id_user' => $request->id,
             'komentar' => $request->komen,
-            'tanggal' => date("Y-m-d H:i:s")
+            'tanggal_komen' => date("Y-m-d H:i:s")
         ]);
 
-            return redirect('komunitas.v_groupkomunitas')->with('status', 'Berhasil Menambahkan Data Pencatatan Perkembangan Melon');
+            return redirect('komunitas')->with('status', 'Berhasil Menambahkan Data Pencatatan Perkembangan Melon');
         
     }
 

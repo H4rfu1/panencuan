@@ -15,7 +15,7 @@ class m_GroupKomunitas extends Model
     protected $table = 'grup Komunitas';
     public $timestamps = false;
     protected $fillable = [
-        'id_user', 'komentar', 'tanggal'
+        'id_user', 'komentar', 'tanggal_komen'
     ];
 
 }

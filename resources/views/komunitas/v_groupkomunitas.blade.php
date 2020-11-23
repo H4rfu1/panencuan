@@ -11,7 +11,7 @@
 						<div class="card-body msg_card_body">
 						@foreach($data as $p)
 							@if(Auth::user()->id != $p->id)
-							<div class="d-flex justify-content-end">
+							<div class="d-flex justify-content-start">
 								<span style="color:white; font-size: 12px;">{{$p->name}}</span>
 							</div>
 							<div class="d-flex justify-content-start mb-4">
@@ -20,7 +20,7 @@
 								</div>
 								<div class="msg_cotainer">
 									{{$p->komentar}}
-									<span class="msg_time" >{{substr($p->tanggal,0,10)}}</span>
+									<span class="msg_time" >{{substr($p->tanggal_komen,0,10)}}</span>
 								</div>
 							</div>
 							@else
@@ -30,15 +30,15 @@
 							<div class="d-flex justify-content-end mb-4">
 								<div class="msg_cotainer_send">
 									{{$p->komentar}}
-									<span class="msg_time" >{{substr($p->tanggal,0,10)}}</span>
+									<span class="msg_time" >{{substr($p->tanggal_komen,0,10)}}</span>
 								</div>
 								<div class="img_cont_msg">
 									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
 								</div>
 							</div>
 							@endif
+							@endforeach
 						</div>
-						@endforeach
 						<div class="card-footer">
 							<form action="{{url('kirimpesan')}}" method="post">
 								@csrf
