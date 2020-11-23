@@ -26,15 +26,24 @@ class c_GroupKomunitas extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function listGroupKomunitas()
     {
-        $datapencatatan = M_DataPencatatan::join('jenis_melon', 'data_perawatan.id_jenismelon', '=', 'jenis_melon.id_jenismelon')
-                                        ->join('no_greenhouse', 'data_perawatan.id_greenhouse', '=', 'no_greenhouse.id_greenhouse')
-                                        ->join('users', 'data_perawatan.id_akun', '=', 'users.id')
-                                        ->get();
-        // dd($datapencatatan);
+        return view('komunitas.v_groupkomunitas');
+        // $data = m_videoPembelajaran::join('users', 'data_video.id_pemateri', '=', 'users.id')
+        // ->get();
+        // // dd($datapencatatan);
+        // if (Auth::check()) {
+        //     if (Auth::user()->role_id == 1) {
+        //         return view('member.listPembelajaran', ['data' => $data]);
+        //     }elseif(Auth::user()->role_id == 3){
+        //         return view('pemateri.listVideo', ['data' => $data]);
+        //     }else{
+        //         return view('home');
+        //     }
+        // }else{
+        //     return view('auth.login');
+        // }
         
-        return view('pencatatan.V_DataPencatatan', ['datapencatatan' => $datapencatatan]);
     }
 
     public function buatPencatatan()

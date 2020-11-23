@@ -38,10 +38,14 @@ Route::get('/video/{id}', 'C_VideoPembelajaran@showVideoPembelajaran');
 Route::get('/video/{id}/edit', 'C_VideoPembelajaran@editVideoPembelajaran');
 Route::post('/video/{id}', 'C_VideoPembelajaran@updateVideoPembelajaran');
 
+//komunitas
+Route::get('/komunitas', 'c_GroupKomunitas@listGroupKomunitas')->name('komunitas');
 
+//analisa emiten
+Route::get('/emiten', 'c_AnalisaEmiten@AnalisaEmiten');
+
+//auth
 Auth::routes();
-
-
 
 // Route::get('/login', 'LoginController@login')->name('login');
 // Route::get('/register', 'RegisterController@index')->name('register');

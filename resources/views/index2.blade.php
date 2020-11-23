@@ -52,7 +52,10 @@
           <a class="nav-link" href="{{url('video')}}">Video</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Blog</a>
+          <a class="nav-link" href="{{url('komunitas')}}">Komunitas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url('emiten')}}">Analisis Emiten</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Webinar</a>

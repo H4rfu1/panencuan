@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class m_GroupKomunitas extends Model
+class m_AnalisaEmiten extends Model
 {
 
     /**
@@ -12,11 +12,10 @@ class m_GroupKomunitas extends Model
      *
      * @var array
      */
-    protected $table = 'grup Komunitas';
-    protected $primaryKey = 'id Komunitas';
+    protected $table = 'analisa_emiten';
+    protected $primaryKey = 'id_emiten';
     public $timestamps = false;
     protected $fillable = [
-        'id member', 'id pemateri'
+        'nama_perusahaan', 'health', 'growth', 'value'
     ];
-
 }
