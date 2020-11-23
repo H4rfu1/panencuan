@@ -320,6 +320,9 @@ border: none !important;
           <a class="nav-link" href="{{url('membership')}}">Upgrade Member</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{url('video')}}">Video</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#">Blog</a>
         </li>
         <li class="nav-item">
