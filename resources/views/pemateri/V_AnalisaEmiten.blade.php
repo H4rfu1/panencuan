@@ -11,7 +11,7 @@
                 <div class="x_panel">
                   <div class="x_content">
                     @if(Auth::user()->role_id == 3)
-                    <a class="btn btn-primary" href="{{url('tambahvideo')}}">Tambah emiten</a>
+                    <a class="btn btn-primary" href="{{url('tambahemiten')}}">Tambah Analisa Emiten</a>
                     @endif
                     @if (session('status'))
                       <div class="alert alert-success alert-dismissible " role="alert">
@@ -26,7 +26,8 @@
                       <thead>
                           <tr class="headings">
                             <th class="column-title">No. </th>
-                            <th class="column-title">Nama Perusahaan </th>
+                            <th class="column-title">Nama Pemateri</th>
+                            <th class="column-title">Kode saham </th>
                             <th class="column-title">Health</th>
                             <th class="column-title">Growth</th>
                             <th class="column-title">Value</th>
@@ -41,20 +42,22 @@
                           <tr class="even pointer">
                             <td>{{ $loop->iteration }}</td>
                             <td class=" ">{{ $p->name }}</td>
-                            <td class=" ">{{ $p->judul }}</td>
-                            <td class=" ">{{ $p->judul }}</td>
-                            <td class=" ">{{ $p->judul }}</td>
+                            <td class=" ">{{ $p->kode_saham }}</td>
+                            <td class=" ">{{ $p->health }}</td>
+                            <td class=" ">{{ $p->growth }}</td>
+                            <td class=" ">{{ $p->value }}</td>
                             <!-- <td class=" last">
                               <a href="{{url('video/'.$p->id_video)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a>
                             </td> -->
                           </tr>
                           @else
                           <tr class="odd pointer">
-                            <td>{{ $loop->iteration }}</td>
+                          <td>{{ $loop->iteration }}</td>
                             <td class=" ">{{ $p->name }}</td>
-                            <td class=" ">{{ $p->judul }}</td>
-                            <td class=" ">{{ $p->judul }}</td>
-                            <td class=" ">{{ $p->judul }}</td>
+                            <td class=" ">{{ $p->kode_saham }}</td>
+                            <td class=" ">{{ $p->health }}</td>
+                            <td class=" ">{{ $p->growth }}</td>
+                            <td class=" ">{{ $p->value }}</td>
                             <!-- <td class=" last">
                               <a href="{{url('video/'.$p->id_video)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a>
                             </td>                             -->

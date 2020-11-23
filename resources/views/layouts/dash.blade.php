@@ -68,9 +68,12 @@
               @endif
               @if(Auth::user()->role_id == 3)
               <div class="menu_section">
-                <h3>Materi</h3>
+                <h3>Menu</h3>
                 <ul class="nav side-menu">
                   <li><a href="{{url('video')}}"><i class="fa fa-laptop"></i> Kelola video</a></li>              
+                </ul>
+                <ul class="nav side-menu">
+                  <li><a href="{{url('emiten')}}"><i class="fa fa-bar-chart"></i> Analisa Emiten</a></li>              
                 </ul>
               </div>
               @endif

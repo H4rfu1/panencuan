@@ -16,6 +16,6 @@ class m_AnalisaEmiten extends Model
     protected $primaryKey = 'id_emiten';
     public $timestamps = false;
     protected $fillable = [
-        'nama_perusahaan', 'health', 'growth', 'value'
+        'kode_saham', 'health', 'growth', 'value', 'id_pemateri'
     ];
 }

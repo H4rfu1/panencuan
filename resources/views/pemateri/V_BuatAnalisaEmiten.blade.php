@@ -127,7 +127,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Tambah Video</h3>
+                            <h3>Analisa Emiten</h3>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -136,8 +136,7 @@
                             <div class="x_panel">
 
                                 <div class="x_title">
-                                    <h2>Tambah video pembelajaran 
-                                    
+                                    <h2>Tambah Analisa Emiten
                                     </h2>
                                     <div class="clearfix"></div>
                                 </div>
@@ -149,29 +148,37 @@
                                 </div>
                                 @endif
                                 <div class="x_content">
-                                    <form class="" action="{{url('simpanvideo')}}" method="post" novalidate enctype="multipart/form-data">
+                                    <form class="" action="{{url('simpanemiten')}}" method="post" novalidate>
                                       @csrf
-                                      <input type="hidden" name="id" value="{{Auth::user()->id}}">
+                                      <input type="hidden" name="id_pemateri" value="{{Auth::user()->id}}">
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Judul<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Kode Saham Perusahaan<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="text"  name="judul" placeholder="Judul Video" required="required" value="{{old('judul')}}"/>
+                                                <input class="form-control" type="text"  name="kode_saham" placeholder="Kode Saham, ex: BBRI" required="required" value="{{old('kode_saham')}}"/>
                                             </div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">file video<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Health<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="file" class='file' name="video" required='required'/></div>
+                                                <input class="form-control" type="number"  name="health" required="required" value="{{old('health')}}"/>
+                                            </div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Deskripsi video<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Growth<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <textarea required="required" name='deskripsi'></textarea></div>
+                                                <input class="form-control" type="number"  name="growth"  required="required" value="{{old('growth')}}"/>
+                                            </div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Value<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" type="number"  name="value" required="required" value="{{old('value')}}"/>
+                                            </div>
                                         </div>
                                         <div class="ln_solid">
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
-                                                    <a class="btn btn-danger" href = "{{url('video')}}">Batal</a>
+                                                    <a class="btn btn-danger" href = "{{url('emiten')}}">Batal</a>
                                                     <button type='submit' class="btn btn-success">simpan</button>
                                                 </div>
                                             </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use App\m_videoPembelajaran;
+use App\m_AnalisaEmiten;
 use Auth;
 
 class c_AnalisaEmiten extends Controller
@@ -30,7 +30,7 @@ class c_AnalisaEmiten extends Controller
     public function AnalisaEmiten()
     {
         
-        $data = m_videoPembelajaran::join('users', 'data_video.id_pemateri', '=', 'users.id')
+        $data = m_AnalisaEmiten::join('users', 'analisa_emiten.id_pemateri', '=', 'users.id')
         ->get();
         // dd($datapencatatan);
         if (Auth::check()) {
@@ -45,5 +45,24 @@ class c_AnalisaEmiten extends Controller
             return view('auth.login');
         }
     }
+    public function setFormAnalisaEmiten()
+    {
+        return view('pemateri.V_BuatAnalisaEmiten');
+    }
+
+    public function storeVideoPembelajaran(Request $request)
+    {
+
+        m_AnalisaEmiten::create([
+            'id_pemateri' => $request->id_pemateri,
+            'kode_saham' => $request->kode_saham,
+            'health' => $request->health,
+            'growth' => $request->growth,
+            'value' => $request->value
+        ]);
+        return redirect('emiten')->with('status', 'Berhasil Menambahkan Data Analisa Emiten');
+    }
+
+
 
 }

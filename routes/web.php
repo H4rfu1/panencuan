@@ -43,6 +43,8 @@ Route::get('/komunitas', 'c_GroupKomunitas@listGroupKomunitas')->name('komunitas
 
 //analisa emiten
 Route::get('/emiten', 'c_AnalisaEmiten@AnalisaEmiten');
+Route::get('/tambahemiten', 'c_AnalisaEmiten@setFormAnalisaEmiten');
+Route::post('/simpanemiten', 'c_AnalisaEmiten@storeVideoPembelajaran');
 
 //auth
 Auth::routes();
