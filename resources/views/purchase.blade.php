@@ -9,7 +9,6 @@
     <div class="row justify-content-center text-center wow fadeInUp">
 <section class="credit-card">
 		 <div class="container">
-		  
 			<div class="card-holder">
 			  <div class="card-box bg-news">
 		       <div class="row">
@@ -27,7 +26,7 @@
 					<input type="hidden" name="plan_id" value="{{$id}}">
 				  <div class="card-details">
 					<h3 class="title">Upload Bukti Pembayaran</h3>
-					<p>Pembayaran ke rek BNI senilai {{$harga}}</p>
+					<p>Pembayaran ke rek BNI senilai Rp. {{$harga}}</p>
 					<p>No. rek. 08357898273 a.n. Moh. Fahrul Hafidh</p>
 					<div class="row">
 					  <div class="form-group col-sm-12">

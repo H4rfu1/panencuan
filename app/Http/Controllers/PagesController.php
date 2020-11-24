@@ -19,7 +19,7 @@ class PagesController extends Controller
             if (Auth::user()->role_id == 2) {
                 return redirect('/admin');
             }elseif(Auth::user()->role_id == 3){
-                return redirect('/pemateri');
+                return view('index2');
             }else{
                 return view('index2');
             }
@@ -37,10 +37,11 @@ class PagesController extends Controller
     }
     public function membership()
     {
+        $paket = DB::table('data paket')->get();
         if (!Auth::check()) {
             return redirect('/login');
         }else{
-            return view('membership');
+            return view('membership', compact('paket'));
         }
     }
 
@@ -50,13 +51,8 @@ class PagesController extends Controller
         if (!Auth::check()) {
             return redirect('/login');
         }else{
-            if($id == 1){
-                $harga = 'Rp. 250.000';
-            }elseif($id == 2){
-                $harga = 'Rp. 100.000';
-            }else{
-                $harga = 'salah plan';
-            }
+            $paket = DB::table('data paket')->where('id_paket',$id)->first();
+            $harga = $paket->harga;
             return view('purchase', ['harga' => $harga, 'id' => $id]);
         }
     }
@@ -194,8 +190,15 @@ class PagesController extends Controller
     {
         return view('admin.pemateri');
     }
-    public function batalverif()
+    public function batalverif(Request $request)
     {
-        return view('admin.userverif')->with('batal', 'Member tidak disetujui');
+        if (!Auth::check()) {
+            return redirect('/login');
+        }else{
+            DB::table('verifikasi_member')
+            ->where('id_pembayaran', $request->id)
+            ->update(['status_verif' => 'tidak disetujui']);
+            return redirect('admin/userverif')->with('batal', 'Member tidak disetujui');
+        }
     }
 }

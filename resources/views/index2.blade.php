@@ -41,26 +41,35 @@
 
     <div class="collapse navbar-collapse" id="navbarToggler">
       <ul class="navbar-nav ml-auto mt-3 mt-lg-0">
-      <ul class="navbar-nav ml-auto mt-3 mt-lg-0">
         <li class="nav-item">
           <a class="nav-link" href="{{url('')}}">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url('membership')}}">Upgrade Member</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url('video')}}">Video</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url('komunitas')}}">Komunitas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url('emiten')}}">Analisis Emiten</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Webinar</a>
-        </li>
-      </ul>
+        @if(Auth::check())
+          @if(Auth::user()->role_id == 1)
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('membership')}}">Upgrade Member</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('video')}}">Video</a>
+          </li>
+          @endif
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('komunitas')}}">Komunitas</a>
+          </li>
+          @if(Auth::user()->role_id == 1)
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('emiten')}}">Analisis Emiten</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Webinar</a>
+          </li>
+          @endif
+          @if(Auth::user()->role_id == 3)
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('pemateri')}}">Dashboard</a>
+          </li>
+          @endif
+        @endif 
       </ul>
       @if(Auth::check())
       <div class="ml-auto my-2 my-lg-0">
@@ -69,13 +78,15 @@
         <div class="dropdown">
           <a href="#" data-toggle="dropdown" class="dropdown-toggle user-action text-white text-decoration-none"><img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="rounded-circle" alt="Avatar">{{Auth::user()->name}}<b class="caret"></b></a>
           <ul class="dropdown-menu">
+            @if(Auth::user()->role_id == 3)
+            <li><a href="{{url('/pemateri')}}" class="text-decoration-none"><i class="fa fa-tachometer"></i> Dashboard</a></li>
+            @endif
             <li><a href="{{url('/profil')}}" class="text-decoration-none"><i class="fa fa-user-o"></i> Profile</a></li>
             <!-- <li><a href="#" class="text-decoration-none"><i class="fa fa-calendar-o"></i> Calendar</a></li>
             <li><a href="#" class="text-decoration-none"><i class="fa fa-sliders"></i> Settings</a></li> -->
             <li class="dropdown-divider"></li>
             <li><a href="#" data-toggle="modal" data-target="#exampleModal" class="text-decoration-none"><i class="fa fa-sign-out"></i> Logout</a></li>
           </ul>
-          
 			  </div>
       </div>
       @else

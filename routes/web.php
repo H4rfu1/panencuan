@@ -27,16 +27,16 @@ Route::post('/admin/verif', 'PagesController@memberverif');
 Route::get('/admin/pemateri', 'PagesController@pemateri');
 Route::get('/admin/userverif', 'PagesController@userverif');
 Route::get('/admin/{id}', 'PagesController@detailverif');
-Route::get('/batalverif', 'PagesController@batalverif');
+Route::post('/batalverif', 'PagesController@batalverif');
 
 //pemateri
 Route::get('/pemateri', 'PagesController@dashboard');
-Route::get('/video', 'C_VideoPembelajaran@listVideoPembelajaran')->name('video');
-Route::get('/tambahvideo', 'C_VideoPembelajaran@addVideoPembelajaran');
-Route::post('/simpanvideo', 'C_VideoPembelajaran@storeVideoPembelajaran');
-Route::get('/video/{id}', 'C_VideoPembelajaran@showVideoPembelajaran');
-Route::get('/video/{id}/edit', 'C_VideoPembelajaran@editVideoPembelajaran');
-Route::post('/video/{id}', 'C_VideoPembelajaran@updateVideoPembelajaran');
+Route::get('/video', 'c_VideoPembelajaran@listVideoPembelajaran')->name('video');
+Route::get('/tambahvideo', 'c_VideoPembelajaran@addVideoPembelajaran');
+Route::post('/simpanvideo', 'c_VideoPembelajaran@storeVideoPembelajaran');
+Route::get('/video/{id}', 'c_VideoPembelajaran@showVideoPembelajaran');
+Route::get('/video/{id}/edit', 'c_VideoPembelajaran@editVideoPembelajaran');
+Route::post('/video/{id}', 'c_VideoPembelajaran@updateVideoPembelajaran');
 
 //komunitas
 Route::get('/komunitas', 'c_GroupKomunitas@listGroupKomunitas')->name('komunitas');

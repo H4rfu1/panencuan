@@ -12,7 +12,7 @@ class m_GroupKomunitas extends Model
      *
      * @var array
      */
-    protected $table = 'grup Komunitas';
+    protected $table = 'grup komunitas';
     public $timestamps = false;
     protected $fillable = [
         'id_user', 'komentar', 'tanggal_komen'

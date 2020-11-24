@@ -51,6 +51,7 @@
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              @if(Auth::user()->role_id == 2)
               <div class="menu_section">
                 <h3>Akun</h3>
                 <ul class="nav side-menu">
@@ -64,19 +65,18 @@
                   </li>                  
                 </ul>
               </div>
+              @endif
+              @if(Auth::user()->role_id == 3)
               <div class="menu_section">
-                <h3>Materi</h3>
+                <h3>Menu</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bar-chart-o"></i> video <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="#level1_1">Laporan Harian</a>
-                        <li><a href="#level1_2">Laporan Bulanan</a>
-                        </li>
-                    </ul>
-                  </li>                  
+                  <li><a href="{{url('video')}}"><i class="fa fa-laptop"></i> Kelola video</a></li>              
+                </ul>
+                <ul class="nav side-menu">
+                  <li><a href="{{url('emiten')}}"><i class="fa fa-bar-chart"></i> Analisa Emiten</a></li>              
                 </ul>
               </div>
-
+              @endif
             </div>
             <!-- /sidebar menu -->
 
@@ -217,13 +217,18 @@
                                         <div class="ln_solid">
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
-                                                    <a class="btn btn-danger" href = "{{url('batalverif')}}
-                                                    ">tidak setuju</a>
-                                                    <form action="{{url('/admin/verif')}}" method="post" class="d-inline">
-                                                  @csrf
-                                                  <input type="hidden" name="id" value="{{$data->id_pembayaran}}">
-                                                  <button type="submit" class="btn btn-success">Setujui</button>
-                                                  </form>
+                                                    <a class="btn btn-info" href = "{{url('admin/verif')}}
+                                                    ">batal</a>
+                                                    <form action="{{url('/batalverif')}}" method="post" class="d-inline-flex">
+                                                      @csrf
+                                                      <input type="hidden" name="id" value="{{$data->id_pembayaran}}">
+                                                      <button type="submit" class="btn btn-danger">Tidak Setujui</button>
+                                                    </form>
+                                                    <form action="{{url('/admin/verif')}}" method="post" class="d-inline-flex">
+                                                      @csrf
+                                                      <input type="hidden" name="id" value="{{$data->id_pembayaran}}">
+                                                      <button type="submit" class="btn btn-success">Setujui</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

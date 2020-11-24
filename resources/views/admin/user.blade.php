@@ -29,7 +29,6 @@
                             </th>
                           </tr>
                         </thead>
-
                         <tbody>
                         <tr class="even pointer" onclick="window.location='{{url('profil/')}}';" style="cursor: pointer;">
                             <td>1</td>
