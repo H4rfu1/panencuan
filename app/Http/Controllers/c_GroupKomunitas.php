@@ -33,7 +33,11 @@ class c_GroupKomunitas extends Controller
 
         if (Auth::check()) {
             if (Auth::user()->role_id == 1) {
-                return view('komunitas.v_groupkomunitas', compact('data'));
+                if(Auth::user()->status_id != 1){
+                    return view('komunitas.v_groupkomunitas', compact('data'));
+                }else{
+                    return redirect('/');
+                }
             }elseif(Auth::user()->role_id == 3){
                 return view('komunitas.v_groupkomunitas', compact('data'));
             }else{
@@ -42,7 +46,6 @@ class c_GroupKomunitas extends Controller
         }else{
             return view('auth.login');
         }
-
         return view('komunitas.v_groupkomunitas', compact('data'));
     }
 
@@ -60,8 +63,9 @@ class c_GroupKomunitas extends Controller
             'komentar' => $request->komen,
             'tanggal_komen' => date("Y-m-d H:i:s")
         ]);
-
-            return redirect('komunitas')->with('status', 'Berhasil Menambahkan Data Pencatatan Perkembangan Melon');
+        if(Auth::user()->status_id != 1){
+            return redirect('komunitas')->with('status', 'Berhasil Menambahkan Komentar');
+        }
         
     }
 

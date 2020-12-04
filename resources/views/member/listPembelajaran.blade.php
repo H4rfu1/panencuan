@@ -9,7 +9,13 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 py-3 container">
+        
         @foreach($data as $p)
+        @if(Auth::user()->status_id == 1 && $loop->iteration > 1)
+        @php 
+          break;
+        @endphp
+        @endif
         <div class="shadow-lg p-3 mb-5 bg-white rounded">
         <article class="blog-entry">
           <div class="post-title"><a href="blog-details.html">{{$p->judul}}</a></div>

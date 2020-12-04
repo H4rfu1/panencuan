@@ -227,6 +227,7 @@
                                                     <form action="{{url('/admin/verif')}}" method="post" class="d-inline-flex">
                                                       @csrf
                                                       <input type="hidden" name="id" value="{{$data->id_pembayaran}}">
+                                                      <input type="hidden" name="id_user" value="{{$data->id}}">
                                                       <button type="submit" class="btn btn-success">Setujui</button>
                                                     </form>
                                                 </div>

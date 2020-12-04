@@ -53,9 +53,11 @@
             <a class="nav-link" href="{{url('video')}}">Video</a>
           </li>
           @endif
+          @if(Auth::user()->status_id != 1)
           <li class="nav-item">
-            <a class="nav-link" href="{{url('komunitas')}}">Komunitas</a>
+          <a class="nav-link" href="{{url('komunitas')}}">Komunitas</a>
           </li>
+			    @endif
           @if(Auth::user()->role_id == 1)
           <li class="nav-item">
             <a class="nav-link" href="{{url('emiten')}}">Analisis Emiten</a>

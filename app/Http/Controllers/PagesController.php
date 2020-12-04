@@ -176,9 +176,15 @@ class PagesController extends Controller
         if (!Auth::check()) {
             return redirect('/login');
         }else{
+            // dd($request->id_user);
             DB::table('verifikasi_member')
             ->where('id_pembayaran', $request->id)
             ->update(['status_verif' => 'terverifikasi']);
+            
+
+            DB::table('users')
+            ->where('id', $request->id_user)
+            ->update(['status_id' => 2]);
             // dd($data);
             return redirect('admin/userverif')->with('status', 'Member telah disetujui');
         }
