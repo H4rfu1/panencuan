@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use App\m_videoPembelajaran;
+use App\m_WebinarLiveKelas;
 use Auth;
 
 class c_WebinarLiveKelas extends Controller
@@ -27,9 +27,9 @@ class c_WebinarLiveKelas extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function listVideoPembelajaran()
+    public function listWebinarLiveKelas()
     {
-        $data = m_videoPembelajaran::join('users', 'data_video.id_pemateri', '=', 'users.id')
+        $data = m_WebinarLiveKelas::join('users', 'data_video.id_pemateri', '=', 'users.id')
         ->get();
         // dd($datapencatatan);
         if (Auth::check()) {
@@ -46,7 +46,7 @@ class c_WebinarLiveKelas extends Controller
         
     }
 
-    public function addVideoPembelajaran()
+    public function addWebinarLiveKelas()
     {
         return view('pemateri.uploadvideo');
     }
@@ -58,7 +58,7 @@ class c_WebinarLiveKelas extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeVideoPembelajaran(Request $request)
+    public function storeWebinarLiveKelas(Request $request)
     {
         $fileName = '';
             if($request->hasFile('video')){
@@ -67,7 +67,7 @@ class c_WebinarLiveKelas extends Controller
             $file->storeAs('public/video', $fileName);
             }
             if($fileName != ''){
-                m_videoPembelajaran::create([
+                m_WebinarLiveKelas::create([
                     'id_pemateri' => $request->id,
                     'judul' => $request->judul,
                     'url_video' => $fileName,
@@ -87,10 +87,10 @@ class c_WebinarLiveKelas extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showVideoPembelajaran($id)
+    public function showWebinarLiveKelas($id)
     {
 
-        $data = m_videoPembelajaran::join('users', 'data_video.id_pemateri', '=', 'users.id')
+        $data = m_WebinarLiveKelas::join('users', 'data_video.id_pemateri', '=', 'users.id')
         ->where('id_video', $id)->first();
         // dd($data);
         return view('pemateri.detailvideo', ['data' => $data]);
@@ -102,10 +102,10 @@ class c_WebinarLiveKelas extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editVideoPembelajaran($id)
+    public function editWebinarLiveKelas($id)
     {
 
-        $data = m_videoPembelajaran::where('id_video', $id)->first();
+        $data = m_WebinarLiveKelas::where('id_video', $id)->first();
 
         // dd($data);
         return view('pemateri.editvideo', ['data' => $data]);
@@ -118,7 +118,7 @@ class c_WebinarLiveKelas extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateVideoPembelajaran(Request $request, $id)
+    public function updateWebinarLiveKelas(Request $request, $id)
     {
         $fileName = '';
         if($request->hasFile('video')){
@@ -127,7 +127,7 @@ class c_WebinarLiveKelas extends Controller
             $file->storeAs('public/video', $fileName);
             }
             if($fileName != ''){
-                m_videoPembelajaran::where('id_video', $id)
+                m_WebinarLiveKelas::where('id_video', $id)
                 ->update([
                     'id_pemateri' => $request->id,
                     'judul' => $request->judul,
@@ -136,7 +136,7 @@ class c_WebinarLiveKelas extends Controller
                 ]);
                 return redirect('video')->with('status', 'Berhasil Mengupdate Data Video');
             }else{
-                m_videoPembelajaran::where('id_video', $id)
+                m_WebinarLiveKelas::where('id_video', $id)
                 ->update([
                     'id_pemateri' => $request->id,
                     'judul' => $request->judul,
