@@ -6,7 +6,7 @@
   <div class="">
     <div class="page-title">
       <div class="">
-        <h3>Verifikasi User</h3>
+        <h3>Verifikasi Webinar/Live Kelas</h3>
         <div class="col-md-12 col-sm-12  ">
         @if (session('batal'))
             <div class="alert alert-danger alert-dismissible " role="alert">
@@ -30,8 +30,8 @@
                         <thead>
                           <tr class="headings">
                             <th class="column-title">No. </th>
-                            <th class="column-title">id </th>
-                            <th class="column-title">Nama </th>
+                            <th class="column-title">id webinar</th>
+                            <th class="column-title">Nama User</th>
                             <th class="column-title">status </th>
                             <th class="column-title no-link last"><span class="nobr">Action</span>
                             </th>
@@ -52,8 +52,6 @@
                         </tbody>
                       </table>
                     </div>
-							
-						
                   </div>
                 </div>
             </div>

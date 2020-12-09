@@ -53,7 +53,6 @@ Route::get('/verifikasiwebinar/{id}', 'c_VerifikasiWebinarLiveKelas@DetailVerifi
 Route::post('/tolakverifwebinar', 'c_VerifikasiWebinarLiveKelas@actionTolak');
 Route::post('/verifwebinar', 'c_VerifikasiWebinarLiveKelas@actionVerifikasi');
 
-
 //komunitas
 Route::get('/komunitas', 'c_GroupKomunitas@listGroupKomunitas')->name('komunitas');
 Route::post('/kirimpesan', 'c_GroupKomunitas@setGroupKomunitas');

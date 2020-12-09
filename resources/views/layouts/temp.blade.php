@@ -298,7 +298,7 @@ border: none !important;
   </style>
  @endif 
 
- @if(Route::current()->getName() == 'komunitas' | Route::current()->getName() == 'video' | Route::current()->getName() == 'emiten')
+ @if(Route::current()->getName() == 'komunitas' | Route::current()->getName() == 'video' | Route::current()->getName() == 'emiten' | Route::current()->getName() == 'webinar' | Route::current()->getName() == 'kalkulator')
  <style>
 	 .bg-light{
 			background: #7F7FD5;
@@ -549,31 +549,35 @@ border: none !important;
 		@if(Auth::check())
 			@if(Auth::user()->role_id == 1)
 			<li class="nav-item @if(Route::current()->getName() == 'video'){{'active'}}@endif">
-			<a class="nav-link" href="{{url('video')}}">Video</a>
+				<a class="nav-link" href="{{url('video')}}">Video</a>
 			</li>
-			@endif
-			@if(Auth::user()->status_id == 2)
-			<li class="nav-item @if(Route::current()->getName() == 'komunitas'){{'active'}}@endif">
-			<a class="nav-link" href="{{url('komunitas')}}">Komunitas</a>
-			</li>
-			@endif
-			@if(Auth::user()->role_id == 1)
 			<li class="nav-item @if(Route::current()->getName() == 'emiten'){{'active'}}@endif">
-			<a class="nav-link" href="{{url('emiten')}}">Analisis Emiten</a>
+				<a class="nav-link" href="{{url('emiten')}}">Analisis Emiten</a>
 			</li>
 			<li class="nav-item @if(Route::current()->getName() == 'webinar'){{'active'}}@endif">
-			<a class="nav-link" href="#">Webinar</a>
+				<a class="nav-link" href="webinar">Webinar</a>
 			</li>
 			<li class="nav-item @if(Route::current()->getName() == 'kalkulator'){{'active'}}@endif">
-			<a class="nav-link" href="{{url('kalkulator')}}">Kalkulator</a>
+				<a class="nav-link" href="{{url('kalkulator')}}">Kalkulator</a>
 			</li>
+			@if(Auth::user()->status_id == 2)
+			<li class="nav-item @if(Route::current()->getName() == 'komunitas'){{'active'}}@endif">
+				<a class="nav-link" href="{{url('komunitas')}}">Komunitas</a>
+			</li>
+			@endif
 			<li class="nav-item @if(Route::current()->getName() == 'diskusi'){{'active'}}@endif">
-			<a class="nav-link" href="#">Diskusi</a>
+				<a class="nav-link" href="diskusi">Diskusi</a>
 			</li>
 			@endif
 			@if(Auth::user()->role_id == 3)
+			<li class="nav-item @if(Route::current()->getName() == 'komunitas'){{'active'}}@endif">
+				<a class="nav-link" href="{{url('komunitas')}}">Komunitas</a>
+			</li>
+			<li class="nav-item @if(Route::current()->getName() == 'diskusi'){{'active'}}@endif">
+				<a class="nav-link" href="diskusi">Diskusi</a>
+			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="{{url('pemateri')}}">Dashboard</a>
+				<a class="nav-link" href="{{url('pemateri')}}">Dashboard</a>
 			</li>
 			@endif
 		@endif

@@ -7,7 +7,7 @@
 <div class="page-section mt-0">
     <div class="container">
     <div class="row justify-content-center text-center wow fadeInUp">
-<section class="credit-card">
+<section class="credit-card bg-transparent">
 		 <div class="container">
 			<div class="card-holder" id="form">
 			  <div class="card-box bg-news">
@@ -26,7 +26,7 @@
 					<div class="row">
 					  <div class="form-group col-sm-12">
 						<input id="nominal" type="number" class="form-control mb-2" name="nominal" placeholder="Nominal (Rupiah)" required aria-label="Card Holder" aria-describedby="basic-addon1" value="{{$nominal}}">
-						<input id="return" type="number" class="form-control  mb-2" name="return" placeholder="Return (%)" required aria-label="Card Holder" aria-describedby="basic-addon1" value="{{$return}}">
+						<input id="return" type="number" step="0.01" min="0" class="form-control  mb-2" name="return" placeholder="Return (%)" required aria-label="Card Holder" aria-describedby="basic-addon1" value="{{$return}}">
 						<input id="waktu" type="number" class="form-control mb-2" name="waktu" placeholder="Jangka Waktu (Tahun)" required aria-label="Card Holder" aria-describedby="basic-addon1" value="{{$waktu}}">
 						@if($hasil != '')
 						<p>Perkiraan hasil investasi = {{$hasil}}</p>
