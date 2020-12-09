@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{{url('favicon.ico')}}" type="image/x-icon">
     <link rel="icon" href="{{url('favicon.ico')}}" type="image/x-icon">
 
-    <title>Panen Cuan</title>
+    <title>Detail Verifikasi Webinar / Live kelas</title>
     <!-- Bootstrap -->
     <link href="{{url('vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -133,7 +133,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Detail Pembayaran</h3>
+                            <h3>Detail Pembayaran Webinar/Live Kelas</h3>
                         </div>
 
                     </div>
@@ -143,11 +143,17 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Akun 
+                                    <h2>{{$data->opsi}}
                                     </h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
+                                <div class="field item form-group">
+                                            <label class="col-md-3 col-sm-3  label-align">Judul {{$data->opsi}}<span > : </span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <p>{{$data->judul}}</p>
+                                            </div>
+                                        </div>
                                         <div class="field item form-group">
                                             <label class="col-md-3 col-sm-3  label-align">Nama<span > : </span></label>
                                             <div class="col-md-6 col-sm-6">
@@ -164,69 +170,31 @@
                                             <div class="col-md-6 col-sm-6">
                                                 <p>Rp. {{$data->harga}} </p></div>
                                         </div>
-                                        <!-- <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Confirm email address<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="email" class='email' name="confirm_email" data-validate-linked='email' required='required' /></div>
-                                        </div> -->
-                                        <!-- <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">No. HP <span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="number" class='number' name="number" data-validate-minmax="10,100" required='required'></div>
-                                        </div> -->
-                                        <!-- <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Time<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" class='time' type="time" name="time" required='required'></div>
-                                        </div> -->
-<!--                                         
                                         <div class="field item form-group">
-											<label class="col-form-label col-md-3 col-sm-3  label-align">Password<span class="required">*</span></label>
-											<div class="col-md-6 col-sm-6">
-												<input class="form-control" type="password" id="password1" name="password" pattern="(?=.*[a-z,A-Z]).{3,}" title="Minimum 8 Characters Including An Upper And Lower Case Letter, A Number And A Unique Character" required />
-												
-												<span style="position: absolute;right:15px;top:7px;" onclick="hideshow()" >
-													<i id="slash" class="fa fa-eye-slash"></i>
-													<i id="eye" class="fa fa-eye"></i>
-												</span>
-											</div>
-										</div> -->
-                                        
-                                        <!-- <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Ulangi password<span class="required">*</span></label>
+                                            <label class="col-md-3 col-sm-3  label-align">No Hp<span > : </span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="password" name="password2" data-validate-linked='password' required='required' /></div>
-                                        </div> -->
-                                        <div class="field item form-group">
-                                            <label class="col-md-3 col-sm-3  label-align">Nim<span > : </span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <p>{{$data->nim}}</p></div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-md-3 col-sm-3  label-align">jurusan<span > : </span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <p>{{$data->jurusan}}</p>
+                                                <p>{{$data->no_hp}}</p>
                                             </div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-md-3 col-sm-3  label-align">bukti pembayaran<span > : </span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <img src="{{asset('storage/image/'.$data->foto)}}" alt="" srcset="" width="400">
+                                                <img src="{{asset('storage/image/'.$data->image)}}" alt="" srcset="" width="400">
                                             </div>
                                         </div>
                                         <div class="ln_solid">
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
-                                                    <a class="btn btn-info" href = "{{url('admin/verif')}}
+                                                    <a class="btn btn-info" href = "{{url('verifikasiwebinar')}}
                                                     ">batal</a>
-                                                    <form action="{{url('/batalverif')}}" method="post" class="d-inline-flex">
+                                                    <form action="{{url('/tolakverifwebinar')}}" method="post" class="d-inline-flex">
                                                       @csrf
-                                                      <input type="hidden" name="id" value="{{$data->id_pembayaran}}">
+                                                      <input type="hidden" name="id" value="{{$data->id_verifikasi_webinar_livekelas}}">
                                                       <button type="submit" class="btn btn-danger">Tidak Setujui</button>
                                                     </form>
-                                                    <form action="{{url('/admin/verif')}}" method="post" class="d-inline-flex">
+                                                    <form action="{{url('/verifwebinar')}}" method="post" class="d-inline-flex">
                                                       @csrf
-                                                      <input type="hidden" name="id" value="{{$data->id_pembayaran}}">
+                                                      <input type="hidden" name="id" value="{{$data->id_verifikasi_webinar_livekelas}}">
                                                       <input type="hidden" name="id_user" value="{{$data->id}}">
                                                       <button type="submit" class="btn btn-success">Setujui</button>
                                                     </form>

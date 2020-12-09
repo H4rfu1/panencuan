@@ -30,8 +30,8 @@
                         <thead>
                           <tr class="headings">
                             <th class="column-title">No. </th>
-                            <th class="column-title">Nama</th>
-                            <th class="column-title">email </th>
+                            <th class="column-title">id </th>
+                            <th class="column-title">Nama </th>
                             <th class="column-title">status </th>
                             <th class="column-title no-link last"><span class="nobr">Action</span>
                             </th>
@@ -40,12 +40,12 @@
                         
                         <tbody>
                         @foreach($data as $d)
-                        <tr class="even pointer" onclick="window.location='{{url('admin/'.$d->id_pembayaran)}}';" style="cursor: pointer;">
+                        <tr class="even pointer" onclick="window.location='{{url('verifikasiwebinar/'.$d->id_verifikasi_webinar_livekelas)}}';" style="cursor: pointer;">
                             <td>{{$loop->iteration}}</td>
+                            <td class=" ">{{$d->id_webinar_livekelas}}</td>
                             <td class=" ">{{$d->name}}</td>
-                            <td class=" ">{{$d->email}}</td>
                             <td class=" ">{{$d->status_verif}}</td>
-                            <td class=" last"><a href="{{url('admin/'.$d->id_pembayaran)}}"><span class="badge badge-info">Detail</span></a>
+                            <td class=" last"><a href="{{url('verifikasiwebinar/'.$d->id_verifikasi_webinar_livekelas)}}"><span class="badge badge-info">Detail</span></a>
                             </td>
                           </tr>
                           @endforeach

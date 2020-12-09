@@ -163,7 +163,7 @@
     }
   </style>
 
-  @if(Route::current()->getName() == 'purchase' | Route::current()->getName() == 'kalkulator')
+  @if(Route::current()->getName() == 'purchase' | Route::current()->getName() == 'kalkulator' | Route::current()->getName() == 'daftarwebinar')
   <style>
     .credit-card{
  background-color: #f4f4f4;

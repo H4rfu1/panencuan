@@ -71,8 +71,7 @@ class PagesController extends Controller
                         'id_user' => $request->id, 
                         'foto' => $fileName, 
                         'status_verif' => 'belum terverifikasi',
-                        'id_plan' => $request->plan_id,
-                        'harga' => $request->harga
+                        'id_plan' => $request->plan_id
                     ]
                 );
                 return redirect('profil')->with('status', 'Mohon untuk menunggu verifikasi dari admin');
@@ -149,7 +148,8 @@ class PagesController extends Controller
         }else{
             $data = DB::table('verifikasi_member')
             ->join('users', 'verifikasi_member.id_user', '=', 'users.id')
-            ->select('verifikasi_member.*', 'users.*')
+            ->join('data paket', 'verifikasi_member.id_plan', '=', 'data paket.id_paket')
+            ->select('verifikasi_member.*', 'users.*','data paket.*')
             ->get();
             // dd($data);
             return view('admin.userverif', compact('data'));
@@ -163,7 +163,8 @@ class PagesController extends Controller
         }else{
             $data = DB::table('verifikasi_member')
             ->join('users', 'verifikasi_member.id_user', '=', 'users.id')
-            ->select('verifikasi_member.*', 'users.*')
+            ->join('data paket', 'verifikasi_member.id_plan', '=', 'data paket.id_paket')
+            ->select('verifikasi_member.*', 'users.*','data paket.*')
             ->where('verifikasi_member.id_pembayaran', $id)
             ->first();
             // dd($data);

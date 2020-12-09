@@ -1,7 +1,7 @@
 @extends('layouts.temp')
 
 @section('judul1', 'Upload bukti Pembayaran')
-@section('judul', 'Bukti Pembayaran')
+@section('judul', 'Bukti Pembayaran Webinar/live kelas')
 
 @section('content')
 <div class="page-section mt-0">
@@ -19,21 +19,21 @@
 				</div>
 				<div class="col-lg-6">
 				
-				<form action="{{url('purchase')}}" method="post" enctype="multipart/form-data">
+				<form action="{{url('daftarwebinar')}}" method="post" enctype="multipart/form-data">
 					@csrf
 					<input type="hidden" name="id" value="{{Auth::user()->id}}">
-					<input type="hidden" name="plan_id" value="{{$id}}">
+					<input type="hidden" name="plan_id" value="{{$data->id_webinar_livekelas}}">
 				  <div class="card-details">
 					<h3 class="title">Upload Bukti Pembayaran</h3>
-					<p>Pembayaran ke rek BNI senilai Rp. {{$harga}}</p>
+					<p>Pembayaran ke rek BNI senilai Rp. {{$data->harga}}</p>
 					<p>No. rek. 08357898273 a.n. Moh. Fahrul Hafidh</p>
 					<div class="row">
 					  <div class="form-group col-sm-12">
-						<label for="gambar">Gambar struk pembayaran</label>
+						<label for="gambar">Upload struk pembayaran</label>
 						<input id="gambar" type="file" class="form-control" name="gambar" placeholder="gambar" required aria-label="Card Holder" aria-describedby="basic-addon1">
 					  </div>
 					  <div class="form-group col-sm-12">
-						<button type="submit" class="btn btn-primary btn-block">Kirim</button>
+						<button type="submit" class="btn btn-primary btn-block">Daftar</button>
 					  </div>
 					</div>
 				  </div>

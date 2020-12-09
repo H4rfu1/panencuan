@@ -44,9 +44,15 @@ Route::post('/video/{id}', 'c_VideoPembelajaran@updateVideoPembelajaran');
 Route::get('/webinar', 'c_WebinarLiveKelas@listWebinarLiveKelas')->name('webinar');
 Route::get('/tambahwebinar', 'c_WebinarLiveKelas@addWebinarLiveKelas');
 Route::post('/simpanwebinar', 'c_WebinarLiveKelas@storeWebinarLiveKelas');
-Route::get('/video/{id}', 'c_WebinarLiveKelas@showVideoPembelajaran');
-Route::get('/video/{id}/edit', 'c_WebinarLiveKelas@editVideoPembelajaran');
-Route::post('/video/{id}', 'c_WebinarLiveKelas@updateVideoPembelajaran');
+Route::get('/webinar/{id}', 'c_WebinarLiveKelas@showWebinarLiveKelas')->name('daftarwebinar');
+Route::post('/daftarwebinar', 'c_WebinarLiveKelas@storepurchase');
+// Route::get('/ikutwebinar/{id}', 'c_WebinarLiveKelas@editVideoPembelajaran');
+// Route::post('/video/{id}', 'c_WebinarLiveKelas@updateVideoPembelajaran');
+Route::get('/verifikasiwebinar', 'c_VerifikasiWebinarLiveKelas@VerifikasiWebinarlivekelas');
+Route::get('/verifikasiwebinar/{id}', 'c_VerifikasiWebinarLiveKelas@DetailVerifikasiWebinarlivekelas');
+Route::post('/tolakverifwebinar', 'c_VerifikasiWebinarLiveKelas@actionTolak');
+Route::post('/verifwebinar', 'c_VerifikasiWebinarLiveKelas@actionVerifikasi');
+
 
 //komunitas
 Route::get('/komunitas', 'c_GroupKomunitas@listGroupKomunitas')->name('komunitas');

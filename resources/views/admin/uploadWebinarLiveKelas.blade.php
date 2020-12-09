@@ -159,7 +159,7 @@
                                             </div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Judul<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Opsi<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
                                                 <select class="browser-default custom-select" name="opsi" required>
                                                     <option selected disabled value="">Opsi</option>

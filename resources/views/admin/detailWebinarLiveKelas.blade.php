@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Profil | </title>
+    <title>Webinar / Live Kelas | </title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{url('favicon.ico')}}" type="image/x-icon">
@@ -127,7 +127,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Detail Akun</h3>
+                            <h3>Detail Webinar / Live Kelas</h3>
                         </div>
 
                     </div>
@@ -137,14 +137,14 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Akun 
+                                    <h2>{{$data->opsi}}
                                     </h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
                                     <form class="" novalidate>
                                         <div class="field item form-group">
-                                            <label class="col-md-3 col-sm-3  label-align">Pemateri<span > : </span></label>
+                                            <label class="col-md-3 col-sm-3  label-align">Pengelola<span > : </span></label>
                                             <div class="col-md-6 col-sm-6">
                                                 <p>{{$data->name}}</p>
                                             </div>
@@ -155,21 +155,35 @@
                                                 <p> {{$data->judul}}</p></div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-md-3 col-sm-3  label-align">Video<span > : </span></label>
-                                            <div class="col-md-6 col-sm-6 embed-responsive embed-responsive-16by9">
-                                                <iframe class="embed-responsive-item" src="{{asset('storage/video/'.$data->url_video)}}" allowfullscreen></iframe>
+                                            <label class="col-md-3 col-sm-3  label-align">Waktu<span > : </span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <p>{{ substr($data->waktu,0,10) }}</p>
                                             </div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-md-3 col-sm-3  label-align">Deskripsi video<span > : </span></label>
+                                            <label class="col-md-3 col-sm-3  label-align">Harga<span > : </span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <p>{{$data->deskripsi_video}}</p>
+                                                <p> {{$data->harga}}</p></div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-md-3 col-sm-3  label-align">Kuota<span > : </span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <p> {{$data->kuota}}</p></div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-md-3 col-sm-3  label-align">Video<span > : </span></label>
+                                                <img src="{{asset('storage/image/'.$data->image)}}" alt="gambar" >
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-md-3 col-sm-3  label-align">Deskripsi<span > : </span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <p>{{$data->deskripsi}}</p>
                                             </div>
                                         </div>
                                         <div class="ln_solid">
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
-                                                    <a class="btn btn-info" href = "{{url('video')}}">Kembali</a>
+                                                    <a class="btn btn-info" href = "{{url('webinar')}}">Kembali</a>
                                                 </div>
                                             </div>
                                         </div>

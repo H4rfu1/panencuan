@@ -55,7 +55,13 @@
               <div class="menu_section">
                 <h3>Akun</h3>
                 <ul class="nav side-menu">
-                <li><a href="{{url('admin/userverif')}}"><i class="fa fa-user-times"></i> Verifikasi Member</a></li>
+                <li><a><i class="fa fa-user-times"></i> Kelola Verifikasi <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{url('admin/userverif')}}">Verifikasi Member</a>
+                        <li><a href="{{url('verifikasiwebinar')}}">Verifikasi Webinar</a>
+                        </li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-sitemap"></i> Kelola Akun <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{url('admin/user')}}">Akun Member</a>

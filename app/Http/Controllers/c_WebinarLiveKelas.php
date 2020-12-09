@@ -31,10 +31,10 @@ class c_WebinarLiveKelas extends Controller
     {
         $data = m_WebinarLiveKelas::join('users', 'webinar_livekelas.id_pembuat', '=', 'users.id')
         ->get();
-        // dd($datapencatatan);
+        // dd($data);
         if (Auth::check()) {
             if (Auth::user()->role_id == 1) {
-                // return view('member.listPembelajaran', ['data' => $data]);
+                return view('member.listWebinarLiveKelas', ['data' => $data]);
             }elseif(Auth::user()->role_id == 3  || Auth::user()->role_id == 2){
                 return view('admin.listWebinarLiveKelas', ['data' => $data]);
             }else{
@@ -94,10 +94,21 @@ class c_WebinarLiveKelas extends Controller
     public function showWebinarLiveKelas($id)
     {
 
-        $data = m_WebinarLiveKelas::join('users', 'data_video.id_pemateri', '=', 'users.id')
-        ->where('id_video', $id)->first();
+        $data = m_WebinarLiveKelas::join('users', 'webinar_livekelas.id_pembuat', '=', 'users.id')
+        ->where('id_webinar_livekelas', $id)->first();
         // dd($data);
-        return view('pemateri.detailvideo', ['data' => $data]);
+        if (Auth::check()) {
+            if (Auth::user()->role_id == 1) {
+                return view('member.V_DaftarWebinarLiveKelas', ['data' => $data]);
+            }elseif(Auth::user()->role_id == 3  || Auth::user()->role_id == 2){
+                return view('admin.detailWebinarLiveKelas', ['data' => $data]);
+            }else{
+                return view('home');
+            }
+        }else{
+            return view('auth.login');
+        }
+        
     }
 
     /**
@@ -106,14 +117,14 @@ class c_WebinarLiveKelas extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editWebinarLiveKelas($id)
-    {
+    // public function editWebinarLiveKelas($id)
+    // {
 
-        $data = m_WebinarLiveKelas::where('id_video', $id)->first();
+    //     $data = m_WebinarLiveKelas::where('id_video', $id)->first();
 
-        // dd($data);
-        return view('pemateri.editvideo', ['data' => $data]);
-    }
+    //     // dd($data);
+    //     return view('pemateri.editvideo', ['data' => $data]);
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -122,33 +133,62 @@ class c_WebinarLiveKelas extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateWebinarLiveKelas(Request $request, $id)
+    // public function updateWebinarLiveKelas(Request $request, $id)
+    // {
+    //     $fileName = '';
+    //     if($request->hasFile('video')){
+    //         $file = $request->file('video');
+    //         $fileName = uniqid(). '.' . $file->getClientOriginalExtension();
+    //         $file->storeAs('public/video', $fileName);
+    //         }
+    //         if($fileName != ''){
+    //             m_WebinarLiveKelas::where('id_video', $id)
+    //             ->update([
+    //                 'id_pemateri' => $request->id,
+    //                 'judul' => $request->judul,
+    //                 'url_video' => $fileName,
+    //                 'deskripsi_video' => $request->deskripsi
+    //             ]);
+    //             return redirect('video')->with('status', 'Berhasil Mengupdate Data Video');
+    //         }else{
+    //             m_WebinarLiveKelas::where('id_video', $id)
+    //             ->update([
+    //                 'id_pemateri' => $request->id,
+    //                 'judul' => $request->judul,
+    //                 'deskripsi_video' => $request->deskripsi
+    //             ]); 
+    //         return redirect('video')->with('status', 'Berhasil Mengupdate Data Video');
+    //     }
+        
+    // }
+
+    public function storepurchase(Request $request)
     {
-        $fileName = '';
-        if($request->hasFile('video')){
-            $file = $request->file('video');
+        if (Auth::check()) {
+            $fileName = '';
+            if($request->hasFile('gambar')){
+            $file = $request->file('gambar');
             $fileName = uniqid(). '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/video', $fileName);
+            $file->storeAs('public/image', $fileName);
             }
             if($fileName != ''){
-                m_WebinarLiveKelas::where('id_video', $id)
-                ->update([
-                    'id_pemateri' => $request->id,
-                    'judul' => $request->judul,
-                    'url_video' => $fileName,
-                    'deskripsi_video' => $request->deskripsi
-                ]);
-                return redirect('video')->with('status', 'Berhasil Mengupdate Data Video');
+                DB::table('verifikasi_webinar_livekelas')->insert(
+                    [
+                        'id_user' => $request->id, 
+                        'foto' => $fileName, 
+                        'status_verif' => 'belum verifikasi',
+                        'id_webinar_livekelas' => $request->plan_id
+                    ]
+                );
+                return redirect('webinar')->with('status', 'Mohon untuk menunggu verifikasi dari admin');
             }else{
-                m_WebinarLiveKelas::where('id_video', $id)
-                ->update([
-                    'id_pemateri' => $request->id,
-                    'judul' => $request->judul,
-                    'deskripsi_video' => $request->deskripsi
-                ]); 
-            return redirect('video')->with('status', 'Berhasil Mengupdate Data Video');
+                return "gagal upload";
+            }
+            
+            
+        }else{
+            return redirect('login');
         }
-        
     }
 
     /**

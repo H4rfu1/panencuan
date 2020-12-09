@@ -28,6 +28,10 @@
                             <th class="column-title">No. </th>
                             <th class="column-title">Pengelola </th>
                             <th class="column-title">Judul</th>
+                            <th class="column-title">Opsi</th>
+                            <th class="column-title">Waktu</th>
+                            <th class="column-title">Harga</th>
+                            <th class="column-title">Kuota</th>
                             <th class="column-title no-link last"><span class="nobr">Action</span>
                             </th>
                           </tr>
@@ -40,9 +44,13 @@
                             <td>{{ $loop->iteration }}</td>
                             <td class=" ">{{ $p->name }}</td>
                             <td class=" ">{{ $p->judul }}</td>
+                            <td class=" ">{{ $p->opsi }}</td>
+                            <td class=" ">{{ substr($p->waktu,0,10) }}</td>
+                            <td class=" ">{{ $p->harga }}</td>
+                            <td class=" ">{{ $p->kuota }}</td>
                             <td class=" last">
-                              <a href="{{url('video/'.$p->id_video)}}"><span class="badge badge-info" style="font-size: 1em;">Detail</span></a>
-                              <a href="{{url('video/'.$p->id_video)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a>
+                              <a href="{{url('webinar/'.$p->id_webinar_livekelas)}}"><span class="badge badge-info" style="font-size: 1em;">Detail</span></a>
+                              <!-- <a href="{{url('video/'.$p->id_video)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a> -->
                             </td>
                           </tr>
                           @else
@@ -50,9 +58,13 @@
                             <td>{{ $loop->iteration }}</td>
                             <td class=" ">{{ $p->name }}</td>
                             <td class=" ">{{ $p->judul }}</td>
+                            <td class=" ">{{ $p->opsi }}</td>
+                            <td class=" ">{{ substr($p->waktu,0,10) }}</td>
+                            <td class=" ">{{ $p->harga }}</td>
+                            <td class=" ">{{ $p->kuota }}</td>
                             <td class=" last">
-                              <a href="{{url('video/'.$p->id_video)}}"><span class="badge badge-info" style="font-size: 1em;">Detail</span></a>
-                              <a href="{{url('video/'.$p->id_video)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a>
+                              <a href="{{url('webinar/'.$p->id_webinar_livekelas)}}"><span class="badge badge-info" style="font-size: 1em;">Detail</span></a>
+                              <!-- <a href="{{url('video/'.$p->id_video)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a> -->
                             </td>                            
                           </tr>
                           @endif
@@ -60,8 +72,6 @@
                         </tbody>
                       </table>
                     </div>
-							
-						
                   </div>
                 </div>
             </div>
