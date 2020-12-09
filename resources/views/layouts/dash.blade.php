@@ -55,7 +55,7 @@
               <div class="menu_section">
                 <h3>Akun</h3>
                 <ul class="nav side-menu">
-                <li><a href="{{url('admin/userverif')}}"><i class="fa fa-laptop"></i> Verifikasi Member</a></li>
+                <li><a href="{{url('admin/userverif')}}"><i class="fa fa-user-times"></i> Verifikasi Member</a></li>
                   <li><a><i class="fa fa-sitemap"></i> Kelola Akun <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{url('admin/user')}}">Akun Member</a>
@@ -63,6 +63,7 @@
                         </li>
                     </ul>
                   </li>                  
+                <li><a href="{{url('webinar')}}"><i class="fa fa-laptop"></i> Webinar / Live Kelas</a></li>
                 </ul>
               </div>
               @endif
@@ -71,9 +72,8 @@
                 <h3>Menu</h3>
                 <ul class="nav side-menu">
                   <li><a href="{{url('video')}}"><i class="fa fa-laptop"></i> Kelola video</a></li>              
-                </ul>
-                <ul class="nav side-menu">
-                  <li><a href="{{url('emiten')}}"><i class="fa fa-bar-chart"></i> Analisa Emiten</a></li>              
+                  <li><a href="{{url('emiten')}}"><i class="fa fa-bar-chart"></i> Analisa Emiten</a></li>    
+                  <li><a href="{{url('webinar')}}"><i class="fa fa-laptop"></i> Webinar / Live Kelas</a></li>          
                 </ul>
               </div>
               @endif

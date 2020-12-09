@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Upload video | </title>
+    <title>Buat Webinar / Live Kelas</title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{url('favicon.ico')}}" type="image/x-icon">
@@ -149,7 +149,7 @@
                                 </div>
                                 @endif
                                 <div class="x_content">
-                                    <form class="" action="{{url('simpanvideo')}}" method="post" novalidate enctype="multipart/form-data">
+                                    <form class="" action="{{url('simpanwebinar')}}" method="post" novalidate enctype="multipart/form-data">
                                       @csrf
                                       <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                         <div class="field item form-group">
@@ -159,19 +159,48 @@
                                             </div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">file video<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Judul<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="file" class='file' name="video" required='required'/></div>
+                                                <select class="browser-default custom-select" name="opsi" required>
+                                                    <option selected disabled value="">Opsi</option>
+                                                    <option value="Webinar">Webinar</option>
+                                                    <option value="Live kelas">Live kelas</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Deskripsi video<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
                                                 <textarea required="required" name='deskripsi'></textarea></div>
                                         </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Waktu Acara<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" type="date"  name="waktu" required="required" value="{{old('waktu')}}"/>
+                                            </div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Harga<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" type="int"  name="harga" placeholder="Harga" required="required" value="{{old('harga')}}"/>
+                                            </div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Kuota<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" type="int"  name="kuota" placeholder="Kuota" required="required" value="{{old('kuota')}}"/>
+                                            </div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Upload Foto<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" type="file" class='file' name="image" required='required'/>
+                                            </div>
+                                        </div>
                                         <div class="ln_solid">
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
-                                                    <a class="btn btn-danger" href = "{{url('video')}}">Batal</a>
+                                                    <a class="btn btn-danger" href = "{{url('webinar')}}">Batal</a>
                                                     <button type='submit' class="btn btn-success">simpan</button>
                                                 </div>
                                             </div>

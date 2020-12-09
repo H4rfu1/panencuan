@@ -29,14 +29,14 @@ class c_WebinarLiveKelas extends Controller
 
     public function listWebinarLiveKelas()
     {
-        $data = m_WebinarLiveKelas::join('users', 'data_video.id_pemateri', '=', 'users.id')
+        $data = m_WebinarLiveKelas::join('users', 'webinar_livekelas.id_pembuat', '=', 'users.id')
         ->get();
         // dd($datapencatatan);
         if (Auth::check()) {
             if (Auth::user()->role_id == 1) {
-                return view('member.listPembelajaran', ['data' => $data]);
-            }elseif(Auth::user()->role_id == 3){
-                return view('pemateri.listVideo', ['data' => $data]);
+                // return view('member.listPembelajaran', ['data' => $data]);
+            }elseif(Auth::user()->role_id == 3  || Auth::user()->role_id == 2){
+                return view('admin.listWebinarLiveKelas', ['data' => $data]);
             }else{
                 return view('home');
             }
@@ -48,7 +48,7 @@ class c_WebinarLiveKelas extends Controller
 
     public function addWebinarLiveKelas()
     {
-        return view('pemateri.uploadvideo');
+        return view('admin.uploadWebinarLiveKelas');
     }
 
 
@@ -61,21 +61,25 @@ class c_WebinarLiveKelas extends Controller
     public function storeWebinarLiveKelas(Request $request)
     {
         $fileName = '';
-            if($request->hasFile('video')){
-            $file = $request->file('video');
+            if($request->hasFile('image')){
+            $file = $request->file('image');
             $fileName = uniqid(). '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/video', $fileName);
+            $file->storeAs('public/image', $fileName);
             }
             if($fileName != ''){
                 m_WebinarLiveKelas::create([
-                    'id_pemateri' => $request->id,
+                    'id_pembuat' => $request->id,
                     'judul' => $request->judul,
-                    'url_video' => $fileName,
-                    'deskripsi_video' => $request->deskripsi
+                    'opsi' => $request->opsi,
+                    'deskripsi' => $request->deskripsi,
+                    'waktu' => $request->waktu,
+                    'harga' => $request->harga,
+                    'kuota' => $request->kuota,
+                    'image' => $fileName
                 ]);
-                return redirect('video')->with('status', 'Berhasil Menambahkan Data Video');
+                return redirect('webinar')->with('status', 'Berhasil Menambahkan Data webinar/live kelas');
             }else{
-                return redirect('uploadvideo')->with('status', 'Gagal Menambahkan Data Video');
+                return redirect('uploadwebinar')->with('status', 'Gagal Menambahkan Data webinar/live kelas');
             }
             
         

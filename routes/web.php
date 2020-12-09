@@ -10,8 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'PagesController@home');
-Route::get('/home', 'PagesController@home');
+Route::get('/', 'PagesController@home')->name('home');
+Route::get('/home', function () {
+    return redirect('/');
+});
 
 Route::get('/profil', 'PagesController@profil');
 Route::get('/profil/edit', 'PagesController@profiledit');
@@ -37,6 +39,14 @@ Route::post('/simpanvideo', 'c_VideoPembelajaran@storeVideoPembelajaran');
 Route::get('/video/{id}', 'c_VideoPembelajaran@showVideoPembelajaran');
 Route::get('/video/{id}/edit', 'c_VideoPembelajaran@editVideoPembelajaran');
 Route::post('/video/{id}', 'c_VideoPembelajaran@updateVideoPembelajaran');
+
+//video live kelas / webinar
+Route::get('/webinar', 'c_WebinarLiveKelas@listWebinarLiveKelas')->name('webinar');
+Route::get('/tambahwebinar', 'c_WebinarLiveKelas@addWebinarLiveKelas');
+Route::post('/simpanwebinar', 'c_WebinarLiveKelas@storeWebinarLiveKelas');
+Route::get('/video/{id}', 'c_WebinarLiveKelas@showVideoPembelajaran');
+Route::get('/video/{id}/edit', 'c_WebinarLiveKelas@editVideoPembelajaran');
+Route::post('/video/{id}', 'c_WebinarLiveKelas@updateVideoPembelajaran');
 
 //komunitas
 Route::get('/komunitas', 'c_GroupKomunitas@listGroupKomunitas')->name('komunitas');

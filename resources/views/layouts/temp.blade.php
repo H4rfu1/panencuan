@@ -543,29 +543,32 @@ border: none !important;
 
     <div class="collapse navbar-collapse" id="navbarToggler">
       <ul class="navbar-nav ml-auto mt-3 mt-lg-0">
-        <li class="nav-item">
-			<a class="nav-link" href="{{url('')}}">Home</a>
+        <li class="nav-item @if(Route::current()->getName() == 'home'){{'active'}}@endif">
+			<a class="nav-link" href="{{url('/')}}">Home</a>
         </li>
 		@if(Auth::check())
 			@if(Auth::user()->role_id == 1)
-			<li class="nav-item">
-			<a class="nav-link" href="{{url('membership')}}">Upgrade Member</a>
-			</li>
-			<li class="nav-item">
+			<li class="nav-item @if(Route::current()->getName() == 'video'){{'active'}}@endif">
 			<a class="nav-link" href="{{url('video')}}">Video</a>
 			</li>
 			@endif
-			@if(Auth::user()->status_id != 1)
-			<li class="nav-item">
+			@if(Auth::user()->status_id == 2)
+			<li class="nav-item @if(Route::current()->getName() == 'komunitas'){{'active'}}@endif">
 			<a class="nav-link" href="{{url('komunitas')}}">Komunitas</a>
 			</li>
 			@endif
 			@if(Auth::user()->role_id == 1)
-			<li class="nav-item">
+			<li class="nav-item @if(Route::current()->getName() == 'emiten'){{'active'}}@endif">
 			<a class="nav-link" href="{{url('emiten')}}">Analisis Emiten</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item @if(Route::current()->getName() == 'webinar'){{'active'}}@endif">
 			<a class="nav-link" href="#">Webinar</a>
+			</li>
+			<li class="nav-item @if(Route::current()->getName() == 'kalkulator'){{'active'}}@endif">
+			<a class="nav-link" href="{{url('kalkulator')}}">Kalkulator</a>
+			</li>
+			<li class="nav-item @if(Route::current()->getName() == 'diskusi'){{'active'}}@endif">
+			<a class="nav-link" href="#">Diskusi</a>
 			</li>
 			@endif
 			@if(Auth::user()->role_id == 3)
@@ -586,6 +589,9 @@ border: none !important;
             <li><a href="{{url('/pemateri')}}" class="text-decoration-none"><i class="fa fa-tachometer"></i> Dashboard</a></li>
             @endif
             <li><a href="{{url('/profil')}}" class="text-decoration-none"><i class="fa fa-user-o"></i> Profile</a></li>
+			@if(Auth::user()->status_id == 2)
+            <li><a href="{{url('/membership')}}" class="text-decoration-none"><i class="fa fa-level-up"></i> Membership</a></li>
+			@endif
             <!-- <li><a href="#" class="text-decoration-none"><i class="fa fa-calendar-o"></i> Calendar</a></li>
             <li><a href="#" class="text-decoration-none"><i class="fa fa-sliders"></i> Settings</a></li> -->
             <li class="dropdown-divider"></li>
@@ -673,7 +679,7 @@ border: none !important;
 <script src="{{asset('assets/vendor/wow/wow.min.js')}}"></script>
 
 <script src="{{asset('assets/js/mobster.js')}}"></script>
-
+@if(Route::current()->getName() == 'kalkulator')
 <script>
 	$(document).ready(function () {
         @if($scroll)
@@ -683,6 +689,6 @@ border: none !important;
         @endif
     });
 </script>
-
+@endif
 </body>
 </html>

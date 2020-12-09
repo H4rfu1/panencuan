@@ -48,10 +48,10 @@
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">Status Member</p>
                                         <h6 class="text-muted f-w-400">
-                                        @if(Auth::user()->status_id == 1)
-                                            {{"Non Member"}}
-                                        @else
+                                        @if(Auth::user()->status_id == 2)
                                             {{"Member"}}
+                                        @else
+                                            {{"Non Member"}}
                                         @endif
                                         </h6>
                                     </div>

@@ -10,8 +10,8 @@
         <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_content">
-                    @if(Auth::user()->role_id == 3)
-                    <a class="btn btn-primary" href="{{url('tambahvideo')}}">Tambah video</a>
+                    @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 2 )
+                      <a class="btn btn-primary" href="{{url('tambahwebinar')}}">Tambah Webinar / Live Kelas</a>
                     @endif
                     @if (session('status'))
                       <div class="alert alert-success alert-dismissible " role="alert">
@@ -26,7 +26,7 @@
                       <thead>
                           <tr class="headings">
                             <th class="column-title">No. </th>
-                            <th class="column-title">Pemateri </th>
+                            <th class="column-title">Pengelola </th>
                             <th class="column-title">Judul</th>
                             <th class="column-title no-link last"><span class="nobr">Action</span>
                             </th>

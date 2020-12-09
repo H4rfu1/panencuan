@@ -12,10 +12,11 @@ class m_WebinarLiveKelas extends Model
      *
      * @var array
      */
-    protected $table = 'grup komunitas';
+    protected $table = 'webinar_livekelas';
+    protected $primaryKey = 'id_webinar_livekelas';
     public $timestamps = false;
     protected $fillable = [
-        'id_user', 'komentar', 'tanggal_komen'
+        'id_pembuat', 'judul', 'opsi', 'deskripsi', 'waktu', 'harga', 'image', 'kuota'
     ];
 
 }
