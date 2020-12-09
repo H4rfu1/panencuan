@@ -163,7 +163,7 @@
     }
   </style>
 
-  @if(Route::current()->getName() == 'purchase')
+  @if(Route::current()->getName() == 'purchase' | Route::current()->getName() == 'kalkulator')
   <style>
     .credit-card{
  background-color: #f4f4f4;
@@ -673,6 +673,16 @@ border: none !important;
 <script src="{{asset('assets/vendor/wow/wow.min.js')}}"></script>
 
 <script src="{{asset('assets/js/mobster.js')}}"></script>
+
+<script>
+	$(document).ready(function () {
+        @if($scroll)
+            $('html, body').animate({
+                scrollTop: $('.credit-card').offset().top
+            }, 'slow');
+        @endif
+    });
+</script>
 
 </body>
 </html>

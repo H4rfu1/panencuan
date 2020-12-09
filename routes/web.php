@@ -47,6 +47,13 @@ Route::get('/emiten', 'c_AnalisaEmiten@AnalisaEmiten')->name('emiten');
 Route::get('/tambahemiten', 'c_AnalisaEmiten@setFormAnalisaEmiten');
 Route::post('/simpanemiten', 'c_AnalisaEmiten@simpanAnalisaEmiten');
 
+//Kalkulator Finansial
+Route::get('/kalkulator', 'c_KalkulatorFinansial@KalkulatorFinansial')->name('kalkulator');
+Route::get('/tambahemiten', 'c_AnalisaEmiten@setFormAnalisaEmiten');
+Route::post('/simpanemiten', 'c_AnalisaEmiten@simpanAnalisaEmiten');
+
+
+
 //auth
 Auth::routes();
 

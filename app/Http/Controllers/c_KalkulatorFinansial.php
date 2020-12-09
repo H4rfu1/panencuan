@@ -27,16 +27,25 @@ class c_KalkulatorFinansial extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function KalkulatorFinansial()
+    public function KalkulatorFinansial(Request $request)
     {
-        $data = m_videoPembelajaran::join('users', 'data_video.id_pemateri', '=', 'users.id')
-        ->get();
-        // dd($datapencatatan);
         if (Auth::check()) {
             if (Auth::user()->role_id == 1) {
-                return view('member.listPembelajaran', ['data' => $data]);
-            }elseif(Auth::user()->role_id == 3){
-                return view('pemateri.listVideo', ['data' => $data]);
+                if($request->has('waktu')){
+                    $nominal = intval($request->nominal);
+                    $return = intval($request->return);
+                    $waktu = intval($request->waktu);
+                    $hasil = ($nominal + ($return * $nominal)) * $waktu;
+                    $scroll = true;
+                }else{
+                    $hasil = '';
+                    $nominal = '';
+                    $return = '';
+                    $waktu = '';
+                    $scroll = false;
+                }
+                return view('member.V_KalkulatorFinansial', compact('hasil', 'return', 'nominal', 'waktu', 'scroll'));
+            
             }else{
                 return view('home');
             }
