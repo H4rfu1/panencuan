@@ -179,7 +179,7 @@
                                         <div class="field item form-group">
                                             <label class="col-md-3 col-sm-3  label-align">bukti pembayaran<span > : </span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <img src="{{asset('storage/image/'.$data->image)}}" alt="" srcset="" width="400">
+                                                <img src="{{asset('storage/image/'.$data->foto)}}" alt="" srcset="" width="400">
                                             </div>
                                         </div>
                                         <div class="ln_solid">

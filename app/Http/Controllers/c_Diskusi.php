@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use App\m_GroupKomunitas;
+use App\m_Diskusi;
+use App\m_Komentar;
 use Auth;
 class c_Diskusi extends Controller
 {
@@ -26,20 +27,17 @@ class c_Diskusi extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function listGroupKomunitas()
+    public function listDiskusi()
     {
-        $data = m_GroupKomunitas::join('users', 'grup komunitas.id_user', '=', 'users.id')
+        $data = m_Diskusi::orderBy('tanggal_dibuat', 'DESC')
+        ->join('users', 'diskusi.id_pembuat', '=', 'users.id')
         ->get();
 
+        // dd($data);
+
         if (Auth::check()) {
-            if (Auth::user()->role_id == 1) {
-                if(Auth::user()->status_id != 1){
-                    return view('komunitas.v_groupkomunitas', compact('data'));
-                }else{
-                    return redirect('/');
-                }
-            }elseif(Auth::user()->role_id == 3){
-                return view('komunitas.v_groupkomunitas', compact('data'));
+            if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3) {
+                return view('diskusi.v_diskusi', compact('data'));
             }else{
                 return view('home');
             }
@@ -55,17 +53,28 @@ class c_Diskusi extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function setGroupKomunitas(Request $request)
+    public function actionBuat(Request $request)
     {
         //metode sistem pakar
-        m_GroupKomunitas::create([
-            'id_user' => $request->id,
-            'komentar' => $request->komen,
+        m_Diskusi::create([
+            'id_pembuat' => $request->id,
+            'judul_diskusi' => $request->judul_diskusi,
+            'deskripsi_diskusi' => $request->deskripsi_diskusi,
+            'tanggal_dibuat' => date("Y-m-d H:i:s")
+        ]);
+        return redirect('diskusi')->with('status', 'Berhasil Dibuat');
+    }
+    
+    public function actionKirim(Request $request)
+    {
+        //metode sistem pakar
+        m_Komentar::create([
+            'id_pengomentar' => $request->id,
+            'id_diskusi' => $request->id_diskusi,
+            'komentar' => $request->komentar,
             'tanggal_komen' => date("Y-m-d H:i:s")
         ]);
-        if(Auth::user()->status_id != 1){
-            return redirect('komunitas')->with('status', 'Berhasil Menambahkan Komentar');
-        }
+        return redirect('diskusi')->with('status', 'Komen Berhasil Dibuat');
         
     }
 

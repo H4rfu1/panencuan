@@ -67,6 +67,10 @@ Route::get('/kalkulator', 'c_KalkulatorFinansial@KalkulatorFinansial')->name('ka
 Route::get('/tambahemiten', 'c_AnalisaEmiten@setFormAnalisaEmiten');
 Route::post('/simpanemiten', 'c_AnalisaEmiten@simpanAnalisaEmiten');
 
+//Diskusi
+Route::get('/diskusi', 'c_Diskusi@listDiskusi')->name('diskusi');
+Route::post('/buatdiskusi', 'c_Diskusi@actionBuat');
+Route::post('/komen', 'c_Diskusi@actionKirim');
 
 
 //auth

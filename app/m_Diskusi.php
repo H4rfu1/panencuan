@@ -12,10 +12,11 @@ class m_Diskusi extends Model
      *
      * @var array
      */
-    protected $table = 'grup komunitas';
+    protected $table = 'diskusi';
+    protected $primaryKey = 'id_diskusi';
     public $timestamps = false;
     protected $fillable = [
-        'id_user', 'komentar', 'tanggal_komen'
+        'id_pembuat', 'judul_diskusi', 'deskripsi_diskusi', 'tanggal_dibuat'
     ];
 
 }

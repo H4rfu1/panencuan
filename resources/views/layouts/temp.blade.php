@@ -298,7 +298,7 @@ border: none !important;
   </style>
  @endif 
 
- @if(Route::current()->getName() == 'komunitas' | Route::current()->getName() == 'video' | Route::current()->getName() == 'emiten' | Route::current()->getName() == 'webinar' | Route::current()->getName() == 'kalkulator')
+ @if(Route::current()->getName() == 'komunitas' | Route::current()->getName() == 'video' | Route::current()->getName() == 'emiten' | Route::current()->getName() == 'webinar' | Route::current()->getName() == 'kalkulator' | Route::current()->getName() == 'diskusi')
  <style>
 	 .bg-light{
 			background: #7F7FD5;
@@ -307,6 +307,35 @@ border: none !important;
 		}
  </style>
  @endif 
+
+ @if(Route::current()->getName() == 'diskusi')
+ <style>
+	#summary {
+		line-height: 1.5;
+	}
+
+	#summary p.collapse:not(.show) {
+		height: 42px !important;
+		overflow: hidden;
+	
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;  
+	}
+
+	#summary p.collapsing {
+		min-height: 42px !important;
+	}
+
+	#summary a.collapsed:after  {
+		content: '+ lebih banyak';
+	}
+
+	#summary a:not(.collapsed):after {
+		content: '- lebih sedikit';
+	}
+ </style>
+ @endif
 
  @if(Route::current()->getName() == 'komunitas')
   <style>
