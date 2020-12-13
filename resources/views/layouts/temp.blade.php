@@ -26,6 +26,9 @@
 
   <link rel="stylesheet" href="{{asset('assets/css/mobster.css')}}">
 
+  <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+
   <style>
         body {
         background-color: #f9f9fa
@@ -712,6 +715,7 @@ border: none !important;
 <script src="{{asset('assets/vendor/wow/wow.min.js')}}"></script>
 
 <script src="{{asset('assets/js/mobster.js')}}"></script>
+
 @if(Route::current()->getName() == 'kalkulator')
 <script>
 	$(document).ready(function () {

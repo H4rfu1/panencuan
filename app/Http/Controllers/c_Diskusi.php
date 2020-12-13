@@ -68,13 +68,36 @@ class c_Diskusi extends Controller
     public function actionKirim(Request $request)
     {
         //metode sistem pakar
-        m_Komentar::create([
-            'id_pengomentar' => $request->id,
-            'id_diskusi' => $request->id_diskusi,
-            'komentar' => $request->komentar,
+        // dd($request);
+            // $response = array(
+            //     'status' => 'success',
+            //     'msg' => $request->message,
+            // );
+            // dd(response()->json($response));
+        $user = $request->input('user');
+        $id = $request->input('id');
+        $komentar = $request->input('komentar');
+        $temp = m_Komentar::create([
+            'id_pengomentar' => $user,
+            'id_diskusi' => $id,
+            'komentar' => $komentar,
             'tanggal_komen' => date("Y-m-d H:i:s")
         ]);
-        return redirect('diskusi')->with('status', 'Komen Berhasil Dibuat');
+        $data = m_Komentar::join('users', 'komentar.id_pengomentar', '=', 'users.id')
+        ->where('id_komentar', $temp->id_komentar)
+        ->first();  
+        $msg = '<li class="comment">
+                    <div class="vcard bio">
+                        <img src="'.asset("/assets/img/person/person_1.png").'" alt="Image placeholder">
+                    </div>
+                    <div class="comment-body">
+                        <h3>'.$data->name.'</h3>
+                        <div class="meta">'.$data->tanggal_komen.'</div>
+                        <p>'.$data->komentar.'</p>
+                    </div>
+                </li>';
+        echo "$msg";
+        // return redirect('diskusi')->with('status', 'Komen Berhasil Dibuat');
         
     }
 

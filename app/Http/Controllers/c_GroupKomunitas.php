@@ -61,7 +61,7 @@ class c_GroupKomunitas extends Controller
         m_GroupKomunitas::create([
             'id_user' => $request->id,
             'komentar' => $request->komen,
-            'tanggal_komen' => date("Y-m-d H:i:s")
+            'tanggal_komen' => date("Y-m-d")
         ]);
         if(Auth::user()->status_id != 1){
             return redirect('komunitas')->with('status', 'Berhasil Menambahkan Komentar');

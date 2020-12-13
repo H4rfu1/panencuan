@@ -14,6 +14,7 @@
                 {{ session('status') }}
                 </div>
 			@endif
+			<span class="success" style="color:green; margin-top:10px; margin-bottom: 10px;"></span>
 			@if(Auth::user()->role_id == 3 || Auth::user()->role_id == 1)
 			<button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModalCenter">
 				Buat Bahasan
@@ -77,28 +78,26 @@
 			<!-- Comments -->
 			<div class="comment-area collapse" id="komentar{{$p->id_diskusi}}">
 				<div class="comment-form-wrap mb-3">
-					<form action="{{url('komen')}}" method="post">
-						@csrf
-						<input type="hidden" name="id" value="{{Auth::user()->id}}">
-						<input type="hidden" name="id_diskusi" value="{{$p->id_diskusi}}">
+				<div class="writeinfo{{$p->id_diskusi}}"></div>  
+					<form>
 						<div class="input-group">
 							<!-- <div class="input-group-append">
 								<span class="input-group-text attach_btn"><i class="fa fa-paperclip" aria-hidden="true"></i></span>
 							</div> -->
-							<textarea name="komentar" class="form-control type_msg" placeholder="Komen disini..." required oninvalid="this.setCustomValidity('Tidak boleh kosong')" oninput="setCustomValidity('')"></textarea>
+							<textarea id="isi{{$p->id_diskusi}}" name="komentar" class="form-control type_msg" placeholder="Komen disini..." required oninvalid="this.setCustomValidity('Tidak boleh kosong')" oninput="setCustomValidity('')"></textarea>
 							<div class="input-group-append">
-							<button type="submit" class="input-group-text send_btn"><i class="fa fa-location-arrow" aria-hidden="true"></i></button>
+							<button type="submit" class="input-group-text send_btn" data-id="{{$p->id_diskusi}}" data-user="{{Auth::user()->id}}"><i class="fa fa-location-arrow" aria-hidden="true"></i></button>
 							</div>
 						</div>
 					</form>
 			  	</div>
 			<!-- Comment List -->
-			<p class="text-center ">@if($komentar->isEmpty()){{"Jadilah pertama yang komen."}}@endif</p>
-            <ul class="comment-list">
+			<p id="pertama{{$p->id_diskusi}}">@if($komentar->isEmpty()){{"Jadilah pertama yang komen."}} @endif</p>
+            <ul class="comment-list" id="comment-list{{$p->id_diskusi}}">
 			  @foreach($komentar as $k)
 				<li class="comment">
 					<div class="vcard bio">
-					<img src="../assets/img/person/person_1.png" alt="Image placeholder">
+					<img src="{{asset('/assets/img/person/person_1.png')}}" alt="Image placeholder">
 					</div>
 					<div class="comment-body">
 					<h3>{{$k->name}}</h3>
@@ -149,5 +148,37 @@
 		</div>
 	</div>
 	</div>
+	<script>
+            $(document).ready(function () {
+				var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $('.send_btn').on('click', function (e) {
+					e.preventDefault();
+                    // console.log('klik');
+					let id = $(this).data('id');
+					let user = $(this).data('user');
+					let msg = $("#isi"+id).val();
+        
+                $.ajax({
+                type: 'post',
+				url: '{{url('komen')}}',
+				data: {
+						_token: CSRF_TOKEN, 
+						komentar:msg,
+						id:id,
+						user:user
+					},
+                success: function (response) {
+				// console.log(response);
+				$('#pertama'+id).empty();
+				$("#isi"+id).val('');
+                // $('#comment-list'+id).append(response);
+                $('#comment-list'+id).fadeOut(800, function(){
+                  $('#comment-list'+id).append(response).fadeIn();
+                        });
+                }
+            });
+        });
+    });
+    </script>
 
 @endsection
