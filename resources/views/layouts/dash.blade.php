@@ -22,6 +22,9 @@
 
     <!-- Custom Theme Style -->
     <link href="{{url('css/custom.min.css')}}" rel="stylesheet">
+    @if(Route::current()->getName() == 'emiten' )
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    @endif
   </head>
 
   <body class="nav-md">
@@ -68,7 +71,8 @@
                         <li><a href="{{url('admin/pemateri')}}">Akun Pemateri</a>
                         </li>
                     </ul>
-                  </li>                  
+                  </li>     
+                  <h3>Webinar</h3>             
                 <li><a href="{{url('webinar')}}"><i class="fa fa-laptop"></i> Webinar / Live Kelas</a></li>
                 </ul>
               </div>

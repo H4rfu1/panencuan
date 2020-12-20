@@ -49,7 +49,7 @@
                                         <p class="m-b-10 f-w-600">Status Member</p>
                                         <h6 class="text-muted f-w-400">
                                         @if(Auth::user()->status_id == 2)
-                                            {{"Member"}}
+                                            {{"Member"}} {{"($sisa Hari)"}} 
                                         @else
                                             {{"Non Member"}}
                                         @endif

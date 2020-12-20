@@ -50,7 +50,9 @@
                             <td class=" ">{{ $p->kuota }}</td>
                             <td class=" last">
                               <a href="{{url('webinar/'.$p->id_webinar_livekelas)}}"><span class="badge badge-info" style="font-size: 1em;">Detail</span></a>
-                              <!-- <a href="{{url('video/'.$p->id_video)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a> -->
+                              @if(Auth::user()->role_id == 2 )
+                              <a href="{{url('broadcast/'.$p->id_webinar_livekelas)}}"><span class="badge badge-warning" style="font-size: 1em;">Broadcast</span></a>
+                              @endif
                             </td>
                           </tr>
                           @else
@@ -64,7 +66,9 @@
                             <td class=" ">{{ $p->kuota }}</td>
                             <td class=" last">
                               <a href="{{url('webinar/'.$p->id_webinar_livekelas)}}"><span class="badge badge-info" style="font-size: 1em;">Detail</span></a>
-                              <!-- <a href="{{url('video/'.$p->id_video)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a> -->
+                              @if(Auth::user()->role_id == 2 )
+                              <a href="{{url('broadcast/'.$p->id_webinar_livekelas)}}"><span class="badge badge-warning" style="font-size: 1em;">Broadcast</span></a>
+                              @endif
                             </td>                            
                           </tr>
                           @endif

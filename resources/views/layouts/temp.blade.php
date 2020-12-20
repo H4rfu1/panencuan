@@ -625,8 +625,8 @@ border: none !important;
             <li><a href="{{url('/pemateri')}}" class="text-decoration-none"><i class="fa fa-tachometer"></i> Dashboard</a></li>
             @endif
             <li><a href="{{url('/profil')}}" class="text-decoration-none"><i class="fa fa-user-o"></i> Profile</a></li>
-			@if(Auth::user()->status_id == 2)
-            <li><a href="{{url('/membership')}}" class="text-decoration-none"><i class="fa fa-level-up"></i> Membership</a></li>
+			@if(Auth::user()->role_id == 1)
+            	<li><a href="{{url('/membership')}}" class="text-decoration-none"><i class="fa fa-level-up"></i> Membership</a></li>
 			@endif
             <!-- <li><a href="#" class="text-decoration-none"><i class="fa fa-calendar-o"></i> Calendar</a></li>
             <li><a href="#" class="text-decoration-none"><i class="fa fa-sliders"></i> Settings</a></li> -->
@@ -682,7 +682,7 @@ border: none !important;
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
     <form id="logout-form" action="{{ route('logout') }}" method="POST" >

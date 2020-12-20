@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Buat akun | </title>
+
     <!-- favicon -->
     <link rel="shortcut icon" href="{{url('favicon.ico')}}" type="image/x-icon">
     <link rel="icon" href="{{url('favicon.ico')}}" type="image/x-icon">
 
-    <title>Panen Cuan</title>
     <!-- Bootstrap -->
     <link href="{{url('vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="{{url('vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <!-- NProgress -->
-    <link href="{{url('vendors/nprogress/nprogress.css" rel="stylesheet')}}">
+    <link href="{{url('vendors/nprogress/nprogress.css')}}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="{{url('css/custom.min.css')}}" rel="stylesheet">
-  </head>
+</head>
 
-  <body class="nav-md">
+<body class="nav-md">
     <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
               <a href="{{url('home')}}" class="site_title"><img src="{{asset('assets/favicon-light.png')}}" height="55" > <span>PanenCuan</span></a>
             </div>
 
@@ -42,7 +43,7 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>nama</h2>
+                <h2>{{Auth::user()->name}}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -55,14 +56,22 @@
               <div class="menu_section">
                 <h3>Akun</h3>
                 <ul class="nav side-menu">
-                <li><a href="{{url('admin/userverif')}}"><i class="fa fa-laptop"></i> Verifikasi Member</a></li>
+                <li><a><i class="fa fa-user-times"></i> Kelola Verifikasi <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{url('admin/userverif')}}">Verifikasi Member</a>
+                        <li><a href="{{url('verifikasiwebinar')}}">Verifikasi Webinar</a>
+                        </li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-sitemap"></i> Kelola Akun <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{url('admin/user')}}">Akun Member</a>
                         <li><a href="{{url('admin/pemateri')}}">Akun Pemateri</a>
                         </li>
                     </ul>
-                  </li>                  
+                  </li>     
+                  <h3>Webinar</h3>             
+                <li><a href="{{url('webinar')}}"><i class="fa fa-laptop"></i> Webinar / Live Kelas</a></li>
                 </ul>
               </div>
               @endif
@@ -71,9 +80,8 @@
                 <h3>Menu</h3>
                 <ul class="nav side-menu">
                   <li><a href="{{url('video')}}"><i class="fa fa-laptop"></i> Kelola video</a></li>              
-                </ul>
-                <ul class="nav side-menu">
-                  <li><a href="{{url('emiten')}}"><i class="fa fa-bar-chart"></i> Analisa Emiten</a></li>              
+                  <li><a href="{{url('emiten')}}"><i class="fa fa-bar-chart"></i> Analisa Emiten</a></li>    
+                  <li><a href="{{url('webinar')}}"><i class="fa fa-laptop"></i> Webinar / Live Kelas</a></li>          
                 </ul>
               </div>
               @endif
@@ -91,13 +99,9 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a> -->
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-decoration-none">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-              </form>
             </div>
             <!-- /menu footer buttons -->
           </div>
@@ -113,12 +117,11 @@
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img src="{{asset('images/img.jpg')}}" alt="">nama
+                      <img src="{{asset('images/img.jpg')}}" alt="">{{Auth::user()->name}}
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="#"> Profile</a>
-                      <a class="dropdown-item"  href="{{ route('logout') }}"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal" class="text-decoration-none"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                     </div>
                   </li>
   
@@ -133,7 +136,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Detail Pembayaran</h3>
+                            <h3>Daftar Akun</h3>
                         </div>
 
                     </div>
@@ -143,43 +146,73 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Akun 
+                                    <h2>Akun Pemateri
                                     </h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
+                                    <form class="" action="{{url('daftarakun')}}" method="post" novalidate>
+                                      @csrf
                                         <div class="field item form-group">
-                                            <label class="col-md-3 col-sm-3  label-align">Nama<span > : </span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Nama<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <p>{{$data->name}}</p>
+                                                <input class="form-control" name="name" placeholder="Nama Lengkap" required="required" value="{{old('name')}}"/>
                                             </div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-md-3 col-sm-3  label-align">Email<span > : </span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Nama<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <p> {{$data->email}} </p></div>
+                                                <input class="form-control" name="username" placeholder="Username" required="required" value="{{old('username')}}"/>
+                                            </div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-md-3 col-sm-3  label-align">harga<span > : </span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Email<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <p>Rp. {{$data->harga}} </p></div>
+                                                <input class="form-control" name="email" class='email' required="required" type="email" /></div>
                                         </div>
-                                        <!-- <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Confirm email address<span class="required">*</span></label>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Jenis Kelamin<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="email" class='email' name="confirm_email" data-validate-linked='email' required='required' /></div>
-                                        </div> -->
-                                        <!-- <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">No. HP <span class="required">*</span></label>
+                                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control" required='required'>
+                                                <option value="" disabled selected> Jenis Kelamin</option>
+                                                <option class="form-control" value="laki-laki" >Laki - laki</option>
+                                                <option class="form-control" value="perempuan" >Perempuan</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Tanggal Lahir<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="number" class='number' name="number" data-validate-minmax="10,100" required='required'></div>
-                                        </div> -->
-                                        <!-- <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Time<span class="required">*</span></label>
+                                                <input class="form-control" class='date' type="date" name="tanggal_lahir" required='required'></div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Kota<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" class='time' type="time" name="time" required='required'></div>
-                                        </div> -->
-<!--                                         
+                                                <input class="form-control"  name="kota" placeholder="Kota/kabupaten" required="required" />
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Kota<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control"  name="no_hp" placeholder="Kota/kabupaten" required="required" />
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Kota<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control"  name="nim" placeholder="Kota/kabupaten" required="required" />
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Kota<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control"  name="jurusan" placeholder="Kota/kabupaten" required="required" />
+                                            </div>
+                                        </div>
+                                        
                                         <div class="field item form-group">
 											<label class="col-form-label col-md-3 col-sm-3  label-align">Password<span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6">
@@ -190,7 +223,7 @@
 													<i id="eye" class="fa fa-eye"></i>
 												</span>
 											</div>
-										</div> -->
+										</div>
                                         
                                         <!-- <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Ulangi password<span class="required">*</span></label>
@@ -198,41 +231,25 @@
                                                 <input class="form-control" type="password" name="password2" data-validate-linked='password' required='required' /></div>
                                         </div> -->
                                         <div class="field item form-group">
-                                            <label class="col-md-3 col-sm-3  label-align">Nim<span > : </span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">No. HP<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <p>{{$data->nim}}</p></div>
+                                                <input class="form-control" type="tel" class='tel' name="no_hp" required='required' data-validate-length-range="10,13" /></div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-md-3 col-sm-3  label-align">jurusan<span > : </span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">alamat<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <p>{{$data->jurusan}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-md-3 col-sm-3  label-align">bukti pembayaran<span > : </span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <img src="{{asset('storage/image/'.$data->foto)}}" alt="" srcset="" width="400">
-                                            </div>
+                                                <textarea required="required" name='alamat'></textarea></div>
                                         </div>
                                         <div class="ln_solid">
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
-                                                    <a class="btn btn-info" href = "{{url('admin/userverif')}}
-                                                    ">batal</a>
-                                                    <form action="{{url('/batalverif')}}" method="post" class="d-inline-flex">
-                                                      @csrf
-                                                      <input type="hidden" name="id" value="{{$data->id_pembayaran}}">
-                                                      <button type="submit" class="btn btn-danger">Tidak Setujui</button>
-                                                    </form>
-                                                    <form action="{{url('/admin/verif')}}" method="post" class="d-inline-flex">
-                                                      @csrf
-                                                      <input type="hidden" name="id" value="{{$data->id_pembayaran}}">
-                                                      <input type="hidden" name="id_user" value="{{$data->id}}">
-                                                      <button type="submit" class="btn btn-success">Setujui</button>
-                                                    </form>
+                                                    <a class="btn btn-danger" href = "{{url('admin/pemateri')}}"                                                  "
+                                                    >Batal</a>
+                                                    <button type='submit' class="btn btn-success">Daftar</button>
                                                 </div>
                                             </div>
                                         </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -253,7 +270,7 @@
     </div>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')}}"></script>
     <script src="{{url('vendors/validator/multifield.js')}}"></script>
     <script src="{{url('vendors/validator/validator.js')}}"></script>
     

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use App\m_WebinarLiveKelas;
 use Auth;
 
@@ -26,8 +27,8 @@ class c_WebinarLiveKelas extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function listWebinarLiveKelas()
+    
+     public function listWebinarLiveKelas()
     {
         $data = m_WebinarLiveKelas::join('users', 'webinar_livekelas.id_pembuat', '=', 'users.id')
         ->get();
@@ -49,6 +50,13 @@ class c_WebinarLiveKelas extends Controller
     public function addWebinarLiveKelas()
     {
         return view('admin.uploadWebinarLiveKelas');
+    }
+    public function addBroatcast($id)
+    {
+        $data = m_WebinarLiveKelas::join('users', 'webinar_livekelas.id_pembuat', '=', 'users.id')
+        ->where('webinar_livekelas.id_webinar_livekelas', $id)
+        ->first();
+        return view('admin.addbroadcast', compact('data'));
     }
 
 
@@ -81,6 +89,39 @@ class c_WebinarLiveKelas extends Controller
             }else{
                 return redirect('uploadwebinar')->with('status', 'Gagal Menambahkan Data webinar/live kelas');
             }
+            
+        
+    }
+    public function storeBroadcast(Request $request)
+    {
+        $temp = m_WebinarLiveKelas::join('verifikasi_webinar_livekelas', 'webinar_livekelas.id_webinar_livekelas', '=', 'verifikasi_webinar_livekelas.id_webinar_livekelas')
+        ->join('users', 'verifikasi_webinar_livekelas.id_user', '=', 'users.id')
+        ->where('webinar_livekelas.id_webinar_livekelas', $request->id)
+        ->where('verifikasi_webinar_livekelas.status_verif', "terverifikasi")
+        ->get();
+        // dd($temp);
+        foreach($temp as $d){
+            $to_email = $d->email;
+            $opsi = $d->opsi;
+            $judul = $d->judul;
+            $data = [
+                'deskripsi' => $request->deskripsi,
+                'name' => $d->name,
+                'opsi' => $opsi,
+                'judul' => $judul
+            ];
+
+            Mail::send('layouts.mail', $data, function($message) use ($to_email, $opsi, $judul)
+            {
+                $message->from('panencuan@kulitekno.com', "PanenCuan");
+                $message->subject("Broadcast $opsi $judul");
+                $message->to($to_email);
+            });
+
+        }
+
+        return redirect('webinar')->with('status', 'Broadcast webinar/live kelas Berhasil dikirim');
+
             
         
     }

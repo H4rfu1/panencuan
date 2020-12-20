@@ -14,6 +14,10 @@ Route::get('/', 'PagesController@home')->name('home');
 Route::get('/home', function () {
     return redirect('/');
 });
+//email
+Route::get('sendbasicemail','MailController@basic_email');
+Route::get('sendhtmlemail','MailController@html_email');
+Route::get('sendattachmentemail','MailController@attachment_email');
 
 Route::get('/profil', 'PagesController@profil');
 Route::get('/profil/edit', 'PagesController@profiledit');
@@ -52,6 +56,8 @@ Route::get('/verifikasiwebinar', 'c_VerifikasiWebinarLiveKelas@VerifikasiWebinar
 Route::get('/verifikasiwebinar/{id}', 'c_VerifikasiWebinarLiveKelas@DetailVerifikasiWebinarlivekelas');
 Route::post('/tolakverifwebinar', 'c_VerifikasiWebinarLiveKelas@actionTolak');
 Route::post('/verifwebinar', 'c_VerifikasiWebinarLiveKelas@actionVerifikasi');
+Route::get('/broadcast/{id}', 'c_WebinarLiveKelas@addBroatcast')->name('broadcast');
+Route::post('/kirimbroadcast', 'c_WebinarLiveKelas@storeBroadcast');
 
 //komunitas
 Route::get('/komunitas', 'c_GroupKomunitas@listGroupKomunitas')->name('komunitas');
@@ -61,6 +67,9 @@ Route::post('/kirimpesan', 'c_GroupKomunitas@setGroupKomunitas');
 Route::get('/emiten', 'c_AnalisaEmiten@AnalisaEmiten')->name('emiten');
 Route::get('/tambahemiten', 'c_AnalisaEmiten@setFormAnalisaEmiten');
 Route::post('/simpanemiten', 'c_AnalisaEmiten@simpanAnalisaEmiten');
+Route::patch('/emiten/{id}', 'c_AnalisaEmiten@updateAnalisaEmiten');
+Route::get('/emiten/{id}/edit', 'c_AnalisaEmiten@editAnalisaEmiten');
+Route::delete('/emiten/{id}', 'c_AnalisaEmiten@destroy');
 
 //Kalkulator Finansial
 Route::get('/kalkulator', 'c_KalkulatorFinansial@KalkulatorFinansial')->name('kalkulator');
@@ -101,6 +110,7 @@ Auth::routes();
 
 // Route::post('/daftarakun', 'AkunController@store');
 
-// Route::get('/buatakun/{role}', 'AkunController@buatakun');
+Route::get('/buatakun', 'c_pemateri@addpemateri');
+Route::post('/simpanakun', 'c_pemateri@actionBuat');
 
 // Route::get('/akun/{role}', 'AkunController@akun');

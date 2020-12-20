@@ -27,32 +27,6 @@ class c_Diskusi extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function listDiskusi()
-    {
-        $data = m_Diskusi::orderBy('tanggal_dibuat', 'DESC')
-        ->join('users', 'diskusi.id_pembuat', '=', 'users.id')
-        ->get();
-
-        // dd($data);
-
-        if (Auth::check()) {
-            if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3) {
-                return view('diskusi.v_diskusi', compact('data'));
-            }else{
-                return view('home');
-            }
-        }else{
-            return view('auth.login');
-        }
-        return view('komunitas.v_groupkomunitas', compact('data'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function actionBuat(Request $request)
     {
         //metode sistem pakar

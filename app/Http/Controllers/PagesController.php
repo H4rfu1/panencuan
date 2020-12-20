@@ -32,7 +32,49 @@ class PagesController extends Controller
         if (!Auth::check()) {
             return redirect('/login');
         }else{
-            return view('profil');
+            $data = DB::table('verifikasi_member')
+            ->join('users', 'verifikasi_member.id_user', '=', 'users.id')
+            ->join('data paket', 'verifikasi_member.id_plan', '=', 'data paket.id_paket')
+            ->join('data member', 'verifikasi_member.id_pembayaran', '=', 'data member.id_verivikasi_member')
+            ->select('verifikasi_member.*', 'users.*','data paket.*', 'data member.*')
+            ->where('users.id', Auth::user()->id)
+            ->get();
+            // dd($data);
+
+            if(isset($data)){
+                $sisa = 0;
+                foreach ($data as $d) {
+                    if(isset($d->{'Tanggal berakhir'})){
+                        $datetime1 = date_create(date('Y-m-d'));
+                        $datetime2 = date_create($d->{'Tanggal berakhir'});
+                        // $datetime2 = date_create("2020-12-5");
+                        $interval = date_diff($datetime1, $datetime2);
+                        // dd($interval->invert);
+                        if($interval->invert){
+                            DB::table('verifikasi_member')
+                            ->where('id_pembayaran', $d->id_pembayaran)
+                            ->update(['status_verif' => 'Habis Masa Aktif']);
+
+                            DB::table('users')
+                            ->where('id', $d->id)
+                            ->update(['status_id' => 1]);
+
+                            DB::table('data member')
+                            ->where('id_verivikasi_member', $d->id_pembayaran)
+                            ->delete();
+                            $sisa -= 1;
+                        }else{
+                            $sisa += $interval->days;
+                        }
+                    }
+                }
+
+            }else{
+                $sisa = 0;
+            }
+            // dd($sisa);
+
+            return view('profil', compact('sisa'));
         }
     }
     public function membership()
@@ -177,6 +219,27 @@ class PagesController extends Controller
         if (!Auth::check()) {
             return redirect('/login');
         }else{
+            $data = DB::table('verifikasi_member')
+            ->join('users', 'verifikasi_member.id_user', '=', 'users.id')
+            ->join('data paket', 'verifikasi_member.id_plan', '=', 'data paket.id_paket')
+            ->select('verifikasi_member.*', 'users.*','data paket.*')
+            ->where('verifikasi_member.id_pembayaran', $request->id)
+            ->first();
+            // dd($data);
+
+            $mulai = date('Y-m-d');
+
+            $berakhir = strtotime($mulai . " +". $data->durasi ." days");
+            $berakhir = date('Y-m-d',$berakhir);
+
+            DB::table('data member')->insert(
+                [
+                    'id_verivikasi_member' => $request->id, 
+                    'Tanggal mulai' => $mulai,
+                    'Tanggal berakhir' => $berakhir
+                ]
+            );
+
             // dd($request->id_user);
             DB::table('verifikasi_member')
             ->where('id_pembayaran', $request->id)
@@ -187,24 +250,39 @@ class PagesController extends Controller
             ->where('id', $request->id_user)
             ->update(['status_id' => 2]);
             // dd($data);
+
             return redirect('admin/userverif')->with('status', 'Member telah disetujui');
         }
         
     }
 
-
     public function pemateri()
     {
         return view('admin.pemateri');
     }
+
     public function batalverif(Request $request)
     {
         if (!Auth::check()) {
             return redirect('/login');
         }else{
+            $data = DB::table('verifikasi_member')
+            ->join('users', 'verifikasi_member.id_user', '=', 'users.id')
+            ->select('verifikasi_member.*', 'users.*')
+            ->where('verifikasi_member.id_pembayaran', $request->id)
+            ->first();
+
             DB::table('verifikasi_member')
             ->where('id_pembayaran', $request->id)
             ->update(['status_verif' => 'tidak disetujui']);
+
+            DB::table('users')
+            ->where('id', $data->id)
+            ->update(['status_id' => 1]);
+
+            DB::table('data member')
+            ->where('id_verivikasi_member', $request->id)
+            ->delete();
             return redirect('admin/userverif')->with('batal', 'Member tidak disetujui');
         }
     }

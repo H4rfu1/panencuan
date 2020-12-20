@@ -31,8 +31,8 @@
                             <th class="column-title">Health</th>
                             <th class="column-title">Growth</th>
                             <th class="column-title">Value</th>
-                            <!-- <th class="column-title no-link last"><span class="nobr">Action</span>
-                            </th> -->
+                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                            </th>
                           </tr>
                         </thead>
 
@@ -46,9 +46,10 @@
                             <td class=" ">{{ $p->health }}</td>
                             <td class=" ">{{ $p->growth }}</td>
                             <td class=" ">{{ $p->value }}</td>
-                            <!-- <td class=" last">
-                              <a href="{{url('video/'.$p->id_video)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a>
-                            </td> -->
+                            <td class=" last">
+                              <a href="{{url('emiten/'.$p->id_emiten)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a>
+                              <button data-id="{{$p->id_emiten}}" data-toggle="modal" data-target="#delModal"  class="badge badge-danger mt-2 send_btn" style="font-size: 1em; border: none;">Hapus</button>
+                            </td>
                           </tr>
                           @else
                           <tr class="odd pointer">
@@ -58,9 +59,10 @@
                             <td class=" ">{{ $p->health }}</td>
                             <td class=" ">{{ $p->growth }}</td>
                             <td class=" ">{{ $p->value }}</td>
-                            <!-- <td class=" last">
-                              <a href="{{url('video/'.$p->id_video)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a>
-                            </td>                             -->
+                            <td class=" last">
+                              <a href="{{url('emiten/'.$p->id_emiten)}}/edit"><span class="badge badge-warning" style="font-size: 1em;">Edit</span></a>
+                              <button data-id="{{$p->id_emiten}}" data-toggle="modal" data-target="#delModal" class="badge badge-danger mt-2 send_btn" style="font-size: 1em; border: none;">Hapus</button>
+                            </td>                        
                           </tr>
                           @endif
                           @endforeach
@@ -75,4 +77,39 @@
   </div>
 </div>
 <!-- /page content -->
+<!-- Modal -->
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <form id="delete-form" action="" method="POST" >
+      @csrf 
+      @method('delete')
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Tetap ingin menghapus?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+        <button type="submit" class="btn btn-primary">Ya</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('.send_btn').on('click', function (e) {
+          e.preventDefault();
+          let id = $(this).data('id');
+          console.log(id);
+          $("#delete-form").attr('action', "{{url('emiten')}}/"+id);
+        });
+</script>
+
+
 @endsection

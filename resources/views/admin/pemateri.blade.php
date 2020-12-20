@@ -10,7 +10,7 @@
         <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_content">
-                  <!-- <a class="btn btn-primary" href="{{url('buatakun/3')}}">Tambah akun pimpinan</a> -->
+                  <a class="btn btn-primary" href="{{url('buatakun')}}">Tambah Pemateri</a>
                     @if (session('status'))
                       <div class="alert alert-success alert-dismissible " role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
