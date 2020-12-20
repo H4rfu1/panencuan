@@ -160,7 +160,7 @@
                                             </div>
                                         </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Nama<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Username<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
                                                 <input class="form-control" name="username" placeholder="Username" required="required" value="{{old('username')}}"/>
                                             </div>
@@ -188,28 +188,25 @@
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Kota<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control"  name="kota" placeholder="Kota/kabupaten" required="required" />
+                                                <input class="form-control"  name="kota" required="required" />
                                             </div>
                                         </div>
-                                        </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Kota<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">No Hp<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control"  name="no_hp" placeholder="Kota/kabupaten" required="required" />
+                                                <input class="form-control"  name="no_hp"  required="required" />
                                             </div>
                                         </div>
-                                        </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Kota<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">NIM<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control"  name="nim" placeholder="Kota/kabupaten" required="required" />
+                                                <input class="form-control"  name="nim" required="required" />
                                             </div>
                                         </div>
-                                        </div>
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Kota<span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Jurusan<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control"  name="jurusan" placeholder="Kota/kabupaten" required="required" />
+                                                <input class="form-control"  name="jurusan" required="required" />
                                             </div>
                                         </div>
                                         
@@ -224,22 +221,6 @@
 												</span>
 											</div>
 										</div>
-                                        
-                                        <!-- <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Ulangi password<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="password" name="password2" data-validate-linked='password' required='required' /></div>
-                                        </div> -->
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">No. HP<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="tel" class='tel' name="no_hp" required='required' data-validate-length-range="10,13" /></div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">alamat<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <textarea required="required" name='alamat'></textarea></div>
-                                        </div>
                                         <div class="ln_solid">
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">

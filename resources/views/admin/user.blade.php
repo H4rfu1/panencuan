@@ -18,25 +18,42 @@
                         {{ session('status') }}
                       </div>
                     @endif
+                    
+
                     <div class="table-responsive">
                       <table class="table table-striped jambo_table bulk_action">
-                        <thead>
+                      <thead>
                           <tr class="headings">
                             <th class="column-title">No. </th>
                             <th class="column-title">Nama</th>
-                            <th class="column-title">email </th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                            <th class="column-title">Jenis Kelamin</th>
+                            <th class="column-title">username</th>
+                            <th class="column-title">Email </th>
                             </th>
                           </tr>
                         </thead>
                         <tbody>
-                        <tr class="even pointer" onclick="window.location='{{url('profil/')}}';" style="cursor: pointer;">
-                            <td>1</td>
-                            <td class=" ">nama</td>
-                            <td class=" ">mail</td>
-                            <td class=" last"><a href="{{url('profil/')}}"><span class="badge badge-info">Detail</span></a>
+                          @foreach($data as $p)
+                          @if($loop->iteration % 2 == 1)
+                          <tr class="even pointer" onclick="window.location='{{url('profil/'.$p->id)}}';" style="cursor: pointer;">
+                            <td>{{ $loop->iteration }}</td>
+                            <td class=" ">{{ $p->name }}</td>
+                            <td class=" ">{{ $p->jenis_kelamin }}</td>
+                            <td class=" ">{{ $p->username }}</td>
+                            <td class=" ">{{ $p->email }}</td>
                             </td>
                           </tr>
+                          @else
+                          <tr class="odd pointer" onclick="window.location='{{url('profil/'.$p->id)}}';" style="cursor: pointer;">
+                            <td>{{ $loop->iteration }}</td>
+                            <td class=" ">{{ $p->name }}</td>
+                            <td class=" ">{{ $p->jenis_kelamin }}</td>
+                            <td class=" ">{{ $p->username }}</td>
+                            <td class=" ">{{ $p->email }}</td>
+                            </td>                            
+                          </tr>
+                          @endif
+                          @endforeach
                         </tbody>
                       </table>
                     </div>

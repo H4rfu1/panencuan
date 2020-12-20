@@ -111,6 +111,6 @@ Auth::routes();
 // Route::post('/daftarakun', 'AkunController@store');
 
 Route::get('/buatakun', 'c_pemateri@addpemateri');
-Route::post('/simpanakun', 'c_pemateri@actionBuat');
+Route::post('/daftarakun', 'c_pemateri@actionBuat');
 
 // Route::get('/akun/{role}', 'AkunController@akun');

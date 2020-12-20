@@ -41,11 +41,19 @@ class c_Pemateri extends Controller
     {
         //metode sistem pakar
         m_pemateri::create([
-            'id_pembuat' => $request->id,
-            'judul_diskusi' => $request->judul_diskusi,
-            'deskripsi_diskusi' => $request->deskripsi_diskusi,
-            'tanggal_dibuat' => date("Y-m-d H:i:s")
-        ]);
-        return redirect('diskusi')->with('status', 'Berhasil Dibuat');
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'username' => $request->username,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tanggal' => $request->tanggal_lahir,
+            'kota' => $request->kota,
+            'no_hp' => $request->no_hp,
+            'jurusan' => $request->jurusan,
+            'status_id' => 1,
+            'role_id' => 3,
+            'nim' => $request->nim
+            ]);
+        return redirect('admin/pemateri')->with('status', 'Akun Pemateri Berhasil Dibuat');
     }
 }

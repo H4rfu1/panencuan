@@ -56,7 +56,7 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               @if(Auth::user()->role_id == 2)
               <div class="menu_section">
-                <h3>Akun</h3>
+                <h3>Menu</h3>
                 <ul class="nav side-menu">
                 <li><a><i class="fa fa-user-times"></i> Kelola Verifikasi <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

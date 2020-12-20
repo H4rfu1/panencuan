@@ -181,7 +181,9 @@ class PagesController extends Controller
 
     public function user()
     {
-        return view('admin.user');
+        
+        $data = User::where('role_id', 1)->get();
+        return view('admin.user', compact('data'));
     }
     public function userverif()
     {
@@ -258,7 +260,8 @@ class PagesController extends Controller
 
     public function pemateri()
     {
-        return view('admin.pemateri');
+        $data = User::where('role_id', 3)->get();
+        return view('admin.pemateri', compact('data'));
     }
 
     public function batalverif(Request $request)
