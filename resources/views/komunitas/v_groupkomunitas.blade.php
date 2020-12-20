@@ -16,7 +16,7 @@
 							</div>
 							<div class="d-flex justify-content-start mb-4">
 								<div class="img_cont_msg">
-									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
+									<img src="{{asset('images/img.png')}}" class="rounded-circle user_img_msg">
 								</div>
 								<div class="msg_cotainer">
 									{{$p->komentar}}
@@ -33,7 +33,7 @@
 									<span class="msg_time" >{{substr($p->tanggal_komen,0,10)}}</span>
 								</div>
 								<div class="img_cont_msg">
-									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
+									<img src="{{asset('images/img.png')}}" class="rounded-circle user_img_msg">
 								</div>
 							</div>
 							@endif

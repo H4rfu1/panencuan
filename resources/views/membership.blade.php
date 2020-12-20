@@ -22,11 +22,11 @@
         </div>
         <div class="pricing-body">
           <ul class="theme-list">
-            <li class="list-item">Push Notification</li>
-            <li class="list-item">Unlimited blog</li>
-            <li class="list-item">Realtime community</li>
-            <li class="list-item">24/7 Support expert</li>
-            <li class="list-item">Discount webinar</li>
+            <li class="list-item">Melihat Semua Video</li>
+            <li class="list-item">ikut live kelas member tiap bulan</li>
+            <li class="list-item">Mendapatkan grup komunitas</li>
+            <li class="list-item">harga spesial untuk webinar dan live kelas</li>
+            <li class="list-item">Sinyal saham di grup komunitas</li>
           </ul>
         </div>
         <a class="btn btn-dark" href="{{url('membership/'.$p->id_paket)}}">Pilih Plan</a>

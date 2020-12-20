@@ -619,7 +619,7 @@ border: none !important;
         <!-- <a href="login.html" class="btn btn-dark rounded-pill" role="button">Login</a>
         <a href="daftar.html" class="btn btn-dark rounded-pill" role="button">Register</a> -->
         <div class="dropdown">
-          <a href="#" data-toggle="dropdown" class="dropdown-toggle user-action text-white text-decoration-none"><img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="rounded-circle" alt="Avatar">{{Auth::user()->name}}<b class="caret"></b></a>
+          <a href="#" data-toggle="dropdown" class="dropdown-toggle user-action text-white text-decoration-none"><img src="{{asset('images/img.png')}}" class="rounded-circle" alt="Avatar">{{Auth::user()->name}}<b class="caret"></b></a>
           <ul class="dropdown-menu">
             @if(Auth::user()->role_id == 3)
             <li><a href="{{url('/pemateri')}}" class="text-decoration-none"><i class="fa fa-tachometer"></i> Dashboard</a></li>

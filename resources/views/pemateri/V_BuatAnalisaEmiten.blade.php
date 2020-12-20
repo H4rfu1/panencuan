@@ -37,41 +37,51 @@
                     <div class="clearfix"></div>
 
                     <!-- menu profile quick info -->
-                    <div class="profile clearfix">
-                        <div class="profile_pic">
-                            <img src="{{url('images/img.jpg')}}" alt="..." class="img-circle profile_img">
-                        </div>
-                        <div class="profile_info">
-                            <span>Welcome,</span>
-                            <h2>{{Auth::user()->name}}</h2>
-                        </div>
-                    </div>
-                    <!-- /menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="{{asset('images/img.png')}}" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>{{Auth::user()->name}}</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
 
-                    <br />
+            <br />
 
-                   <!-- sidebar menu -->
+            <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               @if(Auth::user()->role_id == 2)
               <div class="menu_section">
-                <h3>Akun</h3>
+                <h3>Menu</h3>
                 <ul class="nav side-menu">
-                <li><a href="{{url('admin/userverif')}}"><i class="fa fa-laptop"></i> Verifikasi Member</a></li>
+                <li><a><i class="fa fa-user-times"></i> Kelola Verifikasi <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{url('admin/userverif')}}">Verifikasi Member</a>
+                        <li><a href="{{url('verifikasiwebinar')}}">Verifikasi Webinar</a>
+                        </li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-sitemap"></i> Kelola Akun <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{url('admin/user')}}">Akun Member</a>
                         <li><a href="{{url('admin/pemateri')}}">Akun Pemateri</a>
                         </li>
                     </ul>
-                  </li>                  
+                  </li>     
+                  <h3>Webinar</h3>             
+                <li><a href="{{url('webinar')}}"><i class="fa fa-laptop"></i> Webinar / Live Kelas</a></li>
                 </ul>
               </div>
               @endif
               @if(Auth::user()->role_id == 3)
               <div class="menu_section">
-                <h3>Materi</h3>
+                <h3>Menu</h3>
                 <ul class="nav side-menu">
                   <li><a href="{{url('video')}}"><i class="fa fa-laptop"></i> Kelola video</a></li>              
+                  <li><a href="{{url('emiten')}}"><i class="fa fa-bar-chart"></i> Analisa Emiten</a></li>    
+                  <li><a href="{{url('webinar')}}"><i class="fa fa-laptop"></i> Webinar / Live Kelas</a></li>          
                 </ul>
               </div>
               @endif

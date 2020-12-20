@@ -85,7 +85,7 @@
         <!-- <a href="login.html" class="btn btn-dark rounded-pill" role="button">Login</a>
         <a href="daftar.html" class="btn btn-dark rounded-pill" role="button">Register</a> -->
         <div class="dropdown">
-          <a href="#" data-toggle="dropdown" class="dropdown-toggle user-action text-white text-decoration-none"><img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="rounded-circle" alt="Avatar">{{Auth::user()->name}}<b class="caret"></b></a>
+          <a href="#" data-toggle="dropdown" class="dropdown-toggle user-action text-white text-decoration-none"><img src="{{asset('images/img.png')}}" class="rounded-circle" alt="Avatar">{{Auth::user()->name}}<b class="caret"></b></a>
           <ul class="dropdown-menu">
             @if(Auth::user()->role_id == 3)
             <li><a href="{{url('/pemateri')}}" class="text-decoration-none"><i class="fa fa-tachometer"></i> Dashboard</a></li>
@@ -116,12 +116,12 @@
     <div class="container fg-white h-100">
       <div class="row align-items-center h-100">
         <div class="col-lg-6 wow fadeInUp">
-          <div class="badge badge-soft mb-2">#1 Finances App on 2020</div>
-          <h1 class="mb-4 fw-normal">Best app for your modern lifestyle</h1>
-          <p class="mb-4">Mobster has features to view and manage <br>
-          our finances, such as transfer, and statistics.</p>
+          <div class="badge badge-soft mb-2">#1 Website Finansial</div>
+          <h1 class="mb-4 fw-normal">Mahasiswa Belajar Finansial</h1>
+          <p class="mb-4">Mendapat materi seputar finansial <br>
+          Menemukan komunitas terbaik.</p>
 
-          <a href="#" class="btn btn-dark">Get Started</a>
+          <a href="{{url('register')}}" class="btn btn-dark">Daftar</a>
 
         </div>
         <div class="col-lg-6 d-none d-lg-block wow zoomIn">
@@ -136,6 +136,45 @@
 
 <div class="page-section no-scroll">
   <div class="container">
+  <div id="carouselExampleIndicators" class="carousel slide wow zoomIn" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{{asset('images/slide show 1.jpg')}}" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{asset('images/slide show 2.jpg')}}" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{asset('images/slide show 3.jpg')}}" alt="Third slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{asset('images/slide show 4.jpg')}}" alt="Four slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{asset('images/slide show 5.jpg')}}" alt="five slide">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  </div>
+</div>
+
+<div class="page-section no-scroll">
+  <div class="container">
   @if (session('status'))
         <div class="text-success text-center mb-3">
             <small>
@@ -143,7 +182,7 @@
             </small>
         </div>
     @endif 
-    <h2 class="text-center wow fadeIn">Our Main Features</h2>
+    <h2 class="text-center wow fadeIn">Panencuan</h2>
 
     <div class="row justify-content-center mt-5">
       <div class="col-lg-10">
@@ -153,8 +192,10 @@
               <div class="svg-icon mx-auto mb-4">
                 <img src="assets/img/icons/payment.png" alt="">
               </div>
-              <h5 class="fg-gray">Secure Payment</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates esse, sunt reprehenderit</p>
+              <h5 class="fg-gray">Kenapa kami?</h5>
+              <p class="fs-small"><strong>Karena kami yang pertama</strong> <br>
+kami satu-satunya forum edukasi finansial di Universitas Jember yang bekerjasama dengan Kelompok Studi Pasar Modal – Galeri Investasi di Universitas Jember yang ahli di bidangnya
+</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 py-3 wow fadeInUp">
@@ -162,8 +203,10 @@
               <div class="svg-icon mx-auto mb-4">
                 <img src="assets/img/icons/customizable.png" alt="">
               </div>
-              <h5 class="fg-gray">Easily Customizable</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates esse, sunt reprehenderit</p>
+              <h5 class="fg-gray">Misi Kami</h5>
+              <p class="fs-small"><strong>Edukasi Finansial</strong> <br>
+Menjadi sarana informasi dan edukasi mengenai finansial dan pasar modal di kalangan mahasiswa untuk mewujudkan mahasiswa yang bebas finansial di masa depan
+</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 py-3 wow fadeInRight">
@@ -171,8 +214,10 @@
               <div class="svg-icon mx-auto mb-4">
                 <img src="assets/img/icons/concept.png" alt="">
               </div>
-              <h5 class="fg-gray">Powerful Concept</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates esse, sunt reprehenderit</p>
+              <h5 class="fg-gray">Yang Kami Lakukan</h5>
+              <p class="fs-small"><strong>Mengedukasi finansial dan Pasar Modal Ke Mahasiswa</strong> <br>
+Dengan adanya Panen Cuan ini untuk kalangan mahasiswa diharapkan dapat menjadi jembatan untuk mengenalkan finansial dan pasar modal kepada mahasiswa yang masih buta mengenai finansial dan pasar modal
+</p>
             </div>
           </div>
         </div>
@@ -181,96 +226,8 @@
   </div>
 </div>
 
-<div class="page-section no-scroll">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-7 wow fadeIn">
-        <div class="img-place">
-          <img src="assets/img/app_preview_4.png" alt="">
-        </div>
-      </div>
-      <div class="col-lg-5 pl-lg-5 wow fadeInUp">
-        <h2 class="mb-4">All kind of business tools integration</h2>
-        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia repellendus illo, possimus magni cumque, voluptatem et necessitatibus consequatur perspiciatis laborum temporibus sint dolorem porro, eaque quo sequi. Tempora, voluptates quibusdam?</p>
-        <a href="#" class="btn btn-outline-primary rounded-pill">See Addons</a>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="page-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 py-3">
-        <div class="iconic-list">
-          <div class="iconic-item wow fadeInUp">
-            <div class="iconic-content">
-              <h5>Powerful Features</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
-            </div>
-            <div class="iconic-md iconic-text bg-warning fg-white rounded-circle">
-              <span class="mai-analytics"></span>
-            </div>
-          </div>
-          <div class="iconic-item wow fadeInUp">
-            <div class="iconic-content">
-              <h5>Fully Secured</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
-            </div>
-            <div class="iconic-md iconic-text bg-info fg-white rounded-circle">
-              <span class="mai-shield-checkmark"></span>
-            </div>
-          </div>
-          <div class="iconic-item wow fadeInUp">
-            <div class="iconic-content">
-              <h5>Easy Monitoring</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
-            </div>
-            <div class="iconic-md iconic-text bg-indigo fg-white rounded-circle">
-              <span class="mai-desktop-outline"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 py-3 wow zoomIn">
-        <div class="img-place mobile-preview shadow">
-          <img src="assets/img/app_preview_2.png" alt="">
-        </div>
-      </div>
-      <div class="col-lg-4 py-3">
-        <div class="iconic-list">
-          <div class="iconic-item wow fadeInUp">
-            <div class="iconic-md iconic-text bg-warning fg-white rounded-circle">
-              <span class="mai-speedometer-outline"></span>
-            </div>
-            <div class="iconic-content">
-              <h5>Powerful Features</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
-            </div>
-          </div>
-          <div class="iconic-item wow fadeInUp">
-            <div class="iconic-md iconic-text bg-success fg-white rounded-circle">
-              <span class="mai-aperture"></span>
-            </div>
-            <div class="iconic-content">
-              <h5>Fully Secured</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
-            </div>
-          </div>
-          <div class="iconic-item wow fadeInUp">
-            <div class="iconic-md iconic-text bg-indigo fg-white rounded-circle">
-              <span class="mai-stats-chart-outline"></span>
-            </div>
-            <div class="iconic-content">
-              <h5>Easy Monitoring</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <hr>
 
@@ -279,238 +236,60 @@
   <div class="container">
     <div class="row justify-content-center text-center wow fadeInUp">
       <div class="col-lg-6">
-        <h2 class="mb-3">Get awesome features, without extra charges</h2>
-        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores non magnam, quis aliquid dolor magni</p>
-
-        <div class="btn-group btn-group-toggle rounded-pill btn-switch" data-toggle="buttons">
-          <label class="btn active">
-            <input type="radio" name="options" id="option1" checked> Monthly
-          </label>
-          <label class="btn">
-            <input type="radio" name="options" id="option2"> Annually
-          </label>
-        </div>
+        <h2 class="mb-3">Membership PANEN CUAN</h2>
+        <p class="mb-5">Dapatkan lebih banyak manfaat dengan membership</p>
       </div>
     </div>
     <div class="pricing-table mt-5 wow fadeInUp">
+      @foreach($paket as $p)
       <div class="pricing-item active no-transform">
         <div class="pricing-header">
-          <h5>Business Plan</h5>
-          <h1 class="fw-normal">$49.00</h1>
+          <h5>{{$p->nama_paket}}</h5>
+          <h1 class="fw-normal">Rp. {{$p->harga}}</h1>
         </div>
         <div class="pricing-body">
           <ul class="theme-list">
-            <li class="list-item">Push Notification</li>
-            <li class="list-item">Unlimited Bandwith</li>
-            <li class="list-item">Realtime Database</li>
-            <li class="list-item">Monthly Backup</li>
-            <li class="list-item">24/7 Support</li>
+            <li class="list-item">Melihat Semua Video</li>
+            <li class="list-item">ikut live kelas member tiap bulan</li>
+            <li class="list-item">Mendapatkan grup komunitas</li>
+            <li class="list-item">harga spesial untuk webinar dan live kelas</li>
+            <li class="list-item">Sinyal saham di grup komunitas</li>
           </ul>
         </div>
-        <button class="btn btn-dark">Choose Plan</button>
+        <a class="btn btn-dark" href="{{url('membership/'.$p->id_paket)}}">Pilih Plan</a>
       </div>
-      <div class="pricing-item">
-        <div class="pricing-header">
-          <h5>Starter Plan</h5>
-          <h1 class="fw-normal">$24.00</h1>
-        </div>
-        <div class="pricing-body">
-          <ul class="theme-list">
-            <li class="list-item">Push Notification</li>
-            <li class="list-item">Unlimited Bandwith</li>
-            <li class="list-item">Realtime Database</li>
-            <li class="list-item">Monthly Backup</li>
-            <li class="list-item">24/7 Support</li>
-          </ul>
-        </div>
-        <button class="btn btn-dark">Choose Plan</button>
-      </div>
+      @endforeach
     </div>
   </div>
 </div>
 
 <hr>
 
-<!-- Testimonials -->
-<div class="page-section">
-  <div class="container">
-    <div class="row justify-content-center text-center">
-      <div class="col-lg-6 wow fadeIn">
-        <h2>Meet client satisfaction by using product</h2>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid">
-    <div class="owl-carousel stack-carousel mt-5 wow fadeInUp">
-      <div class="item">
-        <div class="ratings fs-small py-3">
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star-half"></span>
-        </div>
-
-        <div class="caption">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem distinctio esse eum laudantium necessitatibus autem perferendis quod ipsum eaque.</div>
-
-        <div class="avatar mt-3">
-          <div class="avatar-img">
-            <img src="assets/img/person/person_1.png" alt="">
-          </div>
-          <div class="avatar-caption">
-            <p class="mb-0 fw-medium fg-primary">Galih Raugana</p>
-            <div class="fs-vsmall fw-medium">UI Designer</div>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="ratings fs-small py-3">
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star-half"></span>
-        </div>
-
-        <div class="caption">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem distinctio esse eum laudantium necessitatibus autem perferendis quod ipsum eaque.</div>
-
-        <div class="avatar mt-3">
-          <div class="avatar-img">
-            <img src="assets/img/person/person_2.png" alt="">
-          </div>
-          <div class="avatar-caption">
-            <p class="mb-0 fw-medium fg-primary">Galih Raugana</p>
-            <div class="fs-vsmall fw-medium">Graphic Designer</div>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="ratings fs-small py-3">
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="mai-star"></span>
-        </div>
-
-        <div class="caption">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem distinctio esse eum laudantium necessitatibus autem perferendis quod ipsum eaque.</div>
-
-        <div class="avatar mt-3">
-          <div class="avatar-img">
-            <img src="assets/img/person/person_3.png" alt="">
-          </div>
-          <div class="avatar-caption">
-            <p class="mb-0 fw-medium fg-primary">Galih Raugana</p>
-            <div class="fs-vsmall fw-medium">Data Analyst</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- FAQ -->
 <div class="page-section bg-light">
   <div class="container">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-lg-5 py-3 wow fadeInUp">
-        <h2 class="mb-4">Frequently <br> asked question</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, minus id consectetur accusantium illum necessitatibus, non quia sit laboriosam aut libero. Maiores neque velit modi, mollitia nostrum alias quibusdam et.</p>
-
-        <p class="fg-primary fw-medium">Need more helps?</p>
-        <a href="#" class="btn btn-gradient btn-split-icon rounded-pill">
-          <span class="icon mai-call-outline"></span> Contact Us
-        </a>
+  <div class="row justify-content-center text-center wow fadeInUp">
+      <div class="col-lg-6">
+        <h2 class="mb-3">Daftar Webinar/Live Kelas</h2>
+        <p class="mb-5">Dapatkan lebih ilmu dengan join webinar / live kelas</p>
       </div>
-      <div class="col-lg-7 py-3 no-scroll-x">
-        <div class="accordion accordion-gap" id="accordionFAQ">
-          <div class="accordion-item wow fadeInRight">
-            <div class="accordion-trigger" id="headingFour">
-              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">Payment types that won't work</button>
-            </div>
-            <div id="collapse1" class="collapse" aria-labelledby="headingFour" data-parent="#accordionFAQ">
-              <div class="accordion-content">
-                <p>You can't add these payment methods to Google Pay:</p>
-                <ul>
-                  <li>Wire transfers</li>
-                  <li>Bank transfers</li>
-                  <li>Western Union</li>
-                  <li>Moneygram</li>
-                  <li>Virtual credit cards (VCC)</li>
-                  <li>Health savings account (HSA)</li>
-                  <li>Any escrow type of payment</li>
-                  <li>Prepaid cards if you use automatic payments</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item wow fadeInRight">
-            <div class="accordion-trigger" id="headingFive">
-              <button class="btn" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">Already seeing payment methods</button>
-            </div>
-            <div id="collapse2" class="collapse show" aria-labelledby="headingFive" data-parent="#accordionFAQ">
-              <div class="accordion-content">
-                <p>New to Google Pay and already seeing payment methods? If you paid for something through Google in the past, Google Pay saved your card.</p>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item wow fadeInRight">
-            <div class="accordion-trigger" id="headingSix">
-              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">Your transaction cannot be completed</button>
-            </div>
-            <div id="collapse3" class="collapse" aria-labelledby="headingSix" data-parent="#accordionFAQ">
-              <div class="accordion-content">
-                <p>If you see this error message, wait 24 hours and try to add your card again.</p>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item wow fadeInRight">
-            <div class="accordion-trigger" id="headingSeven">
-              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">Credit & Debit cards</button>
-            </div>
-            <div id="collapse4" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionFAQ">
-              <div class="accordion-content">
-                <ul>
-                  <li>American Express</li>
-                  <li>MasterCard</li>
-                  <li>Visa</li>
-                  <li>Discover (U.S. only)</li>
-                  <li>JCB (Japan and U.S. only)</li>
-                  <li>Visa Electron (outside U.S. only)</li>
-                  <li>Elo credit cards (Brazil only; Elo debit cards aren’t accepted)</li>
-                </ul>
-                <p>The types of cards accepted by Google services vary by location and product.</p>
-              </div>
-            </div>
-          </div>
+    </div>
 
-          <div class="accordion-item wow fadeInRight">
-            <div class="accordion-trigger" id="headingEight">
-              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">Send money to friends or family</button>
-            </div>
-            <div id="collapse5" class="collapse" aria-labelledby="headingEight" data-parent="#accordionFAQ">
-              <div class="accordion-content">
-                <p>This feature is only available in the US. For the US territories, this is supported only if the debit card was issued under a US-licensed bank. If you'd like to know in advance whether your payment to or from a US territory will go through, please check with your card issuing bank.</p>
-
-                <p>You can use Google Pay to send money to friends and family or to someone using their email address or phone number. Google Pay charges no fees.</p>
-
-                <p>If you have a problem sending money, here is a list of likely reasons.</p>
-              </div>
-            </div>
+    <div class="row justify-content-center align-items-center wow fadeInUp">
+      <div class="card-group">
+      @foreach($webinar as $p)
+      @if($loop->iteration > 4)
+      @php break; @endphp
+      @endif
+        <div class="card">
+          <img class="card-img-top" src="{{asset('storage/image/'.$p->image)}}" alt="Card image cap mx-auto d-block" style="max-height: 300px; ">
+          <div class="card-body">
+            <h5 class="card-title">{{$p->opsi}} : {{$p->judul}}</h5>
+            <p class="card-text">{{$p->deskripsi}}</p>
+            <p class="card-text"><small class="text-muted"> {{ substr($p->waktu,0,10) }} </small></p>
           </div>
-
-          <div class="accordion-item wow fadeInRight">
-            <div class="accordion-trigger" id="headingNine">
-              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">How long it usually takes to send or receive money</button>
-            </div>
-            <div id="collapse6" class="collapse" aria-labelledby="headingNine" data-parent="#accordionFAQ">
-              <div class="accordion-content">
-                <p>For the best Google Pay experience, we recommend using a debit card whenever you send or receive money from friends and family. With a debit card, sending and receiving money is usually the fastest option.</p>
-              </div>
-            </div>
-          </div>
-
         </div>
+        @endforeach
       </div>
     </div>
   </div>
@@ -521,47 +300,11 @@
   <div class="container">
     <div class="text-center wow fadeIn">
       <h2 class="mb-4">Our partners</h2>
-      <p>Become a <a href="#">partners?</a></p>
     </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 justify-content-center align-items-center mt-5">
       <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="assets/img/clients/alter_sport.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="assets/img/clients/cleaning_service.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="assets/img/clients/creative_photo.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="assets/img/clients/global_tv.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="assets/img/clients/net_sport_tv.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="assets/img/clients/news_digital_tv.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="assets/img/clients/spa_beauty.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="assets/img/clients/trivier_group.png" alt="">
+        <div class="img-place client-img" style="min-hight:200px;">
+          <img src="{{asset('images/kspm.png')}}" alt="">
         </div>
       </div>
     </div>
@@ -575,16 +318,7 @@
         <div class="text-center mb-3">
           <img src="assets/favicon-light.png" alt="" height="80">
         </div>
-        <h3 class="mb-3"><span class="fg-primary">Mob</span>ster</h3>
-        <p class="caption">Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Expedita voluptates earum minima reiciendis consectetur veniam aut dignissimos</p>
-
-        <ul class="nav justify-content-center py-3">
-          <li class="nav-item"><a href="index.html" class="nav-link fg-white px-4">Home</a></li>
-          <li class="nav-item"><a href="" class="nav-link fg-white px-4">Key Features</a></li>
-          <li class="nav-item"><a href="" class="nav-link fg-white px-4">Pricing</a></li>
-          <li class="nav-item"><a href="" class="nav-link fg-white px-4">Testimonials</a></li>
-          <li class="nav-item"><a href="" class="nav-link fg-white px-4">FAQ</a></li>
-        </ul>
+        <h3 class="mb-3"><span class="fg-primary">Panen</span>Cuan</h3>
       </div>
     </div>
   </div>

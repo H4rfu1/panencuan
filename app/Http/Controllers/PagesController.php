@@ -15,16 +15,18 @@ class PagesController extends Controller
     }
     public function home()
     {
+        $webinar = DB::table('webinar_livekelas')->get();
+        $paket = DB::table('data paket')->get();
         if (Auth::check()) {
             if (Auth::user()->role_id == 2) {
                 return redirect('/admin');
             }elseif(Auth::user()->role_id == 3){
-                return view('index2');
+                return view('index2', compact('paket', 'webinar'));
             }else{
-                return view('index2');
+                return view('index2', compact('paket', 'webinar'));
             }
         }else{
-            return view('index2');
+            return view('index2', compact('paket', 'webinar'));
         }
     }
     public function profil()

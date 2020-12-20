@@ -97,7 +97,7 @@
 			  @foreach($komentar as $k)
 				<li class="comment">
 					<div class="vcard bio">
-					<img src="{{asset('/assets/img/person/person_1.png')}}" alt="Image placeholder">
+					<img src="{{asset('images/img.png')}}" alt="Image placeholder">
 					</div>
 					<div class="comment-body">
 					<h3>{{$k->name}}</h3>
