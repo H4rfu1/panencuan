@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Ubah video | </title>
+    <title>Ubah Emiten </title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{url('favicon.ico')}}" type="image/x-icon">
@@ -180,7 +180,7 @@
                                         <div class="ln_solid">
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
-                                                    <a class="btn btn-danger" href = "{{url('video')}}">Batal</a>
+                                                    <a class="btn btn-danger" href = "{{url('emiten')}}">Batal</a>
                                                     <button type='submit' class="btn btn-success">Simpan</button>
                                                 </div>
                                             </div>

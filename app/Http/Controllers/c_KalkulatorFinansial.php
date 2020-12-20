@@ -35,7 +35,7 @@ class c_KalkulatorFinansial extends Controller
                     $nominal = intval($request->nominal);
                     $return = intval($request->return);
                     $waktu = intval($request->waktu);
-                    $hasil = ($nominal + ($return * $nominal)) * $waktu;
+                    $hasil = ($nominal + $nominal($return/100)) * $waktu;
                     $scroll = true;
                 }else{
                     $hasil = '';

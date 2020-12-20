@@ -137,7 +137,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Tambah Video</h3>
+                            <h3>Tambah Webinar live kelas</h3>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -146,7 +146,7 @@
                             <div class="x_panel">
 
                                 <div class="x_title">
-                                    <h2>Tambah video pembelajaran 
+                                    <h2>Tambah Webinar live kelas
                                     
                                     </h2>
                                     <div class="clearfix"></div>
@@ -181,7 +181,7 @@
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Deskripsi video<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <textarea required="required" name='deskripsi'></textarea></div>
+                                                <textarea required="required" name='deskripsi' style="min-width: 100%"></textarea></div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Waktu Acara<span class="required">*</span></label>

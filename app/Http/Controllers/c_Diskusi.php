@@ -26,6 +26,26 @@ class c_Diskusi extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     
+     public function listDiskusi()
+    {
+        $data = m_Diskusi::orderBy('tanggal_dibuat', 'DESC')
+        ->join('users', 'diskusi.id_pembuat', '=', 'users.id')
+        ->get();
+
+        // dd($data);
+
+        if (Auth::check()) {
+            if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3) {
+                return view('diskusi.v_diskusi', compact('data'));
+            }else{
+                return view('home');
+            }
+        }else{
+            return view('auth.login');
+        }
+        return view('komunitas.v_groupkomunitas', compact('data'));
+    }
 
     public function actionBuat(Request $request)
     {
@@ -62,7 +82,7 @@ class c_Diskusi extends Controller
         ->first();  
         $msg = '<li class="comment">
                     <div class="vcard bio">
-                        <img src="'.asset("/assets/img/person/person_1.png").'" alt="Image placeholder">
+                        <img src="'.asset("/images/img.png").'" alt="Image placeholder">
                     </div>
                     <div class="comment-body">
                         <h3>'.$data->name.'</h3>

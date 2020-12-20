@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Profil | </title>
+    <title>Detail video | </title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{url('favicon.ico')}}" type="image/x-icon">
@@ -167,7 +167,7 @@
                                         <div class="field item form-group">
                                             <label class="col-md-3 col-sm-3  label-align">Video<span > : </span></label>
                                             <div class="col-md-6 col-sm-6 embed-responsive embed-responsive-16by9">
-                                                <iframe class="embed-responsive-item" src="{{asset('storage/video/'.$data->url_video)}}" allowfullscreen></iframe>
+                                                <video class="embed-responsive-item" src="{{asset('storage/video/'.$data->url_video)}}" allowfullscreen controls preload="none" autostart="false"></video>
                                             </div>
                                         </div>
                                         <div class="field item form-group">
